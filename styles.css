@@ -181,7 +181,7 @@ a {
 
 .scroll-menu .active_3:hover::after {
     transition: all 1s !important;
-    width: 172% !important;
+    width: 185% !important;
 }
 
 .scroll-menu .active > a:hover::after {
@@ -921,7 +921,7 @@ td, th {
 
 .active_3:hover::after {
     transition: all 1s !important;
-    width: 134% !important;
+    width: 145% !important;
 }
 
 .active > a:hover::after {
