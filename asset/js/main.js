@@ -1,4 +1,4 @@
-// * AOS animation
+// * index.html
 
 // * ---------------------------------------------------------
 const $ = document.querySelector.bind(document);
@@ -131,4 +131,11 @@ function showSlides(n) {
   }
   slides[slideIndex - 1].classList.remove("hide");
 }
+
+
+
+
 // * ---------------------------------------------------------
+// * product1-2.html
+
+
