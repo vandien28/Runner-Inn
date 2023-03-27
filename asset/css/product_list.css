@@ -44,6 +44,9 @@ img {
     margin: auto;
 }
 
+.height {
+    height: 807px !important;
+}
 
 /* * ---- header ----------------------------- */ 
 
@@ -1155,6 +1158,10 @@ ul.submenu-links li a {
 .product-img a img {
     max-width: 100%;
     transition: transform 1s ease;
+}
+
+.product {
+    margin-top: 50px;
 }
 
 .product a img:hover {

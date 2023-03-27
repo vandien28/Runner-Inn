@@ -1,6 +1,5 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-// * header
 let flag = false;
 let recover_panels = $(".recover_panels");
 let login_panels = $(".login_panels");
