@@ -1,9 +1,6 @@
-// * index.html
-
-// * ---------------------------------------------------------
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-// * ---------------------------------------------------------
+// * --------------------------------------------------------->
 // * header
 let flag = false;
 let account = $(".account");
@@ -19,7 +16,7 @@ let accounts = $(".scroll-account");
 let carts = $(".scroll-cart");
 let search = $(".scroll-search");
 let restore = $(".restorepass");
-let returnlogin = $(".returnlogin");
+let return_login = $(".returnlogin");
 
 function box_account() {
   if (flag == false) {
@@ -70,7 +67,7 @@ restore.onclick = function () {
   login_panels.classList.add("hide");
 };
 
-returnlogin.onclick = function () {
+return_login.onclick = function () {
   recover_panels.classList.add("hide");
   login_panels.classList.remove("hide");
 };
@@ -94,9 +91,7 @@ function box_carts() {
     flag = false;
   }
 }
-// * ---------------------------------------------------------
 
-// * scroll header
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
   window.addEventListener("scroll", function () {
@@ -107,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+// * --------------------------------------------------------->
 
-// * ---------------------------------------------------------
-// * product1-2.html
+
 
 
