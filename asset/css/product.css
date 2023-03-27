@@ -22,7 +22,6 @@ img {
     object-fit: cover;
 }
 
-
 .show_header {
     position: fixed;
     top: 0;
@@ -38,12 +37,10 @@ img {
     display: none;
 }
 
-
 .container {
     width: 1300px;
     margin: auto;
 }
-
 
 /* * ---- header ----------------------------- */ 
 
@@ -768,6 +765,9 @@ ol li a{
     content: "/\00a0";
     padding: 0 15px;
 }
+
+
+
 
 .wrap-site {
     padding: 40px;
