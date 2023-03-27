@@ -480,7 +480,7 @@ form.searchform .btn-search:hover {
     -webkit-box-shadow: 0 1px 5px 2px rgb(0 0 0 / 20%);
     -moz-box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 5px 2px rgb(0 0 0 / 20%);
-    width: 350px;
+  
     background: #ffffff;
     z-index: 999;
 }
@@ -508,6 +508,11 @@ svg:not(:root) {
     font-size: 14px;
     overflow: hidden;
     padding: 25px 15px 15px;
+    
+}
+
+.site_panel {
+    width: 350px;
 }
 
 .login_panel i, .recover_panel i, .cart_panel i, .search_panel i,.login_panels i,.recover_panels i {
@@ -690,6 +695,21 @@ svg:not(:root) {
 
 .txtAccount > i {
     font-size: 12px;
+}
+
+.account-information {
+    width: 250px;
+    
+}
+
+.account-information .account_title {
+    border-bottom: 2px solid #e3e3e3;
+    padding-bottom: 10px;
+}
+
+.account-information p {
+    padding: 7px;
+    color: #272727;
 }
 
 .rotate {
