@@ -1003,7 +1003,7 @@
 
         function showSlides(n) {
         let i;
-        let slides = $$(".owl-stage");
+        let slides = document.querySelectorAll(".owl-stage");
         if (n > slides.length) {
             slideIndex = 1;
         }
