@@ -14,6 +14,13 @@ a {
     text-decoration: none;
 }
 
+img {
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
+    object-fit: cover;
+}
+
 .clearfix::after {
     clear: both;
 }
@@ -951,14 +958,13 @@ td, th {
     width: 100%;
     height: 100%;
     position: absolute;
-    transition: left .65s ease-out;
-    
+    transition: left 2s ease-out;
 }
 
 .stage {
     width: 100%;
     position: absolute;
-    transition: left 2s ease ;
+    transition: right 2s ease ;
 }
 
 
@@ -998,8 +1004,9 @@ td, th {
 
 .owl-nav> div:hover {
     background-color: rgba(222, 219, 219, 0.6);
-    transition: all 0.7s ease;
+    transition: background-color 1s ease;
 }
+
 
 .section-collection {
     padding: 40px;
@@ -1071,6 +1078,8 @@ td, th {
     max-width: 90%;
     overflow: hidden;
     object-fit: cover;
+    -webkit-object-fit: cover;
+    transition: transform 1.5s ease;
 }
 
 .product > .product-img > a > img:hover {
@@ -1125,62 +1134,27 @@ td, th {
    align-items: center; 
    flex-direction: column;
    justify-content: center;
+   
 }
 
 .category-image {
     width: 502.39px;
     height: 502.39px;
-    
+    transition: transform 3s ease;
 }
 
 .category-image:hover{
     opacity: 0.5;
     cursor: pointer;
-    transition: 0.5s;
-    animation: zoom 2s ease-in;
-    overflow: hidden;
     transform: scale(1.1);
 }
 
-@keyframes zoom {
-    0% {
-        transform: scale(1);
-    }
-    10% {
-        transform: scale(1.01);
-    }
-    20% {
-        transform: scale(1.02);
-    }
-    30% {
-        transform: scale(1.03);
-    }
-    40% {
-        transform: scale(1.04);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    60% {
-        transform: scale(1.06);
-    }
-    70% {
-        transform: scale(1.07);
-    }
-    80% {
-        transform: scale(1.08);
-    }
-    90% {
-        transform: scale(1.09);
-    }
-    100% {
-        transform: scale(1.1);
-    }
-}
+
 
 .category-image  img {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 
@@ -1438,19 +1412,32 @@ td, th {
     padding: 2px;
 }
 
-.gallery_item {
+.gallery-item {
     position: relative;
     overflow: hidden;
     display: block;
 }
 
-img {
-    max-width: 100%;
-    vertical-align: middle;
-    border: 0;
-    object-fit: cover;
+
+.gallery-item:before {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 2;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%);
+    -webkit-transform: skewX(-25deg);
+    transform: skewX(-25deg);
 }
 
+.gallery-item:hover::before {
+    transition: left 1s ease;
+    left: 100%;
+}
 
 /* * ---- footer ----------------------------- */ 
 
