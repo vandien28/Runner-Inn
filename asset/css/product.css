@@ -25,6 +25,14 @@ img {
 }
 
 
+.position_fx {
+    position: fixed;
+}
+
+.position_rl {
+    position: relative;
+}
+
 .clearfix::after {
     clear: both;
 }

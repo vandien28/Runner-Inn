@@ -109,33 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // * ---------------------------------------------------------
-// * banner
-let slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}
-
-function showSlides(n) {
-  let i;
-  let slides = $$(".owl-stage");
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].classList.add("hide");
-  }
-  slides[slideIndex - 1].classList.remove("hide");
-}
-
-
-
-
-// * ---------------------------------------------------------
 // * product1-2.html
 
 
