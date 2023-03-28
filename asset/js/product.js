@@ -98,7 +98,7 @@ var quantity = $(".quantity-selector");
 
 function minusQuantity() {
   let minusValue = parseInt(quantity.value);
-  if (minusValue < 1) {
+  if (minusValue == 1) {
     quantity.value = 1;
   } else {
     quantity.value = minusValue - 1;
@@ -109,3 +109,16 @@ function plusQuantity() {
   let plusValue = parseInt(quantity.value);
   quantity.value = plusValue + 1;
 }
+
+const gallery = $$(".product-thumbs")
+
+var productImg = $(".product-img img")
+
+gallery.forEach(function(item,index){
+  item.addEventListener("click",function(event) {
+    item.classList.add("active")
+    let i = event.target.parentElement
+    let srcImg = i.querySelector(".product-thumbs img").src
+    productImg.src = srcImg
+  })
+})

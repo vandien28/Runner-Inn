@@ -22,6 +22,21 @@ img {
     object-fit: cover;
 }
 
+p span {
+    margin: 0 0 10px 0;
+    line-height: 21px;
+}
+
+body {
+    font-size: 14px;
+    color: #272727;
+    letter-spacing: .5px;
+    font-weight: 100;
+}
+
+li {
+    line-height: 21px;
+}
 
 .show_header {
     position: fixed;
@@ -770,14 +785,67 @@ ol li a{
 
 .product-detail {
     display: flex;
+    justify-content: space-between;
 }
 
 .col-md-7 {
     width: 58%;
+    padding: 0 15px;
+}
+
+.product-gallery {
+    display: flex;
+}
+
+.product-thumb {
+    width: 9%;
+}
+
+.active {
+    border-color: #000 !important;
+}
+
+.product-thumbs {
+    line-height: 0;
+    margin-bottom: 10px;
+    border: 1px solid #f7f7f8;
+    width: 100%;
+    cursor: pointer;
+}
+
+.product-img {
+    width: 91%;
+}
+
+.product-img img {
+    width: 100%;
+}
+
+.product-description {
+    margin: 20px 0;
+}
+
+.product-description h2 {
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-block;
+    text-decoration: underline;
+}
+
+.product-description ul {
+    list-style: initial;
+    padding-left: 20px;
+}
+
+.description-content {
+    margin-top: 20px;
 }
 
 .col-md-5  {
     width: 41%;
+    position: sticky;
+    height: 437px;
+    top: 70px;
 }
 
 .product-title {
@@ -998,7 +1066,7 @@ input[type=checkbox] {
 }
 
 .add-cart {
-    border: 1px solid #000;
+    border: 1px solid #4267B2;
     background: transparent;
 }
 
@@ -1009,7 +1077,7 @@ input[type=checkbox] {
 
 .add-cart::before {
     content: "";
-    background: #000000;
+    background: #4267B2;
     width: 100%;
     height: 100%;
     position: absolute;
