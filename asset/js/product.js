@@ -68,15 +68,12 @@ var product = localStorage.getItem("product")
   ? JSON.parse(localStorage.getItem("product"))
   : [];
 
-const products = $$(".pro-name");
+const products = $$(".col-sm-6");
 
 products.forEach(function (element, index) {
   element.addEventListener("click", function (event) {
-    let p =
-      event.target.parentElement.parentElement.parentElement.parentElement
-        .parentElement;
-    let p1 = p.querySelector(".pro-name").innerText;
-    let p2 = p.querySelector(".pro-price").innerText;
+    let p1 = element.querySelector(".pro-name").innerText;
+    let p2 = element.querySelector(".pro-price").innerText;
     product = {
       name: p1,
       price: p2,
