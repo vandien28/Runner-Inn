@@ -110,15 +110,19 @@ function plusQuantity() {
   quantity.value = plusValue + 1;
 }
 
-const gallery = $$(".product-thumbs")
+const gallery = $$(".product-thumbs");
 
-var productImg = $(".product-img img")
-
-gallery.forEach(function(item,index){
-  item.addEventListener("click",function(event) {
-    item.classList.add("active")
-    let i = event.target.parentElement
-    let srcImg = i.querySelector(".product-thumbs img").src
-    productImg.src = srcImg
-  })
-})
+gallery.forEach(function (item, index) {
+  let productImg = $(".product-img img");
+  item.addEventListener("click", function (event) {
+    item.classList.add("active");
+    let i = event.target.parentElement;
+    let srcImg = i.querySelector(".product-thumbs img").src;
+    productImg.src = srcImg;
+    Array.from(gallery)
+      .filter((it, i) => i !== index)
+      .map(function (value) {
+        value.classList.remove("active");
+      });
+  });
+});
