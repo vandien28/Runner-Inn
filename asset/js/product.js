@@ -63,3 +63,49 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 //* -------------------------------------------->
+
+var product = localStorage.getItem("product")
+  ? JSON.parse(localStorage.getItem("product"))
+  : [];
+
+const products = $$(".pro-name");
+
+products.forEach(function (element, index) {
+  element.addEventListener("click", function (event) {
+    let p =
+      event.target.parentElement.parentElement.parentElement.parentElement
+        .parentElement;
+    let p1 = p.querySelector(".pro-name").innerText;
+    let p2 = p.querySelector(".pro-price").innerText;
+    product = {
+      name: p1,
+      price: p2,
+    };
+    localStorage.setItem("product", JSON.stringify(product));
+  });
+});
+
+function renderProduct() {
+  let title = $("title");
+  let nameProduct = $(".product-title h1");
+  let priceProduct = $(".pro-price");
+  priceProduct.innerText = product.price;
+  nameProduct.innerText = product.name;
+  title.innerText = product.name;
+}
+
+var quantity = $(".quantity-selector");
+
+function minusQuantity() {
+  let minusValue = parseInt(quantity.value);
+  if (minusValue < 1) {
+    quantity.value = 1;
+  } else {
+    quantity.value = minusValue - 1;
+  }
+}
+
+function plusQuantity() {
+  let plusValue = parseInt(quantity.value);
+  quantity.value = plusValue + 1;
+}
