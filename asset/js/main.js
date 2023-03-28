@@ -103,7 +103,23 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 // * --------------------------------------------------------->
+// * product
 
+var product = localStorage.getItem("product")
+  ? JSON.parse(localStorage.getItem("product"))
+  : [];
 
+const products = $$(".col-md");
 
+products.forEach(function (element, index) {
+  element.addEventListener("click", function (event) {
+    let p1 = element.querySelector(".pro-name").innerText;
+    let p2 = element.querySelector(".pro-price").innerText;
+    product = {
+      name: p1,
+      price: p2,
+    };
+    localStorage.setItem("product", JSON.stringify(product));
+  });
+});
 
