@@ -28,6 +28,18 @@ img {
     display: none;
 }
 
+.error {
+    border-color: red !important;
+    color: red !important;
+}
+
+.line {
+    float: left;
+    width: 100%;
+    border-top: 1px solid #e3e5ec;
+    margin: 0;
+}
+
 /* * ---- header ----------------------------- */ 
 
 
@@ -867,12 +879,7 @@ table tr td:first-child, table tr th:first-child {
     color: red;
 }
 
- .line {
-    float: left;
-    width: 100%;
-    border-top: 1px solid #e3e5ec;
-    margin: 0;
-}
+
 
 .payment {
     padding-top: 7px;

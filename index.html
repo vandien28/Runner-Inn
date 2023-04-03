@@ -102,13 +102,13 @@
                                                         <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                     </div>
                                                     <div class="account-list">
-                                                        <form action="/account/login" accept-charset="UTF-8" method="post" id="form_login">
+                                                        <form action="" accept-charset="UTF-8" method="post" id="form_login">
                                                             <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                                <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" autocomplete="email" placeholder=" ">
+                                                                <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" rules="required|email"  autocomplete="email" placeholder=" ">
                                                                 <label for="login-customer[email]" class="form__floating-label">Email</label>
                                                             </div>
                                                             <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                                <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password" placeholder=" ">
+                                                                <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" rules="required|min:6" required="required" autocomplete="current-password" placeholder=" ">
                                                                 <label for="login-customer[password]" class="form__floating-label">Mật khẩu</label>
                                                                 <div class="sitebox-recaptcha">
                                                                     This site is protected by reCAPTCHA and the Google
@@ -120,7 +120,7 @@
                                                         </form>
                                                         <div class="site_account_secondary-action">
                                                             <p>Khách hàng mới? 
-                                                                <a href="/account/register" class="link">Tạo tài khoản</a>
+                                                                <a href="" class="link">Tạo tài khoản</a>
                                                             </p>
                                                             <p>Quên mật khẩu? 
                                                                 <button aria-controls="header-recover-panel" class="restorepass link">Khôi phục mật khẩu</button>
@@ -135,9 +135,9 @@
                                                         <p class="account_legend">Nhập email của bạn:</p>
                                                     </div>
                                                     <div class="account-list">
-                                                        <form action="/account/login" accept-charset="UTF-8" method="post" id="form_login">
+                                                        <form action="" accept-charset="UTF-8" method="post" id="form_login" >
                                                             <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                                <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required" autocomplete="email"  placeholder=" ">
+                                                                <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required|email" autocomplete="email"  placeholder=" ">
                                                                 <label for="recover-customer[recover_email]" class="form__floating-label">Email</label>
                                                             </div>
                                                             <div class="sitebox-recaptcha">
@@ -328,7 +328,7 @@
                         </div>
                         <div class="wrapper-upper-search">
                             <div class="search-box">
-                                <form action="/search" class="searchform">
+                                <form action="" class="searchform">
                                     <div class="search-inner">
                                         <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..." class="searchinput">
                                     </div>
@@ -361,7 +361,7 @@
                                                         <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                     </div>
                                                     <div class="account-list">
-                                                        <form action="/account/login" accept-charset="UTF-8" method="post" id="form_login">
+                                                        <form action="" accept-charset="UTF-8" method="post" id="form_login">
                                                             <div class="form__input-wrapper form__input-wrapper--labelled">
                                                                 <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" autocomplete="email" placeholder=" ">
                                                                 <label for="login-customer[email]" class="form__floating-label">Email</label>
@@ -379,7 +379,7 @@
                                                         </form>
                                                         <div class="site_account_secondary-action">
                                                             <p>Khách hàng mới? 
-                                                                <a href="/account/register" class="link">Tạo tài khoản</a>
+                                                                <a href="" class="link">Tạo tài khoản</a>
                                                             </p>
                                                             <p>Quên mật khẩu? 
                                                                 <button aria-controls="header-recover-panel" class="js-link1 link">Khôi phục mật khẩu</button>
@@ -394,7 +394,7 @@
                                                         <p class="account_legend">Nhập email của bạn:</p>
                                                     </div>
                                                     <div class="account-list">
-                                                        <form action="/account/login" accept-charset="UTF-8" method="post" id="form_login">
+                                                        <form action="" accept-charset="UTF-8" method="post" id="form_login">
                                                             <div class="form__input-wrapper form__input-wrapper--labelled">
                                                                 <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required" autocomplete="email"  placeholder=" ">
                                                                 <label for="recover-customer[recover_email]" class="form__floating-label">Email</label>
@@ -1171,5 +1171,7 @@
 
     </script>
     <script type="text/javascript" src="asset/js/main.js"></script>
+    <script type="text/javascript" src="asset/js/validator.js"></script>
+
 </body>
 </html>

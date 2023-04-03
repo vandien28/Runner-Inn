@@ -50,7 +50,7 @@ function box_carts() {
     flag = false;
   }
 }
-
+//* -------------------------------------------->
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
   window.addEventListener("scroll", function () {
