@@ -18,6 +18,7 @@ let search = $(".scroll-search");
 let restore = $(".restorepass");
 let return_login = $(".returnlogin");
 
+// * ẩn hiện popup đăng nhập
 function box_account() {
   if (flag == false) {
     account.classList.remove("hide");
@@ -52,16 +53,6 @@ login.onclick = function () {
   login_panel.classList.remove("hide");
 };
 
-function box_search() {
-  if (flag == false) {
-    search.classList.remove("hide");
-    flag = true;
-  } else {
-    search.classList.add("hide");
-    flag = false;
-  }
-}
-
 restore.onclick = function () {
   recover_panels.classList.remove("hide");
   login_panels.classList.add("hide");
@@ -72,6 +63,18 @@ return_login.onclick = function () {
   login_panels.classList.remove("hide");
 };
 
+// * ẩn hiện popup tìm kiếm
+function box_search() {
+  if (flag == false) {
+    search.classList.remove("hide");
+    flag = true;
+  } else {
+    search.classList.add("hide");
+    flag = false;
+  }
+}
+
+// * ẩn hiện popup giỏ hàng
 function box_cart() {
   if (flag == false) {
     cart.classList.remove("hide");
@@ -91,7 +94,8 @@ function box_carts() {
     flag = false;
   }
 }
-
+//* -------------------------------------------->
+// * scroll header
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
   window.addEventListener("scroll", function () {
@@ -103,8 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 // * --------------------------------------------------------->
-// * product
-
+// * lưu sản phẩm vào localstorage
 var product = localStorage.getItem("product")
   ? JSON.parse(localStorage.getItem("product"))
   : [];

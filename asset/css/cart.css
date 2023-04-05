@@ -886,6 +886,200 @@ ol li a{
     padding: 0 15px;
 }
 
+
+.col-md {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-md-9 {
+    width: 75%;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.heading h1 {
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: 0 0 25px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.list-pageform-cart {
+    margin-bottom: 25px;
+}
+
+.cart-row {
+    background: #fafafa;
+    padding: 15px;
+}
+
+.list-pageform-cart .title-number-cart {
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.list-pageform-cart .title-number-cart span {
+    font-weight: 700;
+}
+
+#cartformpage .table-cart {
+    background: #fff;
+}
+
+#cartformpage .table-cart .item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+#cartformpage .table-cart .item .left {
+    display: inline-flex;
+    width: 13%;
+    padding: 0 20px;
+}
+
+#cartformpage .table-cart .item .left .item-img {
+    margin: 0 auto;
+}
+
+#cartformpage .table-cart .item .right {
+    display: inline-flex;
+    width: 85%;
+}
+
+#cartformpage .table-cart .item .right .item-info {
+    display: inline-flex;
+    width: 40%;
+    align-items: center;
+}
+
+#cartformpage .table-cart .item .right .item-info a {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+}
+
+#cartformpage .table-cart .item .right .item-info a h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#cartformpage .table-cart .item .right .item-info a .item-desc {
+    font-size: 12px;
+    color: #777;
+    margin-top: 3px;
+}
+
+#cartformpage .table-cart .item .right .item-quan {
+    display: inline-flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#cartformpage .table-cart .item .right .item-quan .qty-click {
+    float: left;
+}
+
+#cartformpage .table-cart .item .right .item-quan .qty-click button.qtyminus.qty-btn {
+    border-right: none;
+}
+
+#cartformpage .table-cart .item .right .item-quan .qty-click button.qty-btn {
+    background: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    color: #abafb2;
+    height: 25px;
+    padding: 0;
+    text-align: center;
+    width: 25px;
+    border: 1px solid #dadbdd;
+    border-radius: 0;
+    float: left;
+    appearance: none;
+}
+
+
+#cartformpage .table-cart .item .right .item-quan .qty-click input.item-quantity {
+    font-weight: 500;
+    font-size: 15px;
+    height: 25px;
+    padding: 0;
+    text-align: center;
+    width: 35px;
+    background: #ededed;
+    border: 1px solid #dadbdd;
+    border-radius: 0;
+    float: left;
+    appearance: none;
+}
+
+#cartformpage .table-cart .item .right .item-quan .qty-click button.qtyplus.qty-btn {
+    border-left: none;
+}
+
+#cartformpage .table-cart .item .right .item-quan .qty-click button.qty-btn:hover {
+    color: #000;
+    cursor: pointer;
+}
+
+#cartformpage .table-cart .item .right .item-price {
+    display: inline-flex;
+    width: 15%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#cartformpage .table-cart .item .right .item-total-price {
+    display: inline-flex;
+    text-align: center;
+    width: 25%;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #a73340;
+}
+
+#cartformpage .table-cart .item .right .item-total-price div span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    color: #777;
+}
+
+#cartformpage .table-cart .item .right .item-total-price span.line-item-total {
+    font-weight: bold;
+    color: #a73340;
+}
+
+#cartformpage .table-cart .item .right .item-total-price .remove i {
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #272727;
+}
+
+#cartformpage .table-cart .item .right .item-total-price .remove:hover i{
+    cursor: pointer;
+    color: #a73340;
+
+}
+
+.col-md-3 {
+    width: 25%;
+}
+
 .wrap-site {
     padding: 40px;
     text-align: center;

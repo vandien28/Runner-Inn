@@ -11,22 +11,13 @@ let search = $(".scroll-search");
 let restore = $(".restorepass");
 let return_login = $(".returnlogin");
 
+// * ẩn hiện popup đăng nhập
 function box_accounts() {
   if (flag == false) {
     accounts.classList.remove("hide");
     flag = true;
   } else {
     accounts.classList.add("hide");
-    flag = false;
-  }
-}
-
-function box_search() {
-  if (flag == false) {
-    search.classList.remove("hide");
-    flag = true;
-  } else {
-    search.classList.add("hide");
     flag = false;
   }
 }
@@ -41,6 +32,18 @@ return_login.onclick = function () {
   login_panels.classList.remove("hide");
 };
 
+// * ẩn hiện popup tìm kiếm
+function box_search() {
+  if (flag == false) {
+    search.classList.remove("hide");
+    flag = true;
+  } else {
+    search.classList.add("hide");
+    flag = false;
+  }
+}
+
+// * ẩn hiện popup giỏ hàng
 function box_carts() {
   if (flag == false) {
     carts.classList.remove("hide");
@@ -51,6 +54,7 @@ function box_carts() {
   }
 }
 //* -------------------------------------------->
+// * scroll header
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
   window.addEventListener("scroll", function () {
@@ -66,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //* -------------------------------------------->
 
+// * lưu sản phẩm vào localstorage
 var product = localStorage.getItem("product")
   ? JSON.parse(localStorage.getItem("product"))
   : [];
@@ -84,6 +89,8 @@ products.forEach(function (element, index) {
   });
 });
 
+
+//* lấy thông tin sản phẩm từ localstorage
 function renderProduct() {
   let title = $("title");
   let nameProduct = $(".product-title h1");
@@ -93,8 +100,10 @@ function renderProduct() {
   title.innerText = product.name;
 }
 
+
 var quantity = $(".quantity-selector");
 
+// * giảm số lượng sản phẩm
 function minusQuantity() {
   let minusValue = parseInt(quantity.value);
   if (minusValue == 1) {
@@ -104,11 +113,14 @@ function minusQuantity() {
   }
 }
 
+// * tăng số lượng sản phẩm
 function plusQuantity() {
   let plusValue = parseInt(quantity.value);
   quantity.value = plusValue + 1;
 }
 
+
+//* chuyển ảnh của sản phẩm
 const gallery = $$(".product-thumbs");
 
 gallery.forEach(function (item, index) {
