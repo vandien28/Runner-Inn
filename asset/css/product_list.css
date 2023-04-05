@@ -72,7 +72,7 @@ img {
 }
 
 .header-scroll {
-    padding: 15px 0 7px 0;
+    padding: 15px 0 ;
     width: 100%;
     visibility: visible;
     border-bottom: 1px solid rgba(199, 189, 189, 0.2);
@@ -154,7 +154,7 @@ img {
 
 .scroll-menu .active:hover > .sub-menu {
     display: block;  
-    top: 145%;
+    top: 170%;
 }
 
 .scroll-menu .sub-menu  li   {
@@ -187,7 +187,7 @@ img {
     width: 0%;
     border-bottom: 2px solid rgb(0, 0, 0);
     transition: all .6s;
-    margin-top: 18px;
+    margin-top: 26px;
     position: absolute;
     left: 0;
 }

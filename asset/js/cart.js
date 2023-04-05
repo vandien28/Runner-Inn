@@ -69,71 +69,27 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 //* -------------------------------------------->
-
-// * lưu sản phẩm vào localstorage
-var product = localStorage.getItem("product")
-  ? JSON.parse(localStorage.getItem("product"))
-  : [];
-
-const products = $$(".col-sm-6");
-
-products.forEach(function (element, index) {
-  element.addEventListener("click", function (event) {
-    let p1 = element.querySelector(".pro-name").innerText;
-    let p2 = element.querySelector(".pro-price").innerText;
-    product = {
-      name: p1,
-      price: p2,
-    };
-    localStorage.setItem("product", JSON.stringify(product));
-  });
-});
-
-
-//* lấy thông tin sản phẩm từ localstorage
-function renderProduct() {
-  let title = $("title");
-  let nameProduct = $(".product-title h1");
-  let priceProduct = $(".pro-price");
-  priceProduct.innerText = product.price;
-  nameProduct.innerText = product.name;
-  title.innerText = product.name;
-}
-
-
-var quantity = $(".quantity-selector");
-
 // * giảm số lượng sản phẩm
-function minusQuantity() {
-  let minusValue = parseInt(quantity.value);
-  if (minusValue == 1) {
-    quantity.value = 1;
-  } else {
-    quantity.value = minusValue - 1;
-  }
-}
+const minus = $$(".qtyminus");
+minus.forEach(function(minus,index) {
+  minus.addEventListener("click",function(event) {
+      let minus1 = event.target.parentElement.querySelector(".item-quantity")
+      let minus2 = parseInt(minus1.value)
+      if(minus1.value  == 1) {
+        // * thêm code xoá sản phẩm vào
+      } else {
+        minus1.value = minus2 - 1;
+      }
+  })
+})
 
 // * tăng số lượng sản phẩm
-function plusQuantity() {
-  let plusValue = parseInt(quantity.value);
-  quantity.value = plusValue + 1;
-}
-
-
-//* chuyển ảnh của sản phẩm
-const gallery = $$(".product-thumbs");
-
-gallery.forEach(function (item, index) {
-  let productImg = $(".product-img img");
-  item.addEventListener("click", function (event) {
-    item.classList.add("active");
-    let i = event.target.parentElement;
-    let srcImg = i.querySelector(".product-thumbs img").src;
-    productImg.src = srcImg;
-    Array.from(gallery)
-      .filter((it, i) => i !== index)
-      .map(function (value) {
-        value.classList.remove("active");
-      });
-  });
-});
+const plus = $$(".qtyplus");
+plus.forEach(function(plus,index) {
+  plus.addEventListener("click",function(event) {
+      let plus1 = event.target.parentElement.querySelector(".item-quantity")
+      let plus2 = parseInt(plus1.value)
+      plus1.value = plus2 + 1;
+  })
+})
+//* -------------------------------------------->
