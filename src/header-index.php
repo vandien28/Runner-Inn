@@ -1,6 +1,5 @@
 <?php
 $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
-
 ?>
 
 

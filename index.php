@@ -18,6 +18,9 @@
 <body>
     <!--  connect csdl -->
 
+    <?php
+    $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+    ?>
 
     <?php
     include "src/header-index.php"
@@ -58,147 +61,34 @@
                     </div>
                     <div class="row">
                         <div class="product-list">
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="./asset/img/NAM1A/NAM1A.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Nike Air Max 1 Anniversary</a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">4,200,000₫</p>
+                            <?php
+                            $productList = $db->prepare("SELECT * FROM sanpham");
+                            $productList->execute();
+                            $product = $productList->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($product as $row) {
+                                if ($row["madanhmuc"] == 456) {
+                                    echo '
+                                    <div class="col-md pro-loop">
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <a href="/src/product.html"><img src="' . $row["hinhanh"] . '" alt="" title="' . $row["tensp"] . '"></a>
+                                            </div>
+                                            <div class="product-detail">
+                                                <div class="box-pro-detail">
+                                                    <h3 class="pro-name">
+                                                        <a href="/src/product.html"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
+                                                    </h3>
+                                                    <div class="box-pro-prices">
+                                                        <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/NAM1Se/NAM1Se.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Nike Air Max 1 Se "Just Do It"
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">4,900,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/T10NAP/T10NAP.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">The 10: Nike Air Presto "Off White"
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">8,800,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href=""><img src="asset/img/NWAH/NWAH.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Nike Wmns Air Huarache City Move
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">5,200,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/NAM9E/NAM9E.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Nike Air Max 90 Essential "Grape"
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">4,800,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/NAM97P/NAM97P.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Nike Air Max 97 Premium</a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">8,000,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/ANX1W/ANX1W.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Adidas Nmd Xr1 W "Pearl Grey"
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">5,750,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/NAHR/NAHR.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Nike W's Air Huarache Run "Triple White"</a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">7,300,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    ';
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -259,77 +149,35 @@
                     </div>
                     <div class="row">
                         <div class="product-list ">
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/AECA/AECA.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Adidas EQT Cushion ADV "North America"
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">7,000,000₫</p>
+
+                            <?php
+                            $productList = $db->prepare("SELECT * FROM sanpham");
+                            $productList->execute();
+                            $product = $productList->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($product as $row) {
+                                if ($row["madanhmuc"] == 567) {
+                                    echo '
+                                    <div class="col-md pro-loop">
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <a href="/src/product.html"><img src="' . $row["hinhanh"] . '" alt=""  title="' . $row["tensp"] . '"></a>
+                                            </div>
+                                            <div class="product-detail">
+                                                <div class="box-pro-detail">
+                                                    <h3 class="pro-name">
+                                                        <a href="/src/product.html"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
+                                                    </h3>
+                                                    <div class="box-pro-prices">
+                                                        <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/ANR1/ANR1.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Adidas Nmd R1 "Villa Exclusive"
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">7,000,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/APSHU/APSHU.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Adidas PW Solar HU NMD "Inspiration Pack"
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">6,000,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md pro-loop">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/AUW/AUW.webp" alt=""></a>
-                                    </div>
-                                    <div class="product-detail">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/src/product.html">Adidas Ultraboost W</a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price">5,300,000₫</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    ';
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

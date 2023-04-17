@@ -38,7 +38,6 @@ img {
     display: none;
 }
 
-
 .container {
     width: 1300px;
     margin: auto;
@@ -802,7 +801,7 @@ ol li a{
     top: 70px;
     margin-top: 30px;
     padding-right: 15px;
-    height: 950px;
+    height: 1100px;
 }
 
 .left-module {
@@ -1204,35 +1203,6 @@ ul.submenu-links li a {
     font-weight: 700;
 }
 
-.pagepar {
-    text-align: center;
-}
-
-.prev svg{
-    transform: rotate(180deg);
-}
-
-.page-node,  .next,  .prev {
-    display: inline-block;
-    margin: 30px 8px;
-    font-size: 15px;
-    font-weight: 600;
-    opacity: 0.4;
-}
-
-.current {
-    opacity: 1;
-    color: #272727;
-}
-
-.hide {
-    display: none;
-}
-
-.next:hover,.page-node:hover,.prev:hover {
-    opacity: 1;
-    cursor: pointer;
-}
 
 
 .wrap-site {

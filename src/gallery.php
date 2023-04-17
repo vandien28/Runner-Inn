@@ -10,32 +10,32 @@
                 <ul>
                     <li>
                         <div class="gallery-item">
-                            <img src="asset/img/gallery_item_1.webp" alt="">
+                            <img src="../asset/img/gallery_item_1.webp" alt="">
                         </div>
                     </li>
                     <li>
                         <div class="gallery-item">
-                            <img src="asset/img/gallery_item_2.webp" alt="">
+                            <img src="../asset/img/gallery_item_2.webp" alt="">
                         </div>
                     </li>
                     <li>
                         <div class="gallery-item">
-                            <img src="asset/img/gallery_item_3.jpg" alt="">
+                            <img src="../asset/img/gallery_item_3.jpg" alt="">
                         </div>
                     </li>
                     <li>
                         <div class="gallery-item">
-                            <img src="asset/img/gallery_item_4.webp" alt="">
+                            <img src="../asset/img/gallery_item_4.webp" alt="">
                         </div>
                     </li>
                     <li>
                         <div class="gallery-item">
-                            <img src="asset/img/gallery_item_5.webp" alt="">
+                            <img src="../asset/img/gallery_item_5.webp" alt="">
                         </div>
                     </li>
                     <li>
                         <div class="gallery-item">
-                            <img src="asset/img/gallery_item_6.jpg" alt="">
+                            <img src="../asset/img/gallery_item_6.jpg" alt="">
                         </div>
                     </li>
                 </ul>

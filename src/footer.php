@@ -9,7 +9,7 @@
                             <p>Runner Inn trang mua sắm trực tuyến của thương hiệu giày, thời trang nam, nữ, phụ
                                 kiện, giúp bạn tiếp cận xu hướng thời trang mới nhất.</p>
                             <div class="logo-footer">
-                                <img src="asset/img/logo-bct.webp" alt="Bộ công thương">
+                                <img src="../asset/img/logo-bct.webp" alt="Bộ công thương">
                             </div>
                             <div class="social-list">
                                 <a href="/">
