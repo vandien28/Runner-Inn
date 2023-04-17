@@ -71,12 +71,12 @@
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.html"><img src="' . $row["hinhanh"] . '" alt="" title="' . $row["tensp"] . '"></a>
+                                                <a href="/src/product.php"><img src="' . $row["hinhanh"] . '" alt="" title="' . $row["tensp"] . '"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
                                                     <h3 class="pro-name">
-                                                        <a href="/src/product.html"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
+                                                        <a href="/src/product.php"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
                                                     </h3>
                                                     <div class="box-pro-prices">
                                                         <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>
@@ -160,12 +160,12 @@
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.html"><img src="' . $row["hinhanh"] . '" alt=""  title="' . $row["tensp"] . '"></a>
+                                                <a href="/src/product.php"><img src="' . $row["hinhanh"] . '" alt=""  title="' . $row["tensp"] . '"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
                                                     <h3 class="pro-name">
-                                                        <a href="/src/product.html"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
+                                                        <a href="/src/product.php"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
                                                     </h3>
                                                     <div class="box-pro-prices">
                                                         <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>

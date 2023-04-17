@@ -16,7 +16,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                 <div class="flexContainer-header-scroll">
                     <div class="scroll-logo">
                         <div class="wrap-logo">
-                            <a href="../index.html" aria-label="logo">
+                            <a href="../index.php" aria-label="logo">
                                 <img src="../asset/img/logo.png" alt="Runner Inn" class="header-logo">
                             </a>
                         </div>
@@ -27,8 +27,8 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                 <div class="main-header-menu">
                                     <nav class="desk-menu">
                                         <ul class="text-center">
-                                            <li class="active"><a href="/index.html">trang chủ</a></li>
-                                            <li class="active"><a class="active_2" href="/src/product1.html">bộ sưu tập</a></li>
+                                            <li class="active"><a href="/index.php">trang chủ</a></li>
+                                            <li class="active"><a class="active_2" href="/src/collection.php">bộ sưu tập</a></li>
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <?php
