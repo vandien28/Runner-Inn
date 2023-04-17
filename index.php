@@ -17,10 +17,11 @@
 
 <body>
     <!--  connect csdl -->
-   
+
 
     <?php
     include "src/header-index.php"
+
     ?>
     <main id="main">
         <section class="section-slider">
@@ -60,7 +61,7 @@
                             <div class="col-md pro-loop">
                                 <div class="product">
                                     <div class="product-img">
-                                        <a href="/src/product.html"><img src="asset/img/NAM1A/NAM1A.webp" alt=""></a>
+                                        <a href="/src/product.html"><img src="./asset/img/NAM1A/NAM1A.webp" alt=""></a>
                                     </div>
                                     <div class="product-detail">
                                         <div class="box-pro-detail">
@@ -251,7 +252,7 @@
             <div class="wrap-collection_1">
                 <div class="container">
                     <div class="wrap-heading">
-                        <h2><a href="">Sản phẩm mới</a></h2>
+                        <h2><a href="">Sản phẩm bán chạy</a></h2>
                         <div class="wrap-all">
                             <a href="">Xem thêm</a>
                         </div>
@@ -467,7 +468,6 @@
         }
     </script>
     <script type="text/javascript" src="asset/js/main.js"></script>
-    <script type="text/javascript" src="asset/js/validator.js"></script>
 </body>
 
 </html>

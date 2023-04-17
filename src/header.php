@@ -107,11 +107,11 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                 <div class="account-list">
                                                     <form action="login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" autocomplete="email" placeholder=" ">
+                                                            <input type="email" id="login-customer[email]" class="form__field form__field--text" name="email" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
                                                         </div>
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password" placeholder=" ">
+                                                            <input type="password" id="login-customer[password]" class="form__field form__field--text" name="password" required="required" autocomplete="current-password" placeholder=" ">
                                                             <label for="login-customer[password]" class="form__floating-label">Mật khẩu</label>
                                                             <div class="sitebox-recaptcha">
                                                                 This site is protected by reCAPTCHA and the Google
@@ -122,7 +122,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                         <button type="submit" class="form__submit" id="form_submit-login" name="submitLogin">Đăng nhập</button>
                                                     </form>
 
-                                                 
+
 
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
@@ -254,3 +254,22 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
 
 
 
+<script>
+    function logout() {
+        document.getElementById("logout-form").submit();
+    }
+
+    // Thêm form ẩn để gửi yêu cầu đăng xuất.
+    var form = document.createElement("form");
+    form.id = "logout-form";
+    form.method = "POST";
+    form.action = "src/logout.php";
+
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "logout";
+    input.value = "1";
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+</script>

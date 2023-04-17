@@ -1,32 +1,31 @@
 <?php
-// Kết nối CSDL
+
 $servername = "localhost";
 $username = "sa";
 $password = "123456";
 $dbname = "runnerinn";
 
 try {
-    $conn = new PDO("sqlsrv:Server=$servername;Database=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db = new PDO("sqlsrv:Server=$servername;Database=$dbname", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 
 if (isset($_POST["submitLogin"])) {
-    $email = $_POST["customer[email]"];
-    $pass = $_POST["customer[password]"];
-
-    $stmt = $conn->prepare("SELECT * FROM khachhang WHERE email = :email AND matkhau = :pass");
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':pass', $pass);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) {
-        // đăng nhập thành công
-        header("Location: index.php"); // chuyển hướng đến trang chủ
-        echo "đăng nhập thành công";
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+    $user = $db->prepare("SELECT tentk FROM khachhang WHERE email = :email AND matkhau = :pass");
+    $user->bindParam(':email', $email);
+    $user->bindParam(':pass', $pass);
+    $user->execute();
+    $checkUser = $user->fetch(PDO::FETCH_ASSOC);
+    if ($checkUser !== false) {
+        $userName = $checkUser['tentk'];
+        echo "<script>localStorage.setItem('tenkhachhang', '$userName');</script>";
+        header("Location: ../index.php");
+        exit();
     } else {
-        // đăng nhập thất bại
         echo "Đăng nhập không thành công";
     }
 }
