@@ -1,8 +1,5 @@
 <?php
 $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
-$stmt = $db->prepare("SELECT * FROM danhmuc");
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -30,7 +27,10 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <?php
-                                                    foreach ($result as $row) {
+                                                    $cate = $db->prepare("SELECT * FROM danhmuc");
+                                                    $cate->execute();
+                                                    $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
+                                                    foreach ($cateName as $row) {
                                                         if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
                                                             echo '<li><a href="src/' . $row["tendanhmuc"] . '.html">' . $row["tendanhmuc"] . '</a></li>';
                                                         } else if ($row["madanhmuc"] == 345) {
@@ -100,13 +100,13 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="" accept-charset="UTF-8" method="post" id="form_login">
+                                                    <form action="./login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" rules="required|email" autocomplete="email" placeholder=" ">
+                                                            <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
                                                         </div>
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" rules="required|min:6" required="required" autocomplete="current-password" placeholder=" ">
+                                                            <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password" placeholder=" ">
                                                             <label for="login-customer[password]" class="form__floating-label">Mật khẩu</label>
                                                             <div class="sitebox-recaptcha">
                                                                 This site is protected by reCAPTCHA and the Google
@@ -116,7 +116,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                                     Service</a> apply.
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="form__submit" id="form_submit-login">Đăng nhập</button>
+                                                        <button type="submit" class="form__submit" id="form_submit-login" name="submitLogin">Đăng nhập</button>
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
@@ -378,7 +378,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="" accept-charset="UTF-8" method="post" id="form_login">
+                                                    <form action="./login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
                                                             <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
@@ -394,7 +394,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                                     Service</a> apply.
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="form__submit" id="form_submit-login">Đăng nhập</button>
+                                                        <button type="submit" class="form__submit" id="form_submit-login" name="submitLogin">Đăng nhập</button>
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
@@ -618,7 +618,10 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
                                         <?php
-                                        foreach ($result as $row) {
+                                        $cate = $db->prepare("SELECT * FROM danhmuc");
+                                        $cate->execute();
+                                        $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($cateName as $row) {
                                             if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
                                                 echo '<li><a href="src/' . $row["tendanhmuc"] . '.html">' . $row["tendanhmuc"] . '</a></li>';
                                             } else if ($row["madanhmuc"] == 345) {
