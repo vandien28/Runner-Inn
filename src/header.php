@@ -1,3 +1,11 @@
+<?php
+$db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+$stmt = $db->prepare("SELECT * FROM danhmuc");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+
 <header id="header">
     <div class="navigation-header">
         <div class="promo-bar">
@@ -25,9 +33,15 @@
                                             <li class="active"><a class="active_2" href="/src/product1.html">bộ sưu tập</a></li>
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="/src/nike.html">Nike</a></li>
-                                                    <li><a href="/src/adidas.html">Adidas</a></li>
-                                                    <li><a href="/src/present.html">Sản phẩm tặng</a></li>
+                                                    <?php
+                                                    foreach ($result as $row) {
+                                                        if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
+                                                            echo '<li><a href="src/' . $row["tendanhmuc"] . '.html">' . $row["tendanhmuc"] . '</a></li>';
+                                                        } else if ($row["madanhmuc"] == 345) {
+                                                            echo '<li><a href="src/present.html">' . $row["tendanhmuc"] . '</a></li>';
+                                                        }
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </li>
                                             <li class="active"><a href="">giới thiệu</a></li>

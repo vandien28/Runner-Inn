@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,17 +8,19 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="asset/img/favicon.png">
     <link rel="stylesheet" href="asset/font/awesome-6-pro/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Runner Inn</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <?php 
-    include "header-index.php"
+    <!--  connect csdl -->
+   
+
+    <?php
+    include "src/header-index.php"
     ?>
     <main id="main">
         <section class="section-slider">
@@ -425,9 +428,7 @@
                     <div class="form-newsletter">
                         <form action="/account/contact" class="contact-form">
                             <div class="form-group">
-                                <input required="" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    value="" placeholder="Nhập email của bạn" name="contact[email]"
-                                    aria-label="Email Address" class="inputNew form-control grey newsletter-input">
+                                <input required="" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="" placeholder="Nhập email của bạn" name="contact[email]" aria-label="Email Address" class="inputNew form-control grey newsletter-input">
                             </div>
                             <button type="submit" class="button submitNewsletter"><span>Gửi</span></button>
                         </form>
@@ -436,11 +437,11 @@
             </div>
         </section>
         <?php
-        include "gallery.php"
+        include "src/gallery.php"
         ?>
     </main>
-    <?php 
-    include "footer.php"
+    <?php
+    include "src/footer.php"
     ?>
     <script>
         let slideIndex = 1;
@@ -468,6 +469,5 @@
     <script type="text/javascript" src="asset/js/main.js"></script>
     <script type="text/javascript" src="asset/js/validator.js"></script>
 </body>
-</html> 
 
-
+</html>

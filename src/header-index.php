@@ -1,3 +1,11 @@
+<?php
+$db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+$stmt = $db->prepare("SELECT * FROM danhmuc");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+
 <header id="header">
     <div class="navigation-header">
         <div class="header-scroll hide">
@@ -19,12 +27,17 @@
                                             <li class="active"><a class="active_2" href="index.html">trang chủ</a>
                                             </li>
                                             <li class="active"><a href="src/product1.html">bộ sưu tập</a></li>
-                                            <li class="active"><a class="active_3">sản phẩm&nbsp;<i
-                                                        class="down fa-sharp fa-regular fa-chevron-down"></i></a>
+                                            <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="src/nike.html">Nike</a></li>
-                                                    <li><a href="src/adidas.html">Adidas</a></li>
-                                                    <li><a href="src/present.html">Sản phẩm tặng</a></li>
+                                                    <?php
+                                                    foreach ($result as $row) {
+                                                        if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
+                                                            echo '<li><a href="src/' . $row["tendanhmuc"] . '.html">' . $row["tendanhmuc"] . '</a></li>';
+                                                        } else if ($row["madanhmuc"] == 345) {
+                                                            echo '<li><a href="src/present.html">' . $row["tendanhmuc"] . '</a></li>';
+                                                        }
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </li>
                                             <li class="active"><a href="">giới thiệu</a></li>
@@ -40,15 +53,12 @@
                         <div class="header-wrap-icon">
                             <div class="header-action_search ">
                                 <a class="header-action-toggle" aria-label="Tài Khoản">
-                                    <span class="box-action-icon"><i class="fa-light fa-magnifying-glass"
-                                            onclick="box_search()"></i></span>
+                                    <span class="box-action-icon"><i class="fa-light fa-magnifying-glass" onclick="box_search()"></i></span>
                                 </a>
                                 <div class="header_dropdown scroll-search hide">
                                     <span class="box-triangle">
                                         <svg viewBox="0 0 20 9">
-                                            <path
-                                                d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                fill="#ffffffff"></path>
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z" fill="#ffffffff"></path>
                                         </svg>
                                     </span>
                                     <div class="site-nav">
@@ -62,11 +72,9 @@
                                             <div class="search-scroll-box">
                                                 <form action="/search" class="search-scroll-form">
                                                     <div class="search-inner">
-                                                        <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..."
-                                                            class="search-scroll-input">
+                                                        <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..." class="search-scroll-input">
                                                     </div>
-                                                    <button type="submit" class="btn-search-scroll"><i
-                                                            class="fa-sharp fa-regular fa-magnifying-glass"></i></button>
+                                                    <button type="submit" class="btn-search-scroll"><i class="fa-sharp fa-regular fa-magnifying-glass"></i></button>
                                                 </form>
                                             </div>
                                         </div>
@@ -75,15 +83,12 @@
                             </div>
                             <div class="header-action_account">
                                 <a class="header-action-toggle" aria-label="Tài Khoản">
-                                    <span class="box-action-icon"><i class="fa-light fa-user"
-                                            onclick="box_accounts()"></i></span>
+                                    <span class="box-action-icon"><i class="fa-light fa-user" onclick="box_accounts()"></i></span>
                                 </a>
                                 <div class="header_dropdown scroll-account hide">
                                     <span class="box-triangle">
                                         <svg viewBox="0 0 20 9">
-                                            <path
-                                                d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                fill="#ffffffff"></path>
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z" fill="#ffffffff"></path>
                                         </svg>
                                     </span>
                                     <div class="site-nav">
@@ -95,45 +100,30 @@
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="" accept-charset="UTF-8" method="post"
-                                                        id="form_login">
+                                                    <form action="" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="email" id="login-customer[email]"
-                                                                class="form__field form__field--text"
-                                                                name="customer[email]" required="required"
-                                                                rules="required|email" autocomplete="email"
-                                                                placeholder=" ">
-                                                            <label for="login-customer[email]"
-                                                                class="form__floating-label">Email</label>
+                                                            <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" rules="required|email" autocomplete="email" placeholder=" ">
+                                                            <label for="login-customer[email]" class="form__floating-label">Email</label>
                                                         </div>
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="password" id="login-customer[password]"
-                                                                class="form__field form__field--text"
-                                                                name="customer[password]" rules="required|min:6"
-                                                                required="required" autocomplete="current-password"
-                                                                placeholder=" ">
-                                                            <label for="login-customer[password]"
-                                                                class="form__floating-label">Mật khẩu</label>
+                                                            <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" rules="required|min:6" required="required" autocomplete="current-password" placeholder=" ">
+                                                            <label for="login-customer[password]" class="form__floating-label">Mật khẩu</label>
                                                             <div class="sitebox-recaptcha">
                                                                 This site is protected by reCAPTCHA and the Google
-                                                                <a href="https://policies.google.com/privacy"
-                                                                    target="_blank" rel="noreferrer">Privacy
+                                                                <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy
                                                                     Policy</a>
-                                                                and <a href="https://policies.google.com/terms"
-                                                                    target="_blank" rel="noreferrer">Terms of
+                                                                and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of
                                                                     Service</a> apply.
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="form__submit"
-                                                            id="form_submit-login">Đăng nhập</button>
+                                                        <button type="submit" class="form__submit" id="form_submit-login">Đăng nhập</button>
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
                                                             <a href="" class="link">Tạo tài khoản</a>
                                                         </p>
                                                         <p>Quên mật khẩu?
-                                                            <button aria-controls="header-recover-panel"
-                                                                class="restorepass link">Khôi phục mật khẩu</button>
+                                                            <button aria-controls="header-recover-panel" class="restorepass link">Khôi phục mật khẩu</button>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -145,31 +135,22 @@
                                                     <p class="account_legend">Nhập email của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="" accept-charset="UTF-8" method="post"
-                                                        id="form_login">
+                                                    <form action="" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="email" id="recover-customer[recover_email]"
-                                                                class="form__field form__field--text" name="email"
-                                                                required="required|email" autocomplete="email"
-                                                                placeholder=" ">
-                                                            <label for="recover-customer[recover_email]"
-                                                                class="form__floating-label">Email</label>
+                                                            <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required|email" autocomplete="email" placeholder=" ">
+                                                            <label for="recover-customer[recover_email]" class="form__floating-label">Email</label>
                                                         </div>
                                                         <div class="sitebox-recaptcha">
                                                             This site is protected by reCAPTCHA and the Google
-                                                            <a href="https://policies.google.com/privacy"
-                                                                target="_blank" rel="noreferrer">Privacy Policy</a>
-                                                            and <a href="https://policies.google.com/terms"
-                                                                target="_blank" rel="noreferrer">Terms of
+                                                            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
+                                                            and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of
                                                                 Service</a> apply.
                                                         </div>
-                                                        <button type="submit" class="form__submit"
-                                                            id="form_submit-recover">Khôi phục</button>
+                                                        <button type="submit" class="form__submit" id="form_submit-recover">Khôi phục</button>
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Bạn đã nhớ mật khẩu?
-                                                            <button aria-controls="header-login-panel"
-                                                                class="returnlogin link">Trở về đăng nhập</button>
+                                                            <button aria-controls="header-login-panel" class="returnlogin link">Trở về đăng nhập</button>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -212,9 +193,7 @@
                                 <div class="header_dropdown scroll-cart hide">
                                     <span class="box-triangle">
                                         <svg viewBox="0 0 20 9">
-                                            <path
-                                                d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                fill="#ffffffff"></path>
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z" fill="#ffffffff"></path>
                                         </svg>
                                     </span>
                                     <div class="site-nav">
@@ -235,8 +214,7 @@
                                                         <tbody>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -251,8 +229,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -267,8 +244,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -283,8 +259,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -299,8 +274,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -375,8 +349,7 @@
                                 <div class="search-inner">
                                     <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..." class="searchinput">
                                 </div>
-                                <button type="submit" class="btn-search"><i
-                                        class="fa-sharp fa-regular fa-magnifying-glass"></i></button>
+                                <button type="submit" class="btn-search"><i class="fa-sharp fa-regular fa-magnifying-glass"></i></button>
                             </form>
                         </div>
                     </div>
@@ -387,16 +360,13 @@
                                     <span class="box-action-icon"><i class="fa-light fa-user"></i></span>
                                     <span class="icon-box-text" onclick="box_account()">
                                         Đăng nhập / Đăng ký
-                                        <span class="txtAccount">Tài khoản của tôi <i class="icon_down fa fa-angle-down"
-                                                aria-hidden="true"></i></span>
+                                        <span class="txtAccount">Tài khoản của tôi <i class="icon_down fa fa-angle-down" aria-hidden="true"></i></span>
                                     </span>
                                 </a>
                                 <div class="header_dropdown account hide">
                                     <span class="box-triangle">
                                         <svg viewBox="0 0 20 9">
-                                            <path
-                                                d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                fill="#ffffffff"></path>
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z" fill="#ffffffff"></path>
                                         </svg>
                                     </span>
                                     <div class="site-nav">
@@ -408,43 +378,30 @@
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="" accept-charset="UTF-8" method="post"
-                                                        id="form_login">
+                                                    <form action="" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="email" id="login-customer[email]"
-                                                                class="form__field form__field--text"
-                                                                name="customer[email]" required="required"
-                                                                autocomplete="email" placeholder=" ">
-                                                            <label for="login-customer[email]"
-                                                                class="form__floating-label">Email</label>
+                                                            <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required" autocomplete="email" placeholder=" ">
+                                                            <label for="login-customer[email]" class="form__floating-label">Email</label>
                                                         </div>
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="password" id="login-customer[password]"
-                                                                class="form__field form__field--text"
-                                                                name="customer[password]" required="required"
-                                                                autocomplete="current-password" placeholder=" ">
-                                                            <label for="login-customer[password]"
-                                                                class="form__floating-label">Mật khẩu</label>
+                                                            <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password" placeholder=" ">
+                                                            <label for="login-customer[password]" class="form__floating-label">Mật khẩu</label>
                                                             <div class="sitebox-recaptcha">
                                                                 This site is protected by reCAPTCHA and the Google
-                                                                <a href="https://policies.google.com/privacy"
-                                                                    target="_blank" rel="noreferrer">Privacy
+                                                                <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy
                                                                     Policy</a>
-                                                                and <a href="https://policies.google.com/terms"
-                                                                    target="_blank" rel="noreferrer">Terms of
+                                                                and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of
                                                                     Service</a> apply.
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="form__submit"
-                                                            id="form_submit-login">Đăng nhập</button>
+                                                        <button type="submit" class="form__submit" id="form_submit-login">Đăng nhập</button>
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
                                                             <a href="" class="link">Tạo tài khoản</a>
                                                         </p>
                                                         <p>Quên mật khẩu?
-                                                            <button aria-controls="header-recover-panel"
-                                                                class="js-link1 link">Khôi phục mật khẩu</button>
+                                                            <button aria-controls="header-recover-panel" class="js-link1 link">Khôi phục mật khẩu</button>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -456,31 +413,22 @@
                                                     <p class="account_legend">Nhập email của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="" accept-charset="UTF-8" method="post"
-                                                        id="form_login">
+                                                    <form action="" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                            <input type="email" id="recover-customer[recover_email]"
-                                                                class="form__field form__field--text" name="email"
-                                                                required="required" autocomplete="email"
-                                                                placeholder=" ">
-                                                            <label for="recover-customer[recover_email]"
-                                                                class="form__floating-label">Email</label>
+                                                            <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required" autocomplete="email" placeholder=" ">
+                                                            <label for="recover-customer[recover_email]" class="form__floating-label">Email</label>
                                                         </div>
                                                         <div class="sitebox-recaptcha">
                                                             This site is protected by reCAPTCHA and the Google
-                                                            <a href="https://policies.google.com/privacy"
-                                                                target="_blank" rel="noreferrer">Privacy Policy</a>
-                                                            and <a href="https://policies.google.com/terms"
-                                                                target="_blank" rel="noreferrer">Terms of
+                                                            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
+                                                            and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of
                                                                 Service</a> apply.
                                                         </div>
-                                                        <button type="submit" class="form__submit"
-                                                            id="form_submit-recover">Khôi phục</button>
+                                                        <button type="submit" class="form__submit" id="form_submit-recover">Khôi phục</button>
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Bạn đã nhớ mật khẩu?
-                                                            <button aria-controls="header-login-panel"
-                                                                class="js-link2 link">Trở về đăng nhập</button>
+                                                            <button aria-controls="header-login-panel" class="js-link2 link">Trở về đăng nhập</button>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -524,9 +472,7 @@
                                 <div class="header_dropdown cart hide">
                                     <span class="box-triangle">
                                         <svg viewBox="0 0 20 9">
-                                            <path
-                                                d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                fill="#ffffffff"></path>
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z" fill="#ffffffff"></path>
                                         </svg>
                                     </span>
                                     <div class="site-nav">
@@ -547,8 +493,7 @@
                                                         <tbody>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -563,8 +508,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -579,8 +523,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -595,8 +538,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -611,8 +553,7 @@
                                                             </tr>
                                                             <tr class="list-item">
                                                                 <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp"
-                                                                            alt=""></a>
+                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
                                                                 </td>
                                                                 <td class="information">
                                                                     <a class="pro-title" href="/src/product.html">tên
@@ -674,12 +615,17 @@
                             <ul class="text-center">
                                 <li class="active"><a class="active_2" href="index.html">trang chủ</a></li>
                                 <li class="active"><a href="src/product1.html">bộ sưu tập</a></li>
-                                <li class="active"><a class="active_3">sản phẩm&nbsp;<i
-                                            class="down fa-sharp fa-regular fa-chevron-down"></i></a>
+                                <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
-                                        <li><a href="src/nike.html">Nike</a></li>
-                                        <li><a href="src/adidas.html">Adidas</a></li>
-                                        <li><a href="src/present.html">Sản phẩm tặng</a></li>
+                                        <?php
+                                        foreach ($result as $row) {
+                                            if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
+                                                echo '<li><a href="src/' . $row["tendanhmuc"] . '.html">' . $row["tendanhmuc"] . '</a></li>';
+                                            } else if ($row["madanhmuc"] == 345) {
+                                                echo '<li><a href="src/present.html">' . $row["tendanhmuc"] . '</a></li>';
+                                            }
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <li class="active"><a href="">giới thiệu</a></li>
