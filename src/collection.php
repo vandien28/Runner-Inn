@@ -276,7 +276,7 @@
                             <div class="row">
                                 <div class="product-list">
                                     <?php
-                                    $productList = $db->prepare("SELECT * FROM sanpham");
+                                    $productList = $db->prepare("SELECT * FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                                     $productList->execute();
                                     $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($product as $row) {
@@ -285,7 +285,7 @@
                                         <div class="product-block">
                                             <div class="product-img">
                                                 <a href="product.php">
-                                                    <img src="' . $row["hinhanh"] . '" alt="" title="' . $row["tensp"] . '">
+                                                    <img src="' . $row["urlmain"] . '" alt="" title="' . $row["tensp"] . '">
                                                 </a>
                                             </div>
                                             <div class="product-detail">

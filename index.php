@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="product-list">
                             <?php
-                            $productList = $db->prepare("SELECT * FROM sanpham");
+                            $productList = $db->prepare("SELECT * FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
@@ -71,7 +71,7 @@
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.php"><img src="' . $row["hinhanh"] . '" alt="" title="' . $row["tensp"] . '"></a>
+                                                <a href="/src/product.php"><img src="' . $row["urlmain"] . '" alt="" title="' . $row["tensp"] . '"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
@@ -151,7 +151,7 @@
                         <div class="product-list ">
 
                             <?php
-                            $productList = $db->prepare("SELECT * FROM sanpham");
+                            $productList = $db->prepare("SELECT * FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
@@ -160,7 +160,7 @@
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.php"><img src="' . $row["hinhanh"] . '" alt=""  title="' . $row["tensp"] . '"></a>
+                                                <a href="/src/product.php"><img src="' . $row["urlmain"] . '" alt=""  title="' . $row["tensp"] . '"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
