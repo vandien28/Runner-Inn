@@ -15,14 +15,9 @@
 </head>
 
 <body>
-    <?php
-    $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
-    ?>
+    <?php $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456"); ?>
 
-    <?php
-    include "header.php"
-
-    ?>
+    <?php include "header.php" ?>
     <main id="main">
         <section class="section-banner">
             <div class="banner">
@@ -280,27 +275,27 @@
                                     $productList->execute();
                                     $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($product as $row) {
-                                        echo '
+                                    ?>
                                         <div class="col-sm-6">
-                                        <div class="product-block">
-                                            <div class="product-img">
-                                                <a href="product.php">
-                                                    <img src="' . $row["urlmain"] . '" alt="" title="' . $row["tensp"] . '">
-                                                </a>
-                                            </div>
-                                            <div class="product-detail">
-                                                <div class="box-pro-detail">
-                                                    <h3 class="pro-name">
-                                                        <a href="product.php" title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
-                                                    </h3>
+                                            <div class="product-block">
+                                                <div class="product-img">
+                                                    <a href="product.php">
+                                                        <img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>">
+                                                    </a>
+                                                </div>
+                                                <div class="product-detail">
                                                     <div class="box-pro-detail">
-                                                        <p class="pro-price ">' . number_format($row["giatien"]) . '₫</p>
+                                                        <h3 class="pro-name">
+                                                            <a href="product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                        </h3>
+                                                        <div class="box-pro-detail">
+                                                            <p class="pro-price "><?php echo number_format($row["giatien"]) ?>₫</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                        ';
+                                    <?php
                                     }
                                     ?>
                                 </div>
@@ -310,13 +305,9 @@
                 </div>
             </div>
         </section>
-        <?php
-        include "gallery.php"
-        ?>
+        <?php include "gallery.php" ?>
     </main>
-    <?php
-    include "footer.php"
-    ?>
+    <?php include "footer.php"  ?>
     <script type="text/javascript" src="../asset/js/product.js"></script>
 </body>
 

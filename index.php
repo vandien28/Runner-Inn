@@ -67,29 +67,30 @@
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
                                 if ($row["madanhmuc"] == 456) {
-                                    echo '
+                            ?>
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.php"><img src="' . $row["urlmain"] . '" alt="" title="' . $row["tensp"] . '"></a>
+                                                <a href="/src/product.php"><img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
                                                     <h3 class="pro-name">
-                                                        <a href="/src/product.php"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
+                                                        <a href="/src/product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
                                                     </h3>
                                                     <div class="box-pro-prices">
-                                                        <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>
+                                                        <p class="pro-price"><?php echo number_format($row["giatien"]) ?>₫</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    ';
+                            <?php
                                 }
                             }
                             ?>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -156,25 +157,25 @@
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
                                 if ($row["madanhmuc"] == 567) {
-                                    echo '
+                            ?>
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.php"><img src="' . $row["urlmain"] . '" alt=""  title="' . $row["tensp"] . '"></a>
+                                                <a href="/src/product.php"><img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
                                                     <h3 class="pro-name">
-                                                        <a href="/src/product.php"  title="' . $row["tensp"] . '">' . $row["tensp"] . '</a>
+                                                        <a href="/src/product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
                                                     </h3>
                                                     <div class="box-pro-prices">
-                                                        <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>
+                                                        <p class="pro-price"><?php echo number_format($row["giatien"]) ?>₫</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    ';
+                            <?php
                                 }
                             }
                             ?>
