@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="product-list">
                             <?php
-                            $productList = $db->prepare("SELECT * FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
@@ -151,7 +151,7 @@
                         <div class="product-list ">
 
                             <?php
-                            $productList = $db->prepare("SELECT * FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
