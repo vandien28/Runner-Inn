@@ -1,8 +1,12 @@
 <?php
 $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+session_start();
+if (isset($_SESSION['userName'])) {
+    echo "<script>localStorage.setItem('tenkhachhang', '{$_SESSION['userName']}');</script>";
+} else {
+    echo "<script>localStorage.removeItem('tenkhachhang')</script>";
+}
 ?>
-
-
 <header id="header">
     <div class="navigation-header">
         <div class="header-scroll hide">
@@ -92,7 +96,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                         </svg>
                                     </span>
                                     <div class="site-nav">
-                                        <div class="site_panel">
+                                        <div class="site_panel login_scr">
                                             <div class="login_panels">
                                                 <i class="fa-light fa-xmark" onclick="box_accounts()"></i>
                                                 <div class="account-header">
@@ -100,7 +104,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="src/login.php" accept-charset="UTF-8" method="post" id="form_login">
+                                                    <form action="../src/login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
                                                             <input type="email" id="login-customer[email]" class="form__field form__field--text" name="email" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
@@ -156,7 +160,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="account-information hide">
+                                        <div class="account-information info_scr hide">
                                             <div class="login_panel">
                                                 <i class="fa-light fa-xmark" onclick="box_account()"></i>
                                                 <div class="account-header">
@@ -164,7 +168,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                 </div>
                                                 <div class="account-list">
                                                     <a href="">
-                                                        <p class="account_name">runner in</p>
+                                                        <p class="account_name"><?php echo $_SESSION['userName'] ?></p>
                                                     </a>
                                                     <a href="">
                                                         <p>Tài khoản của bạn</p>
@@ -173,7 +177,9 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
-                                                        <p onclick="logout()">Đăng xuất</p>
+                                                        <form action="../src/logout.php" id="logout-form" method="POST">
+                                                            <button type="submit" name="logout">Đăng xuất</button>
+                                                        </form>
                                                     </a>
                                                 </div>
                                             </div>
@@ -358,9 +364,9 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                             <div class="header-action_account">
                                 <a class="header-action-toggle" aria-label="Tài Khoản">
                                     <span class="box-action-icon"><i class="fa-light fa-user"></i></span>
-                                    <span class="icon-box-text" onclick="box_account()">
-                                        Đăng nhập / Đăng ký
-                                        <span class="txtAccount">Tài khoản của tôi <i class="icon_down fa fa-angle-down" aria-hidden="true"></i></span>
+                                    <span class="icon-box-text " onclick="box_account()">
+                                        <span class="text_wrapper">Đăng nhập / Đăng ký</span>
+                                        <span class="txtAccount txtAccount_wrapper">Tài khoản của tôi &nbsp;&nbsp;<i class="icon_down fa fa-angle-down" aria-hidden="true"></i></span>
                                     </span>
                                 </a>
                                 <div class="header_dropdown account hide">
@@ -370,15 +376,15 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                         </svg>
                                     </span>
                                     <div class="site-nav">
-                                        <div class="site_panel">
-                                            <div class="login_panel">
+                                        <div class="site_panel login_wrapper">
+                                            <div class="login_panel login_signup">
                                                 <i class="fa-light fa-xmark" onclick="box_account()"></i>
                                                 <div class="account-header">
                                                     <h2 class="account_title">Đăng nhập tài khoản</h2>
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="src/login.php" accept-charset="UTF-8" method="post" id="form_login">
+                                                    <form action="../src/login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
                                                             <input type="email" id="login-customer[email]" class="form__field form__field--text" name="email" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
@@ -434,7 +440,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="account-information hide">
+                                        <div class="account-information info_wrapper hide">
                                             <div class="login_panel">
                                                 <i class="fa-light fa-xmark" onclick="box_account()"></i>
                                                 <div class="account-header">
@@ -442,7 +448,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                 </div>
                                                 <div class="account-list">
                                                     <a href="">
-                                                        <p class="account_name">runner in</p>
+                                                        <p class="account_name"><?php echo $_SESSION['userName'] ?></p>
                                                     </a>
                                                     <a href="">
                                                         <p>Tài khoản của bạn</p>
@@ -451,7 +457,9 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
-                                                        <p>Đăng xuất</p>
+                                                        <form action="../src/logout.php" id="logout-form" method="POST">
+                                                            <button type="submit" name="logout">Đăng xuất</button>
+                                                        </form>
                                                     </a>
                                                 </div>
                                             </div>
@@ -644,21 +652,17 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
 </header>
 
 <script>
-    function logout() {
-        document.getElementById("logout-form").submit();
+    if (localStorage.getItem("tenkhachhang") != null) {
+        document.querySelector(".login_scr").classList.add("hide");
+        document.querySelector(".info_scr").classList.remove("hide");
+        document.querySelector(".login_wrapper").classList.add("hide");
+        document.querySelector(".info_wrapper").classList.remove("hide");
+        document.querySelector(".text_wrapper").innerText = "Tài khoản của";
+        document.querySelector(".txtAccount_wrapper").innerHTML = localStorage.getItem("tenkhachhang") + "&nbsp;&nbsp;&nbsp;<i class=\"icon_down fa fa-angle-down\" aria-hidden=\"true\"></i>";
+    } else {
+        document.querySelector(".login_scr").classList.remove("hide");
+        document.querySelector(".info_scr").classList.add("hide");
+        document.querySelector(".login_wrapper").classList.remove("hide");
+        document.querySelector(".info_wrapper").classList.add("hide");
     }
-
-    // Thêm form ẩn để gửi yêu cầu đăng xuất.
-    var form = document.createElement("form");
-    form.id = "logout-form";
-    form.method = "POST";
-    form.action = "src/logout.php";
-
-    var input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "logout";
-    input.value = "1";
-
-    form.appendChild(input);
-    document.body.appendChild(form);
 </script>

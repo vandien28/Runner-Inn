@@ -1,8 +1,12 @@
 <?php
 $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
-
+session_start();
+if (isset($_SESSION['userName'])) {
+    echo "<script>localStorage.setItem('tenkhachhang', '{$_SESSION['userName']}');</script>";
+} else {
+    echo "<script>localStorage.removeItem('tenkhachhang')</script>";
+}
 ?>
-
 
 <header id="header">
     <div class="navigation-header">
@@ -97,7 +101,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                         </svg>
                                     </span>
                                     <div class="site-nav">
-                                        <div class="site_panel">
+                                        <div class="site_panel login_site">
                                             <div class="login_panels">
                                                 <i class="fa-light fa-xmark" onclick="box_accounts()"></i>
                                                 <div class="account-header">
@@ -121,9 +125,6 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                         </div>
                                                         <button type="submit" class="form__submit" id="form_submit-login" name="submitLogin">Đăng nhập</button>
                                                     </form>
-
-
-
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
                                                             <a href="/account/register" class="link">Tạo tài khoản</a>
@@ -169,7 +170,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                 </div>
                                                 <div class="account-list">
                                                     <a href="">
-                                                        <p class="account_name">runner in</p>
+                                                        <p class="account_name"><?php echo $_SESSION['userName'] ?></p>
                                                     </a>
                                                     <a href="">
                                                         <p>Tài khoản của bạn</p>
@@ -178,7 +179,9 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
-                                                        <p>Đăng xuất</p>
+                                                        <form action="../src/logout.php" id="logout-form" method="POST">
+                                                            <button type="submit" name="logout">Đăng xuất</button>
+                                                        </form>
                                                     </a>
                                                 </div>
                                             </div>
@@ -252,24 +255,12 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
     </div>
 </header>
 
-
-
 <script>
-    function logout() {
-        document.getElementById("logout-form").submit();
+    if (localStorage.getItem("tenkhachhang") != null) {
+        document.querySelector(".login_site").classList.add("hide");
+        document.querySelector(".account-information").classList.remove("hide");
+    } else {
+        document.querySelector(".site-panel").classList.remove("hide");
+        document.querySelector(".account-information").classList.add("hide");
     }
-
-    // Thêm form ẩn để gửi yêu cầu đăng xuất.
-    var form = document.createElement("form");
-    form.id = "logout-form";
-    form.method = "POST";
-    form.action = "src/logout.php";
-
-    var input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "logout";
-    input.value = "1";
-
-    form.appendChild(input);
-    document.body.appendChild(form);
 </script>

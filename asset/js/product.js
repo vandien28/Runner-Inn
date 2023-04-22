@@ -12,6 +12,17 @@ let restore = $(".restorepass");
 let return_login = $(".returnlogin");
 
 // * ẩn hiện popup đăng nhập
+
+function box_account() {
+  if (flag == false) {
+    accounts.classList.remove("hide");
+    flag = true;
+  } else {
+    accounts.classList.add("hide");
+    flag = false;
+  }
+}
+
 function box_accounts() {
   if (flag == false) {
     accounts.classList.remove("hide");

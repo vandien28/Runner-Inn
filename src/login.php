@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $servername = "localhost";
 $username = "sa";
 $password = "123456";
@@ -11,7 +11,6 @@ try {
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-
 if (isset($_POST["submitLogin"])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
@@ -22,7 +21,7 @@ if (isset($_POST["submitLogin"])) {
     $checkUser = $user->fetch(PDO::FETCH_ASSOC);
     if ($checkUser !== false) {
         $userName = $checkUser['tentk'];
-        echo "<script>localStorage.setItem('tenkhachhang', '$userName');</script>";
+        $_SESSION['userName'] = $userName;
         header("Location: ../index.php");
         exit();
     } else {

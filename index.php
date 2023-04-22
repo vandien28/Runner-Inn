@@ -21,11 +21,10 @@
     <?php
     $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
     ?>
-
     <?php
     include "src/header-index.php"
-
     ?>
+
     <main id="main">
         <section class="section-slider">
             <div class="home-slider">
