@@ -28,9 +28,9 @@
             <div class="container">
                 <div class="row">
                     <ol>
-                        <li class="li_line"><a href="/index.html">Trang chủ</a></li>
+                        <li class="li_line"><a href="/index.php">Trang chủ</a></li>
                         <li class="li_line"><a>Danh mục</a> </li>
-                        <li><a href="/src/product1.html">Tất cả sản phẩm</a> </li>
+                        <li><a href="collection.php?type=bosuutap">Tất cả sản phẩm</a> </li>
                     </ol>
                 </div>
             </div>
@@ -48,17 +48,17 @@
                                                 <div class="layered-category">
                                                     <div class="layered-content">
                                                         <ul class="menuList">
-                                                            <li><a href="/index.html">Trang chủ</a></li>
-                                                            <li><a href="/src/product1.html">Bộ sưu tập</a></li>
+                                                            <li><a href="/index.php">Trang chủ</a></li>
+                                                            <li><a href="collection.php?type=bosuutap">Bộ sưu tập</a></li>
                                                             <li class="has-submenu level0">
                                                                 <a>Sản phẩm</a>
                                                                 <span class="icon-plus-submenu" onclick="showMenubar()">
                                                                     <i class="iconMP fa-thin fa-plus"></i>
                                                                 </span>
                                                                 <ul class="submenu-links hide">
-                                                                    <li><a href="/src/nike.html" title="">Nike</a></li>
-                                                                    <li><a href="/src/adidas.html" title="">Adidas</a></li>
-                                                                    <li><a href="/src/present.html" title="">Sản phẩm tặng</a></li>
+                                                                    <li><a href="collection.php?type=Nike" title="">Nike</a></li>
+                                                                    <li><a href="collection.php?type=Adidas" title="">Adidas</a></li>
+                                                                    <li><a href="collection.php?type=Sản phẩm tặng" title="">Sản phẩm tặng</a></li>
                                                                 </ul>
                                                                 <script>
                                                                     let isCheck = true
@@ -79,9 +79,9 @@
                                                                     }
                                                                 </script>
                                                             </li>
-                                                            <li><a href="">Giới thiệu</a></li>
-                                                            <li><a href="">Blog</a></li>
-                                                            <li><a href="">Liên hệ</a></li>
+                                                            <li><a href="introduce.php">Giới thiệu</a></li>
+                                                            <li><a href="news.php">Blog</a></li>
+                                                            <li><a href="contact.php">Liên hệ</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -271,31 +271,55 @@
                             <div class="row">
                                 <div class="product-list">
                                     <?php
-                                    $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                                    $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,tenloai FROM sanpham,hinhanhsp,loaigiay where sanpham.masp = hinhanhsp.masp and sanpham.maloai = loaigiay.maloai");
                                     $productList->execute();
                                     $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($product as $row) {
+                                        if (isset($_GET['type']) && $_GET['type'] == 'bosuutap') {
                                     ?>
-                                        <div class="col-sm-6">
-                                            <div class="product-block">
-                                                <div class="product-img">
-                                                    <a href="product.php">
-                                                        <img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>">
-                                                    </a>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="box-pro-detail">
-                                                        <h3 class="pro-name">
-                                                            <a href="product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
-                                                        </h3>
+                                            <div class="col-sm-6">
+                                                <div class="product-block">
+                                                    <div class="product-img">
+                                                        <a href="product.php">
+                                                            <img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
                                                         <div class="box-pro-detail">
-                                                            <p class="pro-price "><?php echo number_format($row["giatien"]) ?>₫</p>
+                                                            <h3 class="pro-name">
+                                                                <a href="product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                            </h3>
+                                                            <div class="box-pro-detail">
+                                                                <p class="pro-price "><?php echo number_format($row["giatien"]) ?>₫</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <?php
+                                        } else if (isset($_GET['type']) && $_GET['type'] == $row["tenloai"]) {
+                                        ?>
+                                            <div class="col-sm-6">
+                                                <div class="product-block">
+                                                    <div class="product-img">
+                                                        <a href="product.php">
+                                                            <img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <div class="box-pro-detail">
+                                                            <h3 class="pro-name">
+                                                                <a href="product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                            </h3>
+                                                            <div class="box-pro-detail">
+                                                                <p class="pro-price "><?php echo number_format($row["giatien"]) ?>₫</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     <?php
+                                        }
                                     }
                                     ?>
                                 </div>

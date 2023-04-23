@@ -137,6 +137,10 @@ img {
     transition: all 1s ease;
 }
 
+.active_3 {
+    padding: 30px 0;
+}
+
 .scroll-menu .active:hover > a > i {
     transform: rotate(180deg);
     transition: all 1s ease;

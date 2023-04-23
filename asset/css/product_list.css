@@ -178,7 +178,9 @@ img {
     position: relative;
 }
 
-
+.active_3 {
+    padding: 30px 0;
+}
 
 .scroll-menu .active > a::after {
     content: "";
@@ -999,7 +1001,7 @@ li.has-submenu .icon-plus-submenu:hover {
     cursor: pointer;
     position: absolute;
     right: 20px;
-    top: 150px;
+    top: 95px;
     margin: auto;
     border: 1px solid transparent;
 }

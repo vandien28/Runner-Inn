@@ -32,7 +32,7 @@ if (isset($_SESSION['userName'])) {
                                     <nav class="desk-menu">
                                         <ul class="text-center">
                                             <li class="active"><a href="/index.php">trang chủ</a></li>
-                                            <li class="active"><a class="active_2" href="/src/collection.php">bộ sưu tập</a></li>
+                                            <li class="active"><a class="active_2" href="/src/collection.php?type=bosuutap">bộ sưu tập</a></li>
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <?php
@@ -41,17 +41,22 @@ if (isset($_SESSION['userName'])) {
                                                     $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
                                                     foreach ($cateName as $row) {
                                                         if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
-                                                            echo '<li><a href="src/' . $row["tendanhmuc"] . '.html">' . $row["tendanhmuc"] . '</a></li>';
+                                                    ?>
+                                                            <li><a href="collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
+                                                        <?php
+
                                                         } else if ($row["madanhmuc"] == 345) {
-                                                            echo '<li><a href="src/present.html">' . $row["tendanhmuc"] . '</a></li>';
+                                                        ?>
+                                                            <li><a href="collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
+                                                    <?php
                                                         }
                                                     }
                                                     ?>
                                                 </ul>
                                             </li>
-                                            <li class="active"><a href="">giới thiệu</a></li>
-                                            <li class="active"><a href="">blog</a></li>
-                                            <li class="active"><a href="">liên hệ</a></li>
+                                            <li class="active"><a href="introduce.php">giới thiệu</a></li>
+                                            <li class="active"><a href="news.php">blog</a></li>
+                                            <li class="active"><a href="contact.php">liên hệ</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -179,7 +184,7 @@ if (isset($_SESSION['userName'])) {
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
-                                                        <form action="../src/logout.php" id="logout-form" method="POST">
+                                                        <form action="logout.php" id="logout-form" method="POST">
                                                             <button type="submit" name="logout">Đăng xuất</button>
                                                         </form>
                                                     </a>
