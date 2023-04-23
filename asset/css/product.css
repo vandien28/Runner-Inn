@@ -1021,9 +1021,21 @@ ol li a{
     display: none;
 }
 
+.select-swap {
+    display: flex;
+}
+
+.n-sd {
+    margin-right: 10px;
+}
+
+.select-swap .color input[type=radio]:checked +  label {
+    border: 1px solid #808284;
+    background: transparent;
+}
+
 .color label.sd {
     background: transparent;
-    border: 1px solid #808284;
 }
 
 .swatch .swatch-element label.sd {
@@ -1053,10 +1065,6 @@ ol li a{
     font-weight: 500;
     text-align: center;
     cursor: pointer;
-}
-
-.color.swatch-element label.xanh span {
-    background: #6daef4 !important;
 }
 
 .color span {

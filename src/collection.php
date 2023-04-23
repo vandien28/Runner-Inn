@@ -271,7 +271,7 @@
                             <div class="row">
                                 <div class="product-list">
                                     <?php
-                                    $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,tenloai FROM sanpham,hinhanhsp,loaigiay where sanpham.masp = hinhanhsp.masp and sanpham.maloai = loaigiay.maloai");
+                                    $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,tenloai,sanpham.masp FROM sanpham,hinhanhsp,loaigiay where sanpham.masp = hinhanhsp.masp and sanpham.maloai = loaigiay.maloai");
                                     $productList->execute();
                                     $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($product as $row) {
@@ -280,14 +280,14 @@
                                             <div class="col-sm-6">
                                                 <div class="product-block">
                                                     <div class="product-img">
-                                                        <a href="product.php">
+                                                        <a href="product.php?type=<?php echo $row["masp"]; ?>">
                                                             <img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>">
                                                         </a>
                                                     </div>
                                                     <div class="product-detail">
                                                         <div class="box-pro-detail">
                                                             <h3 class="pro-name">
-                                                                <a href="product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                                <a href="product.php?type=<?php echo $row["masp"]; ?>" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
                                                             </h3>
                                                             <div class="box-pro-detail">
                                                                 <p class="pro-price "><?php echo number_format($row["giatien"]) ?>₫</p>

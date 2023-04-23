@@ -81,35 +81,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //* -------------------------------------------->
 
-// * lưu sản phẩm vào localstorage
-var product = localStorage.getItem("product")
-  ? JSON.parse(localStorage.getItem("product"))
-  : [];
+const productImg = $$(".product-thumbs")
 
-const products = $$(".col-sm-6");
-
-products.forEach(function (element, index) {
-  element.addEventListener("click", function (event) {
-    let p1 = element.querySelector(".pro-name").innerText;
-    let p2 = element.querySelector(".pro-price").innerText;
-    product = {
-      name: p1,
-      price: p2,
-    };
-    localStorage.setItem("product", JSON.stringify(product));
-  });
-});
-
-
-//* lấy thông tin sản phẩm từ localstorage
-function renderProduct() {
-  let title = $("title");
-  let nameProduct = $(".product-title h1");
-  let priceProduct = $(".pro-price");
-  priceProduct.innerText = product.price;
-  nameProduct.innerText = product.name;
-  title.innerText = product.name;
-}
+productImg.forEach(function(element){
+    let pI = element.querySelector(".listImg").src
+    let pM = $(".product-img img").src 
+    if(pI == pM) {
+      element.classList.add("active")
+    } else {
+      element.classList.remove("active")
+    }
+})
 
 
 var quantity = $(".quantity-selector");

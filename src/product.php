@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head >
+<?php
+$db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+?>
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <?php
+    $productName = $db->prepare("SELECT  tensp,masp FROM sanpham");
+    $productName->execute();
+    $name = $productName->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($name as $row) {
+        if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+    ?>
+            <title><?php echo $row["tensp"] ?></title>
+    <?php  }
+    } ?>
     <link rel="stylesheet" href="../asset/css/product.css">
     <link rel="stylesheet" href="../asset/font/awesome-6-pro/css/all.css">
     <link rel="icon" href="../asset/img/favicon.png">
@@ -12,26 +25,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
-<body onload="renderProduct()">
-    <?php
-    $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
-    ?>
+
+<body>
+
 
     <?php
     include "header.php"
     ?>
-    <main id="main">
-        <section class="section-title">
-            <div class="container">
-                <div class="row">
-                    <ol>
-                        <li class="li_line"><a href="/index.html">Trang chủ</a></li>
-                        <li class="li_line"><a href="product1.html">Bộ sưu tập</a> </li>
-                        <li><a href="product.html">Tên sản phẩm</a> </li>
-                    </ol>
-                </div>
-            </div>
-        </section>
+
+    <?php
+    $productNameID = $db->prepare("SELECT  tensp,masp FROM sanpham");
+    $productNameID->execute();
+    $nameID = $productNameID->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($nameID as $row) {
+        if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+    ?>
+            <main id="main">
+                <section class="section-title">
+                    <div class="container">
+                        <div class="row">
+                            <ol>
+                                <li class="li_line"><a href="/index.php">Trang chủ</a></li>
+                                <li class="li_line"><a href="collection.php?type=bosuutap">Bộ sưu tập</a> </li>
+                                <li><a href="product.php?type=<?php echo $row["masp"]; ?>" class="nameProduct"><?php echo $row["tensp"] ?></a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+        <?php  }
+    } ?>
         <section class="product">
             <div class="container">
                 <div class="row">
@@ -39,15 +61,37 @@
                         <div class="col-md-7">
                             <div class="product-gallery">
                                 <div class="product-thumb">
-                                    <div class="product-thumbs active">
-                                        <img src="" alt="">
-                                    </div>
+                                    <?php
+                                    $productImg = $db->prepare("SELECT url,masp FROM hinhanhsp");
+                                    $productImg->execute();
+                                    $img = $productImg->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($img as $row) {
+                                        if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+                                    ?>
+                                            <div class="product-thumbs">
+                                                <img src="<?php echo $row["url"] ?>" alt="" class="listImg">
+                                            </div>
+                                    <?php
+                                        }
+                                    } ?>
                                 </div>
-                                <div class="product-img">
-                                    <img src="" alt="">
-                                </div>
+                                <?php
+                                $productImgMain = $db->prepare("SELECT distinct urlmain,masp FROM hinhanhsp");
+                                $productImgMain->execute();
+                                $imgMain = $productImgMain->fetchAll(PDO::FETCH_ASSOC);
+                                foreach ($imgMain as $row) {
+                                    if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+                                ?>
+                                        <div class="product-img">
+                                            <img src="<?php echo $row["urlmain"] ?>" alt="">
+                                        </div>
+                                <?php
+                                    }
+                                } ?>
                             </div>
+
                             <div class="product-description">
+
                                 <div class="title-bl">
                                     <h2>Mô tả</h2>
                                 </div>
@@ -71,77 +115,83 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div class="product-title">
-                                <h1></h1>
-                                <span class="pro_sku">SKU:</span>
-                            </div>
-                            <div class="product-price">
-                                <span class="pro-price"></span>
-                            </div>
-                           <div class="product-color ">
-                                <div class="title-color">
-                                    <span>Xanh</span>
-                                </div>
-                                <div class="select-swap">  
-                                    <div data-value="Xanh" class="n-sd swatch-element color xanh ">
-                                        <input class="variant-0" id="swatch-0-xanh" type="radio" name="option1" value="Xanh" data-vhandle="xanh" checked="">
-                                        <label class="xanh sd" for="swatch-0-xanh">
-                                            <span>Xanh</span>
-                                        </label>
+                            <?php
+                            $productNameIDs = $db->prepare("SELECT tensp,masp,giatien FROM sanpham");
+                            $productNameIDs->execute();
+                            $nameIDs = $productNameIDs->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($nameIDs as $row) {
+                                if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+                            ?>
+                                    <div class="product-title">
+                                        <h1><?php echo $row["tensp"] ?></h1>
+                                        <span class="pro_sku">SKU:&nbsp;&nbsp;<?php echo $row["masp"] ?></span>
                                     </div>
+                                    <div class="product-price">
+                                        <span class="pro-price"><?php echo number_format($row["giatien"]) ?>₫</span>
+                                    </div>
+                            <?php
+                                }
+                            } ?>
+
+                            <div class="product-color ">
+                                <div class="title-color">
+                                    <!-- tạo hàm js set tên màu khi checked và checked màu ban đầu -->
+                                    <span></span>  
                                 </div>
-                           </div>
-                           <div class="product-size">
-                            <div class="layered-content filter-size s-filter">
-                                <ul class="check-box-list clearfix">
-                                    <li>
-                                        <input type="checkbox" id="data-size-p2" value="36" name="size-filter" data-size="(variant:product=36)" checked>
-                                        <label for="data-size-p2">36</label>   
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="data-size-p3" value="37" name="size-filter" data-size="(variant:product=37)">
-                                        <label for="data-size-p3">37</label>   
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="data-size-p4" value="38" name="size-filter" data-size="(variant:product=38)">
-                                        <label for="data-size-p4">38</label>   
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="data-size-p5" value="39" name="size-filter" data-size="(variant:product=39)">
-                                        <label for="data-size-p5">39</label>   
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="data-size-p6" value="40" name="size-filter" data-size="(variant:product=40)">
-                                        <label for="data-size-p6">40</label>   
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="data-size-p7" value="41" name="size-filter" data-size="(variant:product=41)">
-                                        <label for="data-size-p7">41</label>   
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="data-size-p8" value="42" name="size-filter" data-size="(variant:product=42)">
-                                        <label for="data-size-p8">42</label>   
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="data-size-p9" value="43" name="size-filter" data-size="(variant:product=43)">
-                                        <label for="data-size-p9">43</label>   
-                                    </li>
-                                </ul>
+                                <div class="select-swap">
+                                    <?php
+                                    $productColor = $db->prepare("SELECT mausac,masp,mamau FROM mausacsp");
+                                    $productColor->execute();
+                                    $color = $productColor->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($color as $row) {
+                                        if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+                                    ?>
+                                            <div data-value="<?php echo $row["mausac"] ?>" class="n-sd swatch-element color">
+                                                <input id="swatch-0-<?php echo $row["mausac"] ?>" type="radio" name="option" value="<?php echo $row["mausac"] ?>">
+                                                <label class="<?php echo $row["mausac"] ?> sd" for="swatch-0-<?php echo $row["mausac"] ?>">
+                                                    <span style="background:<?php echo $row["mamau"] ?> "><?php echo $row["mausac"] ?></span>
+                                                </label>
+                                            </div>
+                                    <?php
+                                        }
+                                    } ?>
+                                </div>
+
                             </div>
-                           </div>
-                           <div class="product-quantity ">
+
+                            <div class="product-size">
+                                <div class="layered-content filter-size s-filter">
+                                    <ul class="check-box-list clearfix">
+                                        <?php
+                                        $productSize = $db->prepare("SELECT masp,kichthuoc FROM kichthuocsp");
+                                        $productSize->execute();
+                                        $size = $productSize->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($size as $row) {
+                                            if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+                                        ?>
+                                                <li>
+                                                    <input type="checkbox" id="data-size-<?php echo $row["kichthuoc"] ?>" value="<?php echo $row["kichthuoc"] ?>" name="size-filter" data-size="(variant:product=<?php echo $row["kichthuoc"] ?>)">
+                                                    <label for="data-size-<?php echo $row["kichthuoc"] ?>"><?php echo $row["kichthuoc"] ?></label>
+                                                </li>
+                                        <?php
+                                            }
+                                        } ?>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-quantity ">
                                 <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
                                 <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
                                 <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
-                           </div>
-                           <div class="product-btn">
+                            </div>
+                            <div class="product-btn">
                                 <button class="add-cart">
-                                    <span >Thêm vào giỏ</span>
+                                    <span>Thêm vào giỏ</span>
                                 </button>
                                 <button class="purchase">
-                                    <span >Mua ngay</span>
+                                    <span>Mua ngay</span>
                                 </button>
-                           </div>
+                            </div>
                         </div>
                     </div>
                     <div class="product-related">
@@ -151,12 +201,14 @@
             </div>
         </section>
         <?php
+
         include "gallery.php"
         ?>
-    </main>
-    <?php
-    include "footer.php"
-    ?>
-    <script type="text/javascript" src="../asset/js/product.js"></script>
+            </main>
+            <?php
+            include "footer.php"
+            ?>
+            <script type="text/javascript" src="../asset/js/product.js"></script>
 </body>
+
 </html>
