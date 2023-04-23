@@ -22,6 +22,7 @@ function box_accounts() {
   }
 }
 
+// * ẩn hiện giữa đăng nhập và khôi phục mật khẩu
 restore.onclick = function () {
   recover_panels.classList.remove("hide");
   login_panels.classList.add("hide");
@@ -53,7 +54,7 @@ function box_carts() {
     flag = false;
   }
 }
-//* -------------------------------------------->
+
 // * scroll header
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-//* -------------------------------------------->
+
 // * giảm số lượng sản phẩm
 const minus = $$(".qtyminus");
 minus.forEach(function(minus,index) {
@@ -92,4 +93,4 @@ plus.forEach(function(plus,index) {
       plus1.value = plus2 + 1;
   })
 })
-//* -------------------------------------------->
+

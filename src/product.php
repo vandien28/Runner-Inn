@@ -91,7 +91,6 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                             </div>
 
                             <div class="product-description">
-
                                 <div class="title-bl">
                                     <h2>Mô tả</h2>
                                 </div>
@@ -147,9 +146,9 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                         if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
                                     ?>
                                             <div data-value="<?php echo $row["mausac"] ?>" class="n-sd swatch-element color">
-                                                <input id="swatch-0-<?php echo $row["mausac"] ?>" type="radio" name="option" value="<?php echo $row["mausac"] ?>">
+                                                <input id="swatch-0-<?php echo $row["mausac"] ?>" class="colorChecked" type="radio" name="option" value="<?php echo $row["mausac"] ?>">
                                                 <label class="<?php echo $row["mausac"] ?> sd" for="swatch-0-<?php echo $row["mausac"] ?>">
-                                                    <span style="background:<?php echo $row["mamau"] ?> "><?php echo $row["mausac"] ?></span>
+                                                    <span style="background:<?php echo $row["mamau"] ?> " class="productColor"><?php echo $row["mausac"] ?></span>
                                                 </label>
                                             </div>
                                     <?php

@@ -43,6 +43,7 @@ function box_accounts() {
   }
 }
 
+// * ẩn hiện giữa đăng nhập và khôi phục mật khẩu
 recover.onclick = function () {
   recover_panel.classList.remove("hide");
   login_panel.classList.add("hide");
@@ -94,7 +95,7 @@ function box_carts() {
     flag = false;
   }
 }
-//* -------------------------------------------->
+
 // * scroll header
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
@@ -104,25 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       header.classList.add("hide")
     }
-  });
-});
-// * --------------------------------------------------------->
-// * lưu sản phẩm vào localstorage
-var product = localStorage.getItem("product")
-  ? JSON.parse(localStorage.getItem("product"))
-  : [];
-
-const products = $$(".col-md");
-
-products.forEach(function (element, index) {
-  element.addEventListener("click", function (event) {
-    let p1 = element.querySelector(".pro-name").innerText;
-    let p2 = element.querySelector(".pro-price").innerText;
-    product = {
-      name: p1,
-      price: p2,
-    };
-    localStorage.setItem("product", JSON.stringify(product));
   });
 });
 

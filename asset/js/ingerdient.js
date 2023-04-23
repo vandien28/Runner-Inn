@@ -32,6 +32,7 @@ function box_accounts() {
   }
 }
 
+// * ẩn hiện giữa đăng nhập và khôi phục mật khẩu
 restore.onclick = function () {
   recover_panels.classList.remove("hide");
   login_panels.classList.add("hide");
@@ -63,7 +64,7 @@ function box_carts() {
     flag = false;
   }
 }
-//* -------------------------------------------->
+
 // * scroll header
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
