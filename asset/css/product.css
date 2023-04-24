@@ -182,7 +182,7 @@ li {
     display: block;
     font-size: 14px;
     color: #272727;
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     letter-spacing: 2px;
     position: absolute;
     top: -100%;
@@ -1151,7 +1151,7 @@ input[type=checkbox] {
 }
 
 
-.filter-size li input[type="checkbox"]:checked + label, .size-filter li:hover label {
+.filter-size li input[type="radio"]:checked + label, .size-filter li:hover label {
     background-color: #111;
     color: #fff;
     border: 1px solid #111;

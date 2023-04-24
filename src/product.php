@@ -23,7 +23,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
     <link rel="icon" href="../asset/img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -167,7 +167,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                             if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
                                         ?>
                                                 <li>
-                                                    <input type="checkbox" id="data-size-<?php echo $row["kichthuoc"] ?>" value="<?php echo $row["kichthuoc"] ?>" name="size-filter" data-size="(variant:product=<?php echo $row["kichthuoc"] ?>)">
+                                                    <input type="radio" id="data-size-<?php echo $row["kichthuoc"] ?>" value="<?php echo $row["kichthuoc"] ?>" name="size-filter" data-size="(variant:product=<?php echo $row["kichthuoc"] ?>)">
                                                     <label for="data-size-<?php echo $row["kichthuoc"] ?>"><?php echo $row["kichthuoc"] ?></label>
                                                 </li>
                                         <?php

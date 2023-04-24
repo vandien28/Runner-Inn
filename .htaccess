@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^src/product\.php$ http://www.runnerinn.product%{REQUEST_URI} [R=301,L]

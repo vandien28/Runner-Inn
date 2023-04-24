@@ -178,7 +178,7 @@ img {
     display: block;
     font-size: 14px;
     color: #272727;
-    font-weight: 100 !important;
+    font-weight: 500 ;
     letter-spacing: 2px;
     position: absolute;
     top: -100%;
@@ -908,6 +908,7 @@ ol li a{
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
+    height: 740px;
 }
 
 .heading h1 {
@@ -1175,6 +1176,79 @@ textarea.form-note {
 
 .col-md-3 {
     width: 25%;
+}
+
+.sidebar-cart {
+    position: sticky;
+    top: 40px;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 300px;
+}
+
+.layout-cart .continue {
+    display: block;
+    margin-top: 40px;
+    text-align: right;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.layout-cart .order-summary-block {
+    border: 1px solid #dfe0e1;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.layout-cart .order-summary-block .order-summary-title {
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.layout-cart .order-summary-block .summary-total {
+    padding-bottom: 10px;
+    border-top: 1px dotted #dfe0e1;
+    padding-top: 15px;
+    font-weight: bold;
+}
+
+.layout-cart .order-summary-block .summary-total p {
+    margin-bottom: 5px;
+}
+
+.layout-cart .order-summary-block .summary-total span {
+    font-weight: bold;
+    float: right;
+}
+
+.layout-cart .order-summary-block .summary-action {
+    border-top: 1px dotted #dfe0e1;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.layout-cart .order-summary-block .summary-action p {
+    font-size: 13px;
+    color: #777;
+    font-weight: 400;
+    text-align: left;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.layout-cart .order-summary-block .summary-action .checkout-btn {
+    display: block;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 0;
 }
 
 .wrap-site {

@@ -11,7 +11,7 @@
     <link rel="icon" href="../asset/img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 <div class="row">
                     <ol>
                         <li class="li_line"><a href="/index.php">Trang chủ</a></li>
-                        <li><a href="cart.php">Giỏ hàng</a> </li>
+                        <li><a href="cart.php">Giỏ hàng&nbsp;(<span class="productNumber" ></span>)</a></li>
                     </ol>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                     <div class="cart-row">
                                         <h2 class="title-number-cart count-cart">
                                             Bạn đang có
-                                            <span><span class="number-product">4</span> sản phẩm</span>
+                                            <span><span class="number-product">4</span>&nbsp;sản phẩm</span>
                                             trong giỏ hàng
                                         </h2>
                                         <div class="table-cart">
@@ -236,8 +236,8 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <a href="collection.php?type=bosuutap">Tiếp tục mua hàng&nbsp;<i class="fa-sharp fa-light fa-arrow-right"></i></a>
+                        <div class="col-md-3 sidebar-cart">
+                            <a href="collection.php?type=bosuutap"  class="continue" >Tiếp tục mua hàng&nbsp;<i class="fa-sharp fa-light fa-arrow-right"></i></a>
                             <div class="order-summary-block">
                                 <h2 class="order-summary-title">Thông tin đơn hàng</h2>
                                 <div class="summary-subtotal hidden">
