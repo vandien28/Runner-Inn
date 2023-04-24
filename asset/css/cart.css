@@ -471,7 +471,7 @@ svg:not(:root) {
 .account_title {
     margin-bottom: 7px;
     font-size: 17px;
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     font-style: normal;
     text-transform: uppercase;
     font-family: inherit;
@@ -482,7 +482,7 @@ svg:not(:root) {
 .account_legend {
     margin: 0 0 15px 0;
     line-height: 21px;
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     color: #6c6c6c;
     font-family: inherit;
     letter-spacing: 1px;
@@ -611,7 +611,7 @@ svg:not(:root) {
     font-size: 14px;
     line-height: 25px;
     text-align: center;
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     font-style: normal;
     font-family: inherit;
     color: #656565;
@@ -628,7 +628,7 @@ svg:not(:root) {
     color: #272727;
     padding: 0 0 10px;
     text-transform: uppercase;
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     letter-spacing: 1px;
     border-bottom: 1px solid #c1c3c9;
 }
@@ -654,7 +654,7 @@ svg:not(:root) {
 .view_product > p {
     width: 100%;
     font-size: 16px;
-    font-weight: 300 !important;
+    font-weight: 500 !important;
     color: #272727;
     letter-spacing: 1px;
     text-align: center;
@@ -781,7 +781,7 @@ table {
     text-align: left;
     color: #272727;
     font-size: 14px;
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }

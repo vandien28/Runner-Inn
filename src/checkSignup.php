@@ -1,0 +1,28 @@
+<?php
+$db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+if (isset($_POST["submitSignup"])) {
+    $firstName = $_POST['last_name'];
+    $lastName = $_POST['first_name'];
+    $userName = $_POST['username'];
+    $password = $_POST['password'];
+    $enterPassword = $_POST['enterPassword'];
+    $userID = mt_rand(100000, 999999);
+    $email = $_POST['email'];
+    $newUser = $db->prepare("SELECT tentk,email FROM khachhang WHERE tentk='$userName' or email='$email'");
+    $newUser->execute();
+    $checkUser = $newUser->fetchAll(PDO::FETCH_ASSOC);
+    if (count($checkUser) > 0) {
+        echo "Đăng ký không thành công";
+    } else {
+        $sql = "INSERT INTO khachhang (makhachhang, tenkhachhang, sdt, diachi, email, tentk, matkhau) VALUES (?, ?, null, null, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$userID, "$firstName $lastName", $email, $userName, $enterPassword]);
+        header("Location: ../index.php");
+        exit();
+    }
+}
+
+// Lấy tên tài khoản từ request
+
+
+// Lấy tên tài khoản từ request

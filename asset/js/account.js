@@ -79,3 +79,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// * check username khi nhập
+function checkUsername(username) {
+  // Tạo XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  // Gửi request đến PHP script để kiểm tra tài khoản
+  xhr.open("GET", "checkUserName.php?username=" + encodeURIComponent(username));
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Nhận kết quả trả về từ PHP script
+      var response = xhr.responseText;
+      // Hiển thị kết quả cho người dùng
+      $(".notificationName").innerHTML = response;
+    }
+  };
+  xhr.send();
+}
+
+// * check email khi nhập
+function checkEmail(email) {
+  // Tạo XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  // Gửi request đến PHP script để kiểm tra tài khoản
+  xhr.open("GET", "checkEmail.php?email=" + encodeURIComponent(email));
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Nhận kết quả trả về từ PHP script
+      var response = xhr.responseText;
+      // Hiển thị kết quả cho người dùng
+      $(".notificationEmail").innerHTML = response;
+    }
+  };
+  xhr.send();
+}
+
+// * check password khi nhập
+function checkPassword() {
+  let password = $(".password");
+  let enterPassword = $(".enterPassword");
+  if (password.value != enterPassword.value) {
+    $(".notificationPassword").innerText = "Mật khẩu không đúng.";
+  } else {
+    $(".notificationPassword").innerText = "";
+  }
+}

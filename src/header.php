@@ -132,7 +132,7 @@ if (isset($_SESSION['userName'])) {
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
-                                                            <a href="/account/register" class="link">Tạo tài khoản</a>
+                                                            <a href="src/signup.php" class="link">Tạo tài khoản</a>
                                                         </p>
                                                         <p>Quên mật khẩu?
                                                             <button aria-controls="header-recover-panel" class="restorepass link">Khôi phục mật khẩu</button>

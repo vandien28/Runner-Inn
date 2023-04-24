@@ -122,7 +122,7 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                 if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
                             ?>
                                     <div class="product-title">
-                                        <h1><?php echo $row["tensp"] ?></h1>
+                                        <h1 class="pro-name"><?php echo $row["tensp"] ?></h1>
                                         <span class="pro_sku">SKU:&nbsp;&nbsp;<?php echo $row["masp"] ?></span>
                                     </div>
                                     <div class="product-price">
@@ -182,17 +182,23 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                                 <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
                             </div>
                             <div class="product-btn">
-                                <button class="add-cart">
-                                    <span>Thêm vào giỏ</span>
-                                </button>
+                                <?php
+                                $productInfo = $db->prepare("SELECT distinct tensp,sanpham.masp,urlmain,giatien FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                                $productInfo->execute();
+                                $info = $productInfo->fetchAll(PDO::FETCH_ASSOC);
+                                foreach ($info as $row) {
+                                    if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+                                ?>
+                                        <button class="add-cart" data-name='<?php echo $row["tensp"]; ?>' data-img="<?php echo $row["urlmain"]; ?>" data-id="<?php echo $row["masp"]; ?>" data-price="<?php echo number_format($row["giatien"]); ?>" data-size="" data-color="" data-quantity="">
+                                            <span>Thêm vào giỏ</span>
+                                        </button>
+                                <?php }
+                                } ?>
                                 <button class="purchase">
                                     <span>Mua ngay</span>
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-related">
-
                     </div>
                 </div>
             </div>
