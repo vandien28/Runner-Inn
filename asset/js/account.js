@@ -85,7 +85,7 @@ function checkUsername(username) {
   // Tạo XMLHttpRequest object
   var xhr = new XMLHttpRequest();
   // Gửi request đến PHP script để kiểm tra tài khoản
-  xhr.open("GET", "checkUserName.php?username=" + encodeURIComponent(username));
+  xhr.open("GET", "/controller/checkUserName.php?username=" + encodeURIComponent(username));
   xhr.onload = function () {
     if (xhr.status === 200) {
       // Nhận kết quả trả về từ PHP script
@@ -102,7 +102,7 @@ function checkEmail(email) {
   // Tạo XMLHttpRequest object
   var xhr = new XMLHttpRequest();
   // Gửi request đến PHP script để kiểm tra tài khoản
-  xhr.open("GET", "checkEmail.php?email=" + encodeURIComponent(email));
+  xhr.open("GET", "/controller/checkEmail.php?email=" + encodeURIComponent(email));
   xhr.onload = function () {
     if (xhr.status === 200) {
       // Nhận kết quả trả về từ PHP script

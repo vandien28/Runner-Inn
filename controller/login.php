@@ -13,6 +13,7 @@ if (isset($_POST["submitLogin"])) {
         $userName = $checkUser['tentk'];
         $userID = $checkUser['makhachhang'];
         $_SESSION['userName'] = $userName;
+        $_SESSION['userID'] = $userID;
         header("Location: ../index.php");
         exit();
     } else {

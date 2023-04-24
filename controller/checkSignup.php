@@ -1,4 +1,5 @@
 <?php
+session_start();
 $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
 if (isset($_POST["submitSignup"])) {
     $firstName = $_POST['last_name'];
@@ -17,6 +18,9 @@ if (isset($_POST["submitSignup"])) {
         $sql = "INSERT INTO khachhang (makhachhang, tenkhachhang, sdt, diachi, email, tentk, matkhau) VALUES (?, ?, null, null, ?, ?, ?)";
         $stmt = $db->prepare($sql);
         $stmt->execute([$userID, "$firstName $lastName", $email, $userName, $enterPassword]);
+        $_SESSION['userName'] = $userName;
+        $_SESSION['userID'] = $userID;
+
         header("Location: ../index.php");
         exit();
     }

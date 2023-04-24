@@ -149,6 +149,6 @@ function plusQuantity() {
 
 // * lấy thông tin sản phẩm add vào data- của button
 // * kiểm tra checked  để lấy size , color và kiểm tra value input để lấy quantity
-let addCart = $(".add-cart")
-let productName = addCart.getAttribute('data-name');
+// let addCart = $(".add-cart")
+// let productName = addCart.getAttribute('data-name');
 

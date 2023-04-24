@@ -2,9 +2,13 @@
 $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
 session_start();
 if (isset($_SESSION['userName'])) {
-    echo "<script>localStorage.setItem('tenkhachhang', '{$_SESSION['userName']}');</script>";
+    echo "<script>
+    const userObject = {name:'{$_SESSION['userName']}',id:{$_SESSION['userID']}}
+    const userObjectString = JSON.stringify(userObject);
+    localStorage.setItem('khachhang', userObjectString);
+    </script>";
 } else {
-    echo "<script>localStorage.removeItem('tenkhachhang')</script>";
+    echo "<script>localStorage.removeItem('khachhang')</script>";
 }
 ?>
 
@@ -114,7 +118,7 @@ if (isset($_SESSION['userName'])) {
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="login.php" accept-charset="UTF-8" method="post" id="form_login">
+                                                    <form action="/controller/login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
                                                             <input type="email" id="login-customer[email]" class="form__field form__field--text" name="email" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
@@ -184,7 +188,7 @@ if (isset($_SESSION['userName'])) {
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
-                                                        <form action="logout.php" id="logout-form" method="POST">
+                                                        <form action="/controller/logout.php" id="logout-form" method="POST">
                                                             <button type="submit" name="logout">Đăng xuất</button>
                                                         </form>
                                                     </a>
@@ -261,7 +265,7 @@ if (isset($_SESSION['userName'])) {
 </header>
 
 <script>
-    if (localStorage.getItem("tenkhachhang") != null) {
+    if (localStorage.getItem("khachhang") != null) {
         document.querySelector(".login_site").classList.add("hide");
         document.querySelector(".account-information").classList.remove("hide");
     } else {
