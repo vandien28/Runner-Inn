@@ -372,6 +372,16 @@ li {
     justify-content: center;
 }
 
+#logout-form button {
+    border: 0;
+    background: #ffff;
+    color: #272727;
+    padding: 7px;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
 .header-action_cart .header_dropdown {
     position: absolute;
     right: 100px;

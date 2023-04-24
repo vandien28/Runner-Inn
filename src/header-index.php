@@ -313,15 +313,13 @@ if (isset($_SESSION['userName'])) {
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <a href="">
-                                                                        <button class="form__submit btn-view">Xem
-                                                                            giỏ hàng</button>
+                                                                    <a href="src/cart.php">
+                                                                        <button class="form__submit btn-view">Xem giỏ hàng</button>
                                                                     </a>
                                                                 </td>
                                                                 <td>
                                                                     <a href="">
-                                                                        <button class="form__submit btn-payment">Thanh
-                                                                            toán</button>
+                                                                        <button class="form__submit btn-payment">Thanh toán</button>
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -595,15 +593,13 @@ if (isset($_SESSION['userName'])) {
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <a href="">
-                                                                        <button class="form__submit btn-view">Xem
-                                                                            giỏ hàng</button>
+                                                                    <a href="src/cart.php">
+                                                                        <button class="form__submit btn-view">Xem giỏ hàng</button>
                                                                     </a>
                                                                 </td>
                                                                 <td>
                                                                     <a href="">
-                                                                        <button class="form__submit btn-payment">Thanh
-                                                                            toán</button>
+                                                                        <button class="form__submit btn-payment">Thanh toán</button>
                                                                     </a>
                                                                 </td>
                                                             </tr>

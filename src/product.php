@@ -131,11 +131,9 @@ $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
                             <?php
                                 }
                             } ?>
-
                             <div class="product-color ">
                                 <div class="title-color">
-                                    <!-- tạo hàm js set tên màu khi checked và checked màu ban đầu -->
-                                    <span></span>  
+                                    <span></span>
                                 </div>
                                 <div class="select-swap">
                                     <?php

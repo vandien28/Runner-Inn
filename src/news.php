@@ -135,7 +135,7 @@
                                     <li class="has-submenu level0">
                                         <a>Sản phẩm
                                         </a>
-                                        <span class="icon-plus-submenu" onclick="showMenubar()">
+                                        <span class="icon-plus-submenu" style="top:150px !important;" onclick="showMenubar()">
                                             <i class="iconMP fa-thin fa-plus"></i>
                                         </span>
                                         <ul class="submenu-links hide">

@@ -131,6 +131,16 @@ img {
     z-index: 99; 
 }
 
+#logout-form button {
+    border: 0;
+    background: #ffff;
+    color: #272727;
+    padding: 7px;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
 .scroll-menu .active > a > i {
     font-size: 12px;
     font-weight: 600;  

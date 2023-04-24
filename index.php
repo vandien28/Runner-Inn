@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="product-list">
                             <?php
-                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc,sanpham.masp FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
@@ -70,7 +70,7 @@
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.php"><img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>"></a>
+                                                <a href="/src/product.php?type=<?php echo $row["masp"] ?>"><img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
@@ -151,7 +151,7 @@
                         <div class="product-list ">
 
                             <?php
-                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc,sanpham.masp FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
@@ -160,7 +160,7 @@
                                     <div class="col-md pro-loop">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="/src/product.php"><img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>"></a>
+                                                <a href="/src/product.php?type=<?php echo $row["masp"] ?>"><img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>"></a>
                                             </div>
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
