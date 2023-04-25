@@ -1,4 +1,4 @@
-﻿-- TODO chạy trên mysql hoặc import vô xampp
+﻿/* chạy trên mysql hoặc import vô xampp */
 CREATE DATABASE runnerinn;
 USE runnerinn;
 
