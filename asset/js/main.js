@@ -127,3 +127,23 @@ function showSearch() {
     $(".search-wrapper").classList.remove("hide");
   }
 }
+
+// * tìm kiếm sản phẩm
+function searchProduct(product) {
+  // Tạo XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  // Gửi request đến PHP script để kiểm tra tài khoản
+  xhr.open(
+    "GET",
+    "/controller/search.php?product=" + encodeURIComponent(product)
+  );
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Nhận kết quả trả về từ PHP script
+      var response = xhr.responseText;
+      // Hiển thị kết quả cho người dùng
+      $(".resultContent-wrapper").innerHTML = response;
+    }
+  };
+  xhr.send();
+}

@@ -1,6 +1,6 @@
 
 <?php
-$db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+$db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 $email = $_GET['email'];
 // Kiểm tra tài khoản trong database
 $inputEmail = $db->prepare("SELECT email FROM khachhang WHERE email = :email");

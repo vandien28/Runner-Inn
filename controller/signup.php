@@ -1,6 +1,6 @@
 <?php
 session_start();
-$db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+$db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 if (isset($_POST["submitSignup"])) {
     $firstName = $_POST['last_name'];
     $lastName = $_POST['first_name'];
