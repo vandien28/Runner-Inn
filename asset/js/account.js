@@ -80,6 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// * hiện danh sách kết quả tìm kiếm
+function showSearchScroll() {
+  if ($(".search-scroll-input").value == "") {
+    $(".scroll-search-wrapper").classList.add("hide");
+  } else {
+    $(".scroll-search-wrapper").classList.remove("hide");
+  }
+}
+
+
 // * check username khi nhập
 function checkUsername(username) {
   // Tạo XMLHttpRequest object

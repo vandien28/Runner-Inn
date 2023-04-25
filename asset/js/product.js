@@ -81,6 +81,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// * hiện danh sách kết quả tìm kiếm
+function showSearchScroll() {
+  if ($(".search-scroll-input").value == "") {
+    $(".scroll-search-wrapper").classList.add("hide");
+  } else {
+    $(".scroll-search-wrapper").classList.remove("hide");
+  }
+}
+
+
 // * hiện viền khi click vào chọn ảnh
 const productImg = $$(".product-thumbs");
 

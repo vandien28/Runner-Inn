@@ -70,6 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// * hiện danh sách kết quả tìm kiếm
+function showSearchScroll() {
+  if ($(".search-scroll-input").value == "") {
+    $(".scroll-search-wrapper").classList.add("hide");
+  } else {
+    $(".scroll-search-wrapper").classList.remove("hide");
+  }
+}
+
+
 // * giảm số lượng sản phẩm
 const minus = $$(".qtyminus");
 minus.forEach(function(minus,index) {

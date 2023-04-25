@@ -100,11 +100,30 @@ function box_carts() {
 document.addEventListener("DOMContentLoaded", function () {
   let header = $(".header-scroll");
   window.addEventListener("scroll", function () {
-    if(document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-      header.classList.remove("hide")
+    if (
+      document.body.scrollTop > 400 ||
+      document.documentElement.scrollTop > 400
+    ) {
+      header.classList.remove("hide");
     } else {
-      header.classList.add("hide")
+      header.classList.add("hide");
     }
   });
 });
 
+// * hiện danh sách kết quả tìm kiếm
+function showSearchScroll() {
+  if ($(".search-scroll-input").value == "") {
+    $(".scroll-search-wrapper").classList.add("hide");
+  } else {
+    $(".scroll-search-wrapper").classList.remove("hide");
+  }
+}
+
+function showSearch() {
+  if ($(".searchInput").value == "") {
+    $(".search-wrapper").classList.add("hide");
+  } else {
+    $(".search-wrapper").classList.remove("hide");
+  }
+}
