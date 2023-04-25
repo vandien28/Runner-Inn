@@ -16,7 +16,7 @@
 
 <body>
     <?php
-    $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+    $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
     ?>
     <?php
     include "header.php"
@@ -28,7 +28,7 @@
                 <div class="row">
                     <ol>
                         <li class="li_line"><a href="/index.php">Trang chủ</a></li>
-                        <li><a href="cart.php">Giỏ hàng&nbsp;(<span class="productNumber" ></span>)</a></li>
+                        <li><a href="cart.php">Giỏ hàng&nbsp;(<span class="productNumber"></span>)</a></li>
                     </ol>
                 </div>
             </div>
@@ -237,7 +237,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 sidebar-cart">
-                            <a href="collection.php?type=bosuutap"  class="continue" >Tiếp tục mua hàng&nbsp;<i class="fa-sharp fa-light fa-arrow-right"></i></a>
+                            <a href="collection.php?type=bosuutap" class="continue">Tiếp tục mua hàng&nbsp;<i class="fa-sharp fa-light fa-arrow-right"></i></a>
                             <div class="order-summary-block">
                                 <h2 class="order-summary-title">Thông tin đơn hàng</h2>
                                 <div class="summary-subtotal hidden">

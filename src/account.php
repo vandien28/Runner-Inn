@@ -15,7 +15,8 @@
 </head>
 
 <body>
-    <?php $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456"); ?>
+    <?php $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    ?>
 
     <?php include "header.php" ?>
     <main>

@@ -16,7 +16,7 @@
 
 <body>
     <?php
-    $db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+        $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
     ?>
     <?php include "header.php" ?>
     <main id="main">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-xs">
                             <div class="userbox">
-                                <form accept-charset="UTF-8" action="/controller/checkSignup.php" id="create_customer" method="post">
+                                <form accept-charset="UTF-8" action="/controller/signup.php" id="create_customer" method="post">
                                     <div id="username" class="clearfix large_form">
                                         <input required="" type="text" value="" name="username" placeholder="Tên tài khoản" id="username" class="text" size="30" oninput="checkUsername(this.value)">
                                         <p class="notificationName notification"></p>

@@ -1,5 +1,5 @@
 <?php
-$db = new PDO("sqlsrv:Server=localhost;Database=RunnerInn", "sa", "123456");
+$db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 session_start();
 if (isset($_SESSION['userName'])) {
     echo "<script>
