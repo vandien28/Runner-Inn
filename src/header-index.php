@@ -85,68 +85,19 @@ if (isset($_SESSION['userName'])) {
                                             <div class="search-scroll-box">
                                                 <form action="/search" class="search-scroll-form">
                                                     <div class="search-inner">
-                                                        <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..." class="search-scroll-input" oninput="showSearchScroll()">
+                                                        <input type="text" size="20" name="productName" placeholder="Tìm kiếm sản phẩm..." class="search-scroll-input" oninput="showSearchScroll(),searchProductScroll(this.value)">
                                                     </div>
                                                     <button type="submit" class="btn-search-scroll"><i class="fa-sharp fa-regular fa-magnifying-glass"></i></button>
                                                 </form>
                                                 <div class="scroll-search-wrapper hide">
-                                                    <div class="resultContent">
-                                                        <div class="item-ult">
-                                                            <div class="thumbs">
-                                                                <a href="" title="">
-                                                                    <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                                                </a>
-                                                            </div>
-                                                            <div class="title">
-                                                                <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                                                <p class="f-initial">7,000,000₫
-
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-ult">
-                                                            <div class="thumbs">
-                                                                <a href="" title="">
-                                                                    <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                                                </a>
-                                                            </div>
-                                                            <div class="title">
-                                                                <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                                                <p class="f-initial">7,000,000₫
-
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-ult">
-                                                            <div class="thumbs">
-                                                                <a href="" title="">
-                                                                    <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                                                </a>
-                                                            </div>
-                                                            <div class="title">
-                                                                <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                                                <p class="f-initial">7,000,000₫
-
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-ult">
-                                                            <div class="thumbs">
-                                                                <a href="" title="">
-                                                                    <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                                                </a>
-                                                            </div>
-                                                            <div class="title">
-                                                                <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                                                <p class="f-initial">7,000,000₫
-
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="resultsMore">
+                                                    <div class="resultContent searchResultScroll" id="styleScroll" >
+                                                        
+                                                           
+                                                        
+                                                    </div>
+                                                    <div class="resultsMore">
                                                             <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
                                                         </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -419,67 +370,16 @@ if (isset($_SESSION['userName'])) {
                         <div class="search-box">
                             <form accept-charset="UTF-8" action="/controller/search.php" class="searchform" id="searchform" method="post">
                                 <div class="search-inner">
-                                    <input required="" type="text" size="20" name="searchInput" id="searchInput" placeholder="Tìm kiếm sản phẩm..." class="searchInput" oninput="showSearch(), searchProduct(this.value)">
+                                    <input required="" type="text" size="20" name="productName" id="productName" placeholder="Tìm kiếm sản phẩm..." class="searchInput" oninput="showSearch(),searchProduct(this.value)">
                                 </div>
                                 <button type="submit" class="btn-search"><i class="fa-sharp fa-regular fa-magnifying-glass"></i></button>
                             </form>
                             <div class="search-wrapper hide">
-                                <div class="resultContent resultContent-wrapper">
-                                    <!-- <div class="item-ult">
-                                        <div class="thumbs">
-                                            <a href="" title="">
-                                                <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="title">
-                                            <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                            <p class="f-initial">7,000,000₫
+                                <div class="resultContent searchResult" id="styleScroll">
 
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item-ult">
-                                        <div class="thumbs">
-                                            <a href="" title="">
-                                                <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="title">
-                                            <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                            <p class="f-initial">7,000,000₫
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item-ult">
-                                        <div class="thumbs">
-                                            <a href="" title="">
-                                                <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="title">
-                                            <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                            <p class="f-initial">7,000,000₫
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item-ult">
-                                        <div class="thumbs">
-                                            <a href="" title="">
-                                                <img alt="" src="//product.hstatic.net/1000375638/product/801740_1_e4adfa6d09b7468a8c9fb21bf8e02bd4_compact.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="title">
-                                            <a title="" href="/products/adidas-eqt-cushion-adv-north-america">Adidas EQT Cushion ADV "North America"</a>
-                                            <p class="f-initial">7,000,000₫
-
-                                            </p>
-                                        </div>
-                                    </div> -->
-                                    <div class="resultsMore">
-                                        <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
-                                    </div>
+                                </div>
+                                <div class="resultsMore">
+                                    <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
                                 </div>
                             </div>
                         </div>

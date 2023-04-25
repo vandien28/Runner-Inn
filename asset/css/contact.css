@@ -328,6 +328,20 @@ img {
     color: #272727;
 }
 
+.resultContent {
+    height: 182.4px;
+    overflow-y: auto;
+}
+
+#styleScroll::-webkit-scrollbar {
+    width: 3px;
+    background-color: #ffffff;
+}
+
+#styleScroll::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
 .scroll-search-wrapper .item-ult .title p {
     line-height: 15px;
     font-size: 12px;

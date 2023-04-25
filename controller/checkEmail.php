@@ -1,4 +1,3 @@
-
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 $email = $_GET['email'];

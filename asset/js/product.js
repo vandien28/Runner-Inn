@@ -90,6 +90,25 @@ function showSearchScroll() {
   }
 }
 
+// * tìm kiếm sản phẩm
+function searchProductScroll(product) {
+  // Tạo XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  // Gửi request đến PHP script để kiểm tra tài khoản
+  xhr.open(
+    "GET",
+    "/controller/search.php?productName=" + encodeURIComponent(product)
+  );
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Nhận kết quả trả về từ PHP script
+      var response = xhr.responseText;
+      // Hiển thị kết quả cho người dùng
+      $(".searchResultScroll").innerHTML = response;
+    }
+  };
+  xhr.send();
+}
 
 // * hiện viền khi click vào chọn ảnh
 const productImg = $$(".product-thumbs");
@@ -156,9 +175,7 @@ function plusQuantity() {
   quantity.value = plusValue + 1;
 }
 
-
 // * lấy thông tin sản phẩm add vào data- của button
 // * kiểm tra checked  để lấy size , color và kiểm tra value input để lấy quantity
 // let addCart = $(".add-cart")
 // let productName = addCart.getAttribute('data-name');
-

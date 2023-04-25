@@ -135,14 +135,34 @@ function searchProduct(product) {
   // Gửi request đến PHP script để kiểm tra tài khoản
   xhr.open(
     "GET",
-    "/controller/search.php?product=" + encodeURIComponent(product)
+    "controller/search.php?productName=" + encodeURIComponent(product)
   );
   xhr.onload = function () {
     if (xhr.status === 200) {
       // Nhận kết quả trả về từ PHP script
       var response = xhr.responseText;
       // Hiển thị kết quả cho người dùng
-      $(".resultContent-wrapper").innerHTML = response;
+      $(".searchResult").innerHTML = response;
+    }
+  };
+  xhr.send();
+}
+
+
+function searchProductScroll(product) {
+  // Tạo XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  // Gửi request đến PHP script để kiểm tra tài khoản
+  xhr.open(
+    "GET",
+    "controller/search.php?productName=" + encodeURIComponent(product)
+  );
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Nhận kết quả trả về từ PHP script
+      var response = xhr.responseText;
+      // Hiển thị kết quả cho người dùng
+      $(".searchResultScroll").innerHTML = response;
     }
   };
   xhr.send();
