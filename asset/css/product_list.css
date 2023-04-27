@@ -1294,7 +1294,12 @@ ul.submenu-links li a {
     font-weight: 700;
 }
 
-
+.noProduct {
+    width: 100%;
+    text-align: center;
+    padding: 100px;
+    font-size: 20px;
+}
 
 .wrap-site {
     padding: 40px;

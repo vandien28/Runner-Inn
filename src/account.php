@@ -33,13 +33,17 @@
                                 <div class="AccountList">
                                     <ul class="list-unstyled">
                                         <li class="current">
-                                            <a href="account.html">Thông tin tài khoản</a>
+                                            <a href="/src/account.php">Thông tin tài khoản</a>
                                         </li>
                                         <li>
-                                            <a href="accountaddresses.html">Danh sách địa chỉ</a>
+                                            <a href="/src/accountaddresses.php">Danh sách địa chỉ</a>
                                         </li>
                                         <li class="last">
-                                            <a href="/index.html">Đăng xuất</a>
+                                            <a href="">
+                                                <form action="/controller/logout.php" id="logout-form" method="POST">
+                                                    <button type="submit" name="logout">Đăng xuất</button>
+                                                </form>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -47,19 +51,28 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                        <div class="row">
-                            <div class="col-xs-12" id="customer_sidebar">
-                                <p class="title-detail">Thông tin tài khoản</p>
-                                <h2 class="name_account">sdfdsf sfsff</h2>
-                                <p class="email ">vandien12584@gmail.com</p>
-                                <div class="address ">
-                                    <p></p>
-                                    <p></p>
-                                    <p>Vietnam</p>
-                                    <p></p>
-                                    <a id="view_address" href="accountaddresses.html">Xem địa chỉ</a>
+                        <?php
+                        if (isset($_SESSION['userName'])) {
+                            $userName = $_SESSION['userName'];
+                            $user = $db->prepare("SELECT email,tenkhachhang,diachi,tentk FROM khachhang WHERE tentk = :tentk");
+                            $user->bindParam(":tentk", $userName);
+                            $user->execute();
+                            $userInformation = $user->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                            <div class="row">
+                                <div class="col-xs-12" id="customer_sidebar">
+                                    <p class="title-detail">Thông tin tài khoản</p>
+                                    <h2 class="name_account"><?php echo $userInformation["tentk"] ?></h2>
+                                    <p class="email"><?php echo $userInformation["email"] ?></p>
+                                    <div class="address ">
+                                        <p><?php echo $userInformation["diachi"] ?></p>
+                                        <a id="view_address" href="accountaddresses.php">Xem địa chỉ</a>
+                                    </div>
                                 </div>
-                            </div>
+
+                            <?php
+                        }
+                            ?>
                             <div class="col-xs-12" id="customer_orders">
                                 <div class="customer-table-wrap">
                                     <div class="customer_order customer-table-bg">
@@ -67,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

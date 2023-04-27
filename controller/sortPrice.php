@@ -35,31 +35,10 @@ if (!empty($priceRanges)) {
 $productList = $db->prepare($query);
 $productList->execute();
 $product = $productList->fetchAll(PDO::FETCH_ASSOC);
-foreach ($product as $row) {
-    if (isset($_GET['type']) && $_GET['type'] == 'bosuutap') {
-        echo '
-    <div class="col-sm-6 product-item">
-    <div class="product-block">
-        <div class="product-img">
-            <a href="product.php?type=' . $row["masp"] . '">
-                <img src="' . $row["urlmain"] . '" alt="" title="' . $row["tensp"] . '">
-            </a>
-        </div>
-        <div class="product-detail">
-            <div class="box-pro-detail">
-                <h3 class="pro-name">
-                    <a href="product.php?type=' . $row["masp"] . '" title="' . $row["tensp"] . '"">' . $row["tensp"] . '</a>
-                </h3>
-                <div class="box-pro-detail">
-                    <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    ';
-    } else if (isset($_GET['type']) && $_GET['type'] == $row["tenloai"]) {
-        echo '
+if($product) {
+    foreach ($product as $row) {
+        if (isset($_GET['type']) && $_GET['type'] == 'bosuutap') {
+            echo '
         <div class="col-sm-6 product-item">
         <div class="product-block">
             <div class="product-img">
@@ -80,5 +59,32 @@ foreach ($product as $row) {
         </div>
     </div>
         ';
+        } else if (isset($_GET['type']) && $_GET['type'] == $row["tenloai"]) {
+            echo '
+            <div class="col-sm-6 product-item">
+            <div class="product-block">
+                <div class="product-img">
+                    <a href="product.php?type=' . $row["masp"] . '">
+                        <img src="' . $row["urlmain"] . '" alt="" title="' . $row["tensp"] . '">
+                    </a>
+                </div>
+                <div class="product-detail">
+                    <div class="box-pro-detail">
+                        <h3 class="pro-name">
+                            <a href="product.php?type=' . $row["masp"] . '" title="' . $row["tensp"] . '"">' . $row["tensp"] . '</a>
+                        </h3>
+                        <div class="box-pro-detail">
+                            <p class="pro-price">' . number_format($row["giatien"]) . '₫</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            ';
+        }
     }
+    
+} else {        
+    echo ' <p class="noProduct" >Không tìm thấy sản phẩm phù hợp!</p> ';
 }
+

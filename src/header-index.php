@@ -189,10 +189,10 @@ if (isset($_SESSION['userName'])) {
                                                     <a href="">
                                                         <p class="account_name"><?php echo $_SESSION['userName'] ?></p>
                                                     </a>
-                                                    <a href="">
+                                                    <a href="/src/account.php">
                                                         <p>Tài khoản của bạn</p>
                                                     </a>
-                                                    <a href="">
+                                                    <a href="src/accountaddresses.php">
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
@@ -475,10 +475,10 @@ if (isset($_SESSION['userName'])) {
                                                     <a href="">
                                                         <p class="account_name"><?php echo $_SESSION['userName'] ?></p>
                                                     </a>
-                                                    <a href="">
+                                                    <a href="/src/account.php">
                                                         <p>Tài khoản của bạn</p>
                                                     </a>
-                                                    <a href="">
+                                                    <a href="/src/accountaddresses.php">
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
