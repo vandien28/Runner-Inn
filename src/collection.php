@@ -115,31 +115,31 @@
                                                         <div class="layered-content bl-filter filter-price">
                                                             <ul class="check-box-list">
                                                                 <li>
-                                                                    <input type="checkbox" id="p1" name="cc" data-price="(price:product<=500000)">
+                                                                    <input type="checkbox" id="p1" name="price_range" data-price="price<=500000">
                                                                     <label for="p1">
                                                                         <span>Dưới</span> 500,000₫
                                                                     </label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="p2" name="cc" data-price="((price:product>500000)&amp;&amp;(price:product<=1000000))">
+                                                                    <input type="checkbox" id="p2" name="price_range" data-price="500000<price<=1000000">
                                                                     <label for="p2">
                                                                         500,000₫ - 1,000,000₫
                                                                     </label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="p3" name="cc" data-price="((price:product>1000000)&amp;&amp;(price:product<=1500000))">
+                                                                    <input type="checkbox" id="p3" name="price_range" data-price="1000000<price<=1500000">
                                                                     <label for="p3">
                                                                         1,000,000₫ - 1,500,000₫
                                                                     </label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="p4" name="cc" data-price="((price:product>2000000)&amp;&amp;(price:product<=5000000))">
+                                                                    <input type="checkbox" id="p4" name="price_range" data-price="2000000<price<=5000000">
                                                                     <label for="p4">
                                                                         2,000,000₫ - 5,000,000₫
                                                                     </label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="p5" name="cc" data-price="(price:product>=5000000)">
+                                                                    <input type="checkbox" id="p5" name="price_range" data-price="price>=5000000">
                                                                     <label for="p5">
                                                                         <span>Trên</span> 5,000,000₫
                                                                     </label>
@@ -157,48 +157,48 @@
                                                         <div class="layered-content filter-color s-filter">
                                                             <ul class="check-box-list">
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p1" value="Cam" name="color-filter" data-color="(variant:product**Cam)">
+                                                                    <input type="checkbox" id="data-color-p1" value="Cam" name="color-filter" data-color="color=Cam">
                                                                     <label for="data-color-p1" style="background-color: #fb4727"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p2" value="Kem" name="color-filter" data-color="(variant:product**Kem)">
+                                                                    <input type="checkbox" id="data-color-p2" value="Kem" name="color-filter" data-color="color=Kem">
                                                                     <label for="data-color-p2" style="background-color: #fdfaef"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p3" value="Tím" name="color-filter" data-color="(variant:product**Tím)">
+                                                                    <input type="checkbox" id="data-color-p3" value="Tím" name="color-filter" data-color="color=Tím">
                                                                     <label for="data-color-p3" style="background-color: #3e3473"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p4" value="Trắng" name="color-filter" data-color="(variant:product**Trắng)">
+                                                                    <input type="checkbox" id="data-color-p4" value="Trắng" name="color-filter" data-color="color=Trắng">
                                                                     <label for="data-color-p4" style="background-color: #ffffff"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p5" value="Xanh Ngọc" name="color-filter" data-color="(variant:product**Xanh Ngọc)">
+                                                                    <input type="checkbox" id="data-color-p5" value="Xanh Ngọc" name="color-filter" data-color="color=Xanh Ngọc">
                                                                     <label for="data-color-p5" style="background-color: #75e2fb"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p6" value="Xám" name="color-filter" data-color="(variant:product**Xám)">
+                                                                    <input type="checkbox" id="data-color-p6" value="Xám" name="color-filter" data-color="color=Xám">
                                                                     <label for="data-color-p6" style="background-color: #cecec8"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p7" value="Xanh" name="color-filter" data-color="(variant:product**Xanh)">
+                                                                    <input type="checkbox" id="data-color-p7" value="Xanh" name="color-filter" data-color="color=Xanh">
                                                                     <label for="data-color-p7" style="background-color: #6daef4"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p8" value="Đen" name="color-filter" data-color="(variant:product**Đen)">
+                                                                    <input type="checkbox" id="data-color-p8" value="Đen" name="color-filter" data-color="color=Đen">
                                                                     <label for="data-color-p8" style="background-color: #000000"></label>
                                                                 </li>
 
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p9" value="Đỏ" name="color-filter" data-color="(variant:product**Đỏ)">
+                                                                    <input type="checkbox" id="data-color-p9" value="Đỏ" name="color-filter" data-color="color=Đỏ">
                                                                     <label for="data-color-p9" style="background-color: #e2262a"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p10" value="Hồng" name="color-filter" data-color="(variant:product**Hồng)">
+                                                                    <input type="checkbox" id="data-color-p10" value="Hồng" name="color-filter" data-color="color=Hồng">
                                                                     <label for="data-color-p10" style="background-color: #ee8aa1"></label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-color-p11" value="Rêu" name="color-filter" data-color="(variant:product**Rêu)">
+                                                                    <input type="checkbox" id="data-color-p11" value="Rêu" name="color-filter" data-color="color=Rêu">
                                                                     <label for="data-color-p11" style="background-color: #4a5250"></label>
                                                                 </li>
                                                             </ul>
@@ -214,27 +214,27 @@
                                                         <div class="layered-content filter-size s-filter">
                                                             <ul class="check-box-list clearfix">
                                                                 <li>
-                                                                    <input type="checkbox" id="data-size-p1" value="35" name="size-filter" data-size="(variant:product=35)">
+                                                                    <input type="checkbox" id="data-size-p1" value="35" name="size-filter" data-size="size=35">
                                                                     <label for="data-size-p1">35</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-size-p2" value="36" name="size-filter" data-size="(variant:product=36)">
+                                                                    <input type="checkbox" id="data-size-p2" value="36" name="size-filter" data-size="size=36">
                                                                     <label for="data-size-p2">36</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-size-p3" value="37" name="size-filter" data-size="(variant:product=37)">
+                                                                    <input type="checkbox" id="data-size-p3" value="37" name="size-filter" data-size="size=37">
                                                                     <label for="data-size-p3">37</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-size-p4" value="38" name="size-filter" data-size="(variant:product=38)">
+                                                                    <input type="checkbox" id="data-size-p4" value="38" name="size-filter" data-size="size=38">
                                                                     <label for="data-size-p4">38</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-size-p5" value="39" name="size-filter" data-size="(variant:product=39)">
+                                                                    <input type="checkbox" id="data-size-p5" value="39" name="size-filter" data-size="size=39">
                                                                     <label for="data-size-p5">39</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="data-size-p6" value="40" name="size-filter" data-size="(variant:product=40)">
+                                                                    <input type="checkbox" id="data-size-p6" value="40" name="size-filter" data-size="size=40">
                                                                     <label for="data-size-p6">40</label>
                                                                 </li>
                                                             </ul>
@@ -255,15 +255,12 @@
                                     </div>
                                     <div class="col-md-4">
                                         <span class="custom-dropdown">
-                                            <select class="sortProduct ">
-                                                <option value="price-ascending" data-filter="&amp;sortby=(price:product=asc)">Giá: Tăng dần</option>
-                                                <option value="price-descending" data-filter="&amp;sortby=(price:product=desc)">Giá: Giảm dần</option>
-                                                <option value="title-ascending" data-filter="&amp;sortby=(title:product=asc)">Tên: A-Z</option>
-                                                <option value="title-descending" data-filter="&amp;sortby=(price:product=desc)">Tên: Z-A</option>
-                                                <option value="created-ascending" data-filter="&amp;sortby=(updated_at:product=desc)">Cũ nhất</option>
-                                                <option value="created-descending" data-filter="&amp;sortby=(updated_at:product=asc)">Mới nhất</option>
-                                                <option value="best-selling" data-filter="&amp;sortby=(sold_quantity:product=desc)">Bán chạy nhất</option>
-                                                <option value="quantity-descending">Tồn kho: Giảm dần</option>
+                                            <select class="sortProduct" name="sort">
+                                                <option value="default">Mặc định</option>
+                                                <option value="price-ascending">Giá: Tăng dần</option>
+                                                <option value="price-descending">Giá: Giảm dần</option>
+                                                <option value="title-ascending">Tên: A-Z</option>
+                                                <option value="title-descending">Tên: Z-A</option>
                                             </select>
                                         </span>
                                     </div>
@@ -278,7 +275,7 @@
                                     foreach ($product as $row) {
                                         if (isset($_GET['type']) && $_GET['type'] == 'bosuutap') {
                                     ?>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6 product-item">
                                                 <div class="product-block">
                                                     <div class="product-img">
                                                         <a href="product.php?type=<?php echo $row["masp"]; ?>">
@@ -288,10 +285,10 @@
                                                     <div class="product-detail">
                                                         <div class="box-pro-detail">
                                                             <h3 class="pro-name">
-                                                                <a href="product.php?type=<?php echo $row["masp"]; ?>" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                                <a href="product.php?type=<?php echo $row["masp"]; ?>" title="<?php echo $row["tensp"] ?>" data-name="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
                                                             </h3>
                                                             <div class="box-pro-detail">
-                                                                <p class="pro-price "><?php echo number_format($row["giatien"]) ?>₫</p>
+                                                                <p class="pro-price" data-price="<?php echo $row["giatien"] ?>"><?php echo number_format($row["giatien"]) ?>₫</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -300,7 +297,7 @@
                                         <?php
                                         } else if (isset($_GET['type']) && $_GET['type'] == $row["tenloai"]) {
                                         ?>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6 product-item">
                                                 <div class="product-block">
                                                     <div class="product-img">
                                                         <a href="product.php?type=<?php echo $row["masp"]; ?>">
@@ -310,10 +307,10 @@
                                                     <div class="product-detail">
                                                         <div class="box-pro-detail">
                                                             <h3 class="pro-name">
-                                                                <a href="product.php?type=<?php echo $row["masp"]; ?>" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                                <a href="product.php?type=<?php echo $row["masp"]; ?>" title="<?php echo $row["tensp"] ?>" data-name="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
                                                             </h3>
                                                             <div class="box-pro-detail">
-                                                                <p class="pro-price "><?php echo number_format($row["giatien"]) ?>₫</p>
+                                                                <p class="pro-price" data-price="<?php echo $row["giatien"] ?>"><?php echo number_format($row["giatien"]) ?>₫</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -334,6 +331,7 @@
     </main>
     <?php include "footer.php"  ?>
     <script type="text/javascript" src="../asset/js/product.js"></script>
+
 </body>
 
 </html>

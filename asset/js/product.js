@@ -179,3 +179,133 @@ function plusQuantity() {
 // * kiểm tra checked  để lấy size , color và kiểm tra value input để lấy quantity
 // let addCart = $(".add-cart")
 // let productName = addCart.getAttribute('data-name');
+
+// * sắp xếp sản phẩm khi chọn giá trị trong thẻ select
+const sortProduct = $(".sortProduct");
+sortProduct.addEventListener("change", function () {
+  let urlParams = new URLSearchParams(window.location.search);
+  let type = urlParams.get("type");
+  let value = this.value; // Lấy giá trị của option đã chọn
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let response = xhttp.responseText;
+      $(".product-list").innerHTML = response;
+    }
+  };
+  xhttp.open(
+    "GET",
+    "/controller/sortProduct.php?sort=" +
+      value +
+      "&type=" +
+      encodeURIComponent(type),
+    true
+  ); // Gửi yêu cầu GET với giá trị của option đã chọn và biến type
+  xhttp.send();
+});
+
+// * sắp xếp sản phẩm khi chọn giá tiền
+const sortPrice = $$('.filter-price input[type="checkbox"]');
+let selectedPrices = []; // keep track of selected prices
+
+sortPrice.forEach(function (item) {
+  item.addEventListener("change", function () {
+    if (item.checked) {
+      selectedPrices.push(item.getAttribute("data-price"));
+    } else {
+      selectedPrices = selectedPrices.filter(
+        (price) => price !== item.getAttribute("data-price")
+      );
+    }
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let type = urlParams.get("type");
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let response = xhttp.responseText;
+        $(".product-list").innerHTML = response;
+      }
+    };
+    xhttp.open(
+      "GET",
+      "/controller/sortPrice.php?price_range=" +
+        encodeURIComponent(JSON.stringify(selectedPrices)) +
+        "&type=" +
+        encodeURIComponent(type),
+      true
+    );
+    xhttp.send();
+  });
+});
+
+// * sắp xếp sản phẩm khi chọn size
+const sortSize = $$('.filter-size input[type="checkbox"]');
+let selectedSize = []; 
+
+sortSize.forEach(function (item) {
+  item.addEventListener("change", function () {
+    if (item.checked) {
+      selectedSize.push(item.getAttribute("data-size"));
+    } else {
+      selectedSize = selectedSize.filter(
+        (size) => size !== item.getAttribute("data-size")
+      );
+    }
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let type = urlParams.get("type");
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let response = xhttp.responseText;
+        $(".product-list").innerHTML = response;
+      }
+    };
+    xhttp.open(
+      "GET",
+      "/controller/sortSize.php?size-filter=" +
+        encodeURIComponent(JSON.stringify(selectedSize)) +
+        "&type=" +
+        encodeURIComponent(type),
+      true
+    );
+    xhttp.send();
+  });
+});
+
+// * sắp xếp sản phẩm khi chọn color
+const sortColor = $$('.filter-color input[type="checkbox"]');
+let selectedColor = []; 
+
+sortColor.forEach(function (item) {
+  item.addEventListener("change", function () {
+    if (item.checked) {
+      selectedColor.push(item.getAttribute("data-color"));
+      console.log(item);
+    } else {
+      selectedColor = selectedColor.filter(
+        (color) => color !== item.getAttribute("data-color")
+      );
+    }
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let type = urlParams.get("type");
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let response = xhttp.responseText;
+        $(".product-list").innerHTML = response;
+      }
+    };
+    xhttp.open(
+      "GET",
+      "/controller/sortColor.php?color-filter=" +
+        encodeURIComponent(JSON.stringify(selectedColor)) +
+        "&type=" +
+        encodeURIComponent(type),
+      true
+    );
+    xhttp.send();
+  });
+});

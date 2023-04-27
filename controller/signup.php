@@ -25,8 +25,3 @@ if (isset($_POST["submitSignup"])) {
         exit();
     }
 }
-
-// Lấy tên tài khoản từ request
-
-
-// Lấy tên tài khoản từ request

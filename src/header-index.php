@@ -83,21 +83,21 @@ if (isset($_SESSION['userName'])) {
                                                 </div>
                                             </div>
                                             <div class="search-scroll-box">
-                                                <form action="/search" class="search-scroll-form">
+                                                <form action="/src/search.php" class="search-scroll-form" method="post">
                                                     <div class="search-inner">
                                                         <input type="text" size="20" name="productName" placeholder="Tìm kiếm sản phẩm..." class="search-scroll-input" oninput="showSearchScroll(),searchProductScroll(this.value)">
                                                     </div>
                                                     <button type="submit" class="btn-search-scroll"><i class="fa-sharp fa-regular fa-magnifying-glass"></i></button>
                                                 </form>
                                                 <div class="scroll-search-wrapper hide">
-                                                    <div class="resultContent searchResultScroll" id="styleScroll" >
-                                                        
-                                                           
-                                                        
+                                                    <div class="resultContent searchResultScroll" id="styleScroll">
+
+
+
                                                     </div>
                                                     <div class="resultsMore">
-                                                            <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
-                                                        </div>
+                                                        <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -368,7 +368,7 @@ if (isset($_SESSION['userName'])) {
                     </div>
                     <div class="wrapper-upper-search">
                         <div class="search-box">
-                            <form accept-charset="UTF-8" action="/controller/search.php" class="searchform" id="searchform" method="post">
+                            <form accept-charset="UTF-8" action="/src/search.php" class="searchform" id="searchform" method="post">
                                 <div class="search-inner">
                                     <input required="" type="text" size="20" name="productName" id="productName" placeholder="Tìm kiếm sản phẩm..." class="searchInput" oninput="showSearch(),searchProduct(this.value)">
                                 </div>

@@ -36,7 +36,7 @@ if (isset($_SESSION['userName'])) {
                                     <nav class="desk-menu">
                                         <ul class="text-center">
                                             <li class="active"><a href="/index.php">trang chủ</a></li>
-                                            <li class="active"><a class="active_2" href="/src/collection.php?type=bosuutap">bộ sưu tập</a></li>
+                                            <li class="active"><a  href="/src/collection.php?type=bosuutap">bộ sưu tập</a></li>
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <?php
@@ -88,7 +88,7 @@ if (isset($_SESSION['userName'])) {
                                                 </div>
                                             </div>
                                             <div class="search-scroll-box">
-                                                <form action="/search" class="search-scroll-form">
+                                                <form action="/src/search.php" class="search-scroll-form" method="post">
                                                     <div class="search-inner">
                                                         <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..." name="productName" class="search-scroll-input" oninput="showSearchScroll(),searchProductScroll(this.value)">
                                                     </div>
