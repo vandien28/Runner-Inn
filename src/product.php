@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+$db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 ?>
 
 <head>
@@ -28,12 +28,8 @@
 
 <body>
 
-
     <?php
-    include "header.php"
-    ?>
-
-    <?php
+    include "header.php";
     $productNameID = $db->prepare("SELECT  tensp,masp FROM sanpham");
     $productNameID->execute();
     $nameID = $productNameID->fetchAll(PDO::FETCH_ASSOC);
@@ -153,9 +149,7 @@
                                         }
                                     } ?>
                                 </div>
-
                             </div>
-
                             <div class="product-size">
                                 <div class="layered-content filter-size s-filter">
                                     <ul class="check-box-list clearfix">
@@ -167,7 +161,7 @@
                                             if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
                                         ?>
                                                 <li>
-                                                    <input type="radio" id="data-size-<?php echo $row["kichthuoc"] ?>" value="<?php echo $row["kichthuoc"] ?>" name="size-filter" data-size="(variant:product=<?php echo $row["kichthuoc"] ?>)">
+                                                    <input type="radio" id="data-size-<?php echo $row["kichthuoc"] ?>" value="<?php echo $row["kichthuoc"] ?>" name="size-filter" data-size="size=<?php echo $row["kichthuoc"] ?>" class="sizeChecked">
                                                     <label for="data-size-<?php echo $row["kichthuoc"] ?>"><?php echo $row["kichthuoc"] ?></label>
                                                 </li>
                                         <?php
@@ -189,7 +183,7 @@
                                 foreach ($info as $row) {
                                     if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
                                 ?>
-                                        <button class="add-cart" data-name='<?php echo $row["tensp"]; ?>' data-img="<?php echo $row["urlmain"]; ?>" data-id="<?php echo $row["masp"]; ?>" data-price="<?php echo number_format($row["giatien"]); ?>" data-size="" data-color="" data-quantity="">
+                                        <button class="add-cart" data-id="<?php echo $row["masp"]; ?>" data-size="" data-color="" data-quantity="" onclick="renderDataProduct(),addToCart()" name="addToCart">
                                             <span>Thêm vào giỏ</span>
                                         </button>
                                 <?php }
@@ -204,7 +198,6 @@
             </div>
         </section>
         <?php
-
         include "gallery.php"
         ?>
             </main>

@@ -32,7 +32,7 @@ if (!empty($colorRanges)) {
                 $query .= "mausac = 'Xanh'";
                 break;
             case 'color=Đen':
-                $query .= "mausac = 'Đe'";
+                $query .= "mausac = 'Đen'";
                 break;
             case 'color=Đỏ':
                 $query .= "mausac = 'Đỏ'";
@@ -54,7 +54,7 @@ if (!empty($colorRanges)) {
 $productList = $db->prepare($query);
 $productList->execute();
 $product = $productList->fetchAll(PDO::FETCH_ASSOC);
-if($product) {
+if ($product) {
     foreach ($product as $row) {
         if (isset($_GET['type']) && $_GET['type'] == 'bosuutap') {
             echo '
@@ -102,8 +102,6 @@ if($product) {
             ';
         }
     }
-    
-} else {        
+} else {
     echo ' <p class="noProduct" >Không tìm thấy sản phẩm phù hợp!</p> ';
 }
-

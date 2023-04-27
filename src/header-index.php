@@ -230,88 +230,36 @@ if (isset($_SESSION['userName'])) {
                                                 </div>
                                             </div>
                                             <div class="cart-view">
-                                                <div class="view_product hide">
+                                                <div class="view_product scroll-view-product hide">
                                                     <i class="fa-light fa-cart-shopping"></i>
                                                     <p>Hiện chưa có sản phẩm</p>
                                                 </div>
-                                                <div class="scroll-product">
+                                                <div class="scroll-product scroll-listProduct">
                                                     <table class="productList">
                                                         <tbody>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
+                                                            <?php
+                                                            $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+                                                            $productCart->execute();
+                                                            $listProduct = $productCart->fetchAll(PDO::FETCH_ASSOC);
+                                                            foreach ($listProduct as $row) {
+                                                                if ($row["makhachhang"] == $_SESSION["userID"]) {
+                                                            ?>
+                                                                    <tr class="list-item">
+                                                                        <td class="img">
+                                                                            <a href="/src/product.php?type=<?php echo $row["masp"] ?>"><img src="<?php echo $row["urlmain"] ?>" alt=""></a>
+                                                                        </td>
+                                                                        <td class="information">
+                                                                            <a class="pro-title" href="/src/product.php?type=<?php echo $row["masp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                                            <span class="variant"><?php echo $row["mausac"] ?> / <?php echo $row["kichthuoc"] ?></span>
+                                                                            <span class="pro-quantity"><?php echo $row["soluong"] ?></span>
+                                                                            <span class="pro-price-view"><?php echo number_format($row["giatien"]) ?>₫</span>
+                                                                            <span class="remove-pro">
+                                                                                <i class="fa-regular fa-rectangle-xmark"></i>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                            <?php }
+                                                            } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -521,84 +469,32 @@ if (isset($_SESSION['userName'])) {
                                                     <i class="fa-light fa-cart-shopping"></i>
                                                     <p>Hiện chưa có sản phẩm</p>
                                                 </div>
-                                                <div class="scroll-product">
+                                                <div class="scroll-product wrapper-product">
                                                     <table class="productList">
                                                         <tbody>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="list-item">
-                                                                <td class="img">
-                                                                    <a href=""><img src="/asset/img/AECA/AECA.webp" alt=""></a>
-                                                                </td>
-                                                                <td class="information">
-                                                                    <a class="pro-title" href="/src/product.html">tên
-                                                                        sản phẩm</a>
-                                                                    <span class="variant">màu / size</span>
-                                                                    <span class="pro-quantity">sl</span>
-                                                                    <span class="pro-price-view">giá</span>
-                                                                    <span class="remove-pro">
-                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
+                                                            <?php
+                                                            $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+                                                            $productCart->execute();
+                                                            $listProduct = $productCart->fetchAll(PDO::FETCH_ASSOC);
+                                                            foreach ($listProduct as $row) {
+                                                                if ($row["makhachhang"] == $_SESSION["userID"]) {
+                                                            ?>
+                                                                    <tr class="list-item">
+                                                                        <td class="img">
+                                                                            <a href="/src/product.php?type=<?php echo $row["masp"] ?>"><img src="<?php echo $row["urlmain"] ?>" alt=""></a>
+                                                                        </td>
+                                                                        <td class="information">
+                                                                            <a class="pro-title" href="/src/product.php?type=<?php echo $row["masp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                                            <span class="variant"><?php echo $row["mausac"] ?> / <?php echo $row["kichthuoc"] ?></span>
+                                                                            <span class="pro-quantity"><?php echo $row["soluong"] ?></span>
+                                                                            <span class="pro-price-view"><?php echo number_format($row["giatien"]) ?>₫</span>
+                                                                            <span class="remove-pro">
+                                                                                <i class="fa-regular fa-rectangle-xmark"></i>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                            <?php }
+                                                            } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
