@@ -742,6 +742,105 @@ svg:not(:root) {
     margin-top: 10px;
 }
 
+.scroll-product::-webkit-scrollbar {
+    width: 2px;
+    background-color: #ffffff;
+}
+
+.scroll-product::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
+tr.list-item td{
+    height: 122px;
+    position: relative;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+tr.list-item:last-child td{
+    height: 122px;
+    position: relative;
+    border-bottom: none;
+}
+
+tr.list-item td.item {
+    padding: 10px 0;
+    position: relative;
+    padding-left: 20px;
+    width: calc(100% - 90px);
+}
+
+table tr td:first-child, table tr th:first-child {
+    padding-left: 0px;
+}
+
+.img {
+    width: 100px;
+}
+
+.list-item .img a img {
+    border: 1px solid #ededed;
+    margin-right: 10px;
+    max-width: 100%;
+}
+
+.information a.pro-title {
+    float: left;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #272727;
+    word-wrap: break-word;
+    width: 80%;
+}
+
+ .variant {
+    font-size: 12px;
+    float: left;
+    width: 100%;
+    margin: 5px 0 12px;
+    opacity: 0.66;
+    text-transform: uppercase;
+}
+
+.pro-quantity {
+    float: left;
+    width: auto;
+    background: #ededed;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1;
+    margin-right: 12px;
+}
+
+ .pro-price-view {
+    color: #333;
+    display: block;
+    text-align: center;
+    float: left;
+    line-height: 26px;
+    font-weight: bolder;
+}
+
+.remove-pro {
+    position: absolute;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.remove-pro i {
+    font-size: 20px;
+    color: #000000;
+}
+
+.remove-pro i:hover {
+    cursor: pointer;
+    color: red;
+}
+
+
 .payment {
     padding-top: 7px;
 }

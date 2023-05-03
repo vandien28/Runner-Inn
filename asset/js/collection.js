@@ -110,138 +110,135 @@ function searchProductScroll(product) {
   xhr.send();
 }
 
-// * hiện viền khi click vào chọn ảnh
-const productImg = $$(".product-thumbs");
-
-productImg.forEach(function (element) {
-  let pI = element.querySelector(".listImg").src;
-  let pM = $(".product-img img").src;
-  if (pI == pM) {
-    element.classList.add("active");
-  } else {
-    element.classList.remove("active");
-  }
-});
-
-//* chuyển ảnh của sản phẩm
-const gallery = $$(".product-thumbs");
-
-gallery.forEach(function (item, index) {
-  let productImg = $(".product-img img");
-  item.addEventListener("click", function (event) {
-    item.classList.add("active");
-    let i = event.target.parentElement;
-    let srcImg = i.querySelector(".product-thumbs img").src;
-    productImg.src = srcImg;
-    Array.from(gallery)
-      .filter((it, i) => i !== index)
-      .map(function (value) {
-        value.classList.remove("active");
-      });
-  });
-});
-
-// * hiện tên màu khi checked
-const colorChecked = $$(".colorChecked");
-
-colorChecked.forEach(function (element, index) {
-  if (index == 0) {
-    element.checked = true;
-    $(".title-color span").innerText = element.value;
-  } else {
-    element.checked = false;
-  }
-  element.addEventListener("change", function (event) {
-    if (element.checked) {
-      $(".title-color span").innerText = element.value;
-    }
-  });
-});
-
-// * tăng(plusQuantity),giảm(minusQuantity) số lượng sản phẩm
-var quantity = $(".quantity-selector");
-
-function minusQuantity() {
-  let minusValue = parseInt(quantity.value);
-  if (minusValue == 1) {
-    quantity.value = 1;
-  } else {
-    quantity.value = minusValue - 1;
-  }
-}
-
-function plusQuantity() {
-  let plusValue = parseInt(quantity.value);
-  quantity.value = plusValue + 1;
-}
-// * lấy thông tin sản phẩm add vào data- của button
-// * kiểm tra checked  để lấy size , color và kiểm tra value input để lấy quantity
-let addCart = $(".add-cart");
-let productSize = addCart.getAttribute("data-size");
-const productSizeChecked = $$(".sizeChecked");
-productSizeChecked.forEach(function (element) {
-  element.addEventListener("change", function (item) {
-    if (element.checked) {
-      productSize = element.value;
-    } else {
-      productSize = "";
-    }
-  });
-});
-let productColor = addCart.getAttribute("data-color");
-const productColorChecked = $$(".colorChecked");
-productColorChecked.forEach(function (element, index) {
-  if (index == 0) {
-    if (element.checked) {
-      productColor = element.value;
-    } else {
-      productColor = "";
-    }
-  } else {
-    element.addEventListener("change", function (item) {
-      if (element.checked) {
-        productColor = element.value;
-      } else {
-        productColor = "";
-      }
-    });
-  }
-});
-let productQuantity = addCart.getAttribute("data-quantity");
-function renderDataProduct() {
-  let updateProductQuantity = $(".quantity-selector");
-  productQuantity = updateProductQuantity.value;
-}
-
-// * thêm sản phẩm vào table giỏ hàng trong database
-let productId = addCart.getAttribute("data-id");
-function addToCart() {
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      let result = xhr.responseText;
-      $(".wrapper-product table tbody").innerHTML = result;
+// * sắp xếp sản phẩm khi chọn giá trị trong thẻ select
+const sortProduct = $(".sortProduct");
+sortProduct.addEventListener("change", function () {
+  let urlParams = new URLSearchParams(window.location.search);
+  let type = urlParams.get("type");
+  let value = this.value; // Lấy giá trị của option đã chọn
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let response = xhttp.responseText;
+      $(".product-list").innerHTML = response;
     }
   };
-  xhr.open(
+  xhttp.open(
     "GET",
-    "/controller/addCart.php?id=" +
-      encodeURIComponent(productId) +
-      "&size=" +
-      encodeURIComponent(productSize) +
-      "&color=" +
-      encodeURIComponent(productColor) +
-      "&quantity=" +
-      encodeURIComponent(productQuantity),
+    "/controller/sortProduct.php?sort=" +
+      value +
+      "&type=" +
+      encodeURIComponent(type),
     true
-  );
-  xhr.send();
-  let price =
-    parseInt($(".price").innerText.replace(/,/g, "")) +
-    parseInt(addCart.getAttribute("data-price"));
-  $(".price").innerText = price.toLocaleString("en-US");
-  $(".count").innerText = parseInt($(".count").innerText) + 1;
-}
+  ); // Gửi yêu cầu GET với giá trị của option đã chọn và biến type
+  xhttp.send();
+});
+
+// * sắp xếp sản phẩm khi chọn giá tiền
+const sortPrice = $$('.filter-price input[type="checkbox"]');
+let selectedPrices = []; // keep track of selected prices
+
+sortPrice.forEach(function (item) {
+  item.addEventListener("change", function () {
+    if (item.checked) {
+      selectedPrices.push(item.getAttribute("data-price"));
+    } else {
+      selectedPrices = selectedPrices.filter(
+        (price) => price !== item.getAttribute("data-price")
+      );
+    }
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let type = urlParams.get("type");
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let response = xhttp.responseText;
+        $(".product-list").innerHTML = response;
+      }
+    };
+    xhttp.open(
+      "GET",
+      "/controller/sortPrice.php?price_range=" +
+        encodeURIComponent(JSON.stringify(selectedPrices)) +
+        "&type=" +
+        encodeURIComponent(type),
+      true
+    );
+    xhttp.send();
+  });
+});
+
+// * sắp xếp sản phẩm khi chọn size
+const sortSize = $$('.filter-size input[type="checkbox"]');
+let selectedSize = [];
+
+sortSize.forEach(function (item) {
+  item.addEventListener("change", function () {
+    if (item.checked) {
+      selectedSize.push(item.getAttribute("data-size"));
+    } else {
+      selectedSize = selectedSize.filter(
+        (size) => size !== item.getAttribute("data-size")
+      );
+    }
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let type = urlParams.get("type");
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let response = xhttp.responseText;
+        $(".product-list").innerHTML = response;
+      }
+    };
+    xhttp.open(
+      "GET",
+      "/controller/sortSize.php?size-filter=" +
+        encodeURIComponent(JSON.stringify(selectedSize)) +
+        "&type=" +
+        encodeURIComponent(type),
+      true
+    );
+    xhttp.send();
+  });
+});
+
+// * sắp xếp sản phẩm khi chọn color
+const sortColor = $$('.filter-color input[type="checkbox"]');
+let selectedColor = [];
+
+sortColor.forEach(function (item) {
+  item.addEventListener("change", function () {
+    if (item.checked) {
+      selectedColor.push(item.getAttribute("data-color"));
+      console.log(item);
+    } else {
+      selectedColor = selectedColor.filter(
+        (color) => color !== item.getAttribute("data-color")
+      );
+    }
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let type = urlParams.get("type");
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let response = xhttp.responseText;
+        $(".product-list").innerHTML = response;
+      }
+    };
+    xhttp.open(
+      "GET",
+      "/controller/sortColor.php?color-filter=" +
+        encodeURIComponent(JSON.stringify(selectedColor)) +
+        "&type=" +
+        encodeURIComponent(type),
+      true
+    );
+    xhttp.send();
+  });
+});
 
 // * xoá sản phẩm
 function removeProduct(element) {

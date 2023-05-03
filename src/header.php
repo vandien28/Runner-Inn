@@ -36,7 +36,7 @@ if (isset($_SESSION['userName'])) {
                                     <nav class="desk-menu">
                                         <ul class="text-center">
                                             <li class="active"><a href="/index.php">trang chủ</a></li>
-                                            <li class="active"><a  href="/src/collection.php?type=bosuutap">bộ sưu tập</a></li>
+                                            <li class="active"><a href="/src/collection.php?type=bosuutap">bộ sưu tập</a></li>
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <?php
@@ -96,12 +96,12 @@ if (isset($_SESSION['userName'])) {
                                                 </form>
                                                 <div class="scroll-search-wrapper hide">
                                                     <div class="resultContent searchResultScroll" id="styleScroll">
-                                                        
-                                                        
+
+
                                                     </div>
                                                     <div class="resultsMore">
-                                                            <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
-                                                        </div>
+                                                        <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,8 +211,14 @@ if (isset($_SESSION['userName'])) {
                                 <a class="header-action-toggle" aria-label="Giỏ Hàng" onclick="box_carts()">
                                     <span class="box-action-icon">
                                         <i class="fa-light fa-cart-shopping"></i>
+                                        <?php
+                                        $count = $db->prepare("SELECT count(makhachhang) FROM `giohang` where makhachhang = :userID;");
+                                        $count->bindParam(':userID', $_SESSION['userID']);
+                                        $count->execute();
+                                        $countProduct = $count->fetch(PDO::FETCH_ASSOC);
+                                        ?>
                                         <span class="count-holder">
-                                            <span class="count">0</span>
+                                            <span class="count"><?php echo $countProduct["count(makhachhang)"] ?></span>
                                         </span>
                                     </span>
                                 </a>
@@ -231,18 +237,77 @@ if (isset($_SESSION['userName'])) {
                                                 </div>
                                             </div>
                                             <div class="cart-view">
-                                                <div class="view_product">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                    <p>Hiện chưa có sản phẩm</p>
-                                                </div>
+                                                <?php if (isset($_SESSION["userID"])) {
+                                                ?>
+                                                    <?php
+                                                    $counts = $db->prepare("SELECT count(makhachhang) FROM `giohang` where makhachhang = :userID;");
+                                                    $counts->bindParam(':userID', $_SESSION['userID']);
+                                                    $counts->execute();
+                                                    $checkUser1 = $counts->fetchColumn();
+                                                    if ($checkUser1 > 0) {
+                                                    ?>
+                                                        <div class="scroll-product wrapper-product">
+                                                            <table class="productList">
+                                                                <tbody>
+                                                                    <?php
+                                                                    $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+                                                                    $productCart->execute();
+                                                                    $listProduct = $productCart->fetchAll(PDO::FETCH_ASSOC);
+                                                                    foreach ($listProduct as $row) {
+                                                                        if ($row["makhachhang"] == $_SESSION["userID"]) {
+                                                                    ?>
+                                                                            <tr class="list-item">
+                                                                                <td class="img">
+                                                                                    <a href="/src/product.php?type=<?php echo $row["masp"] ?>"><img src="<?php echo $row["urlmain"] ?>" alt=""></a>
+                                                                                </td>
+                                                                                <td class="information">
+                                                                                    <a class="pro-title" href="/src/product.php?type=<?php echo $row["masp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                                                    <span class="variant"><?php echo $row["mausac"] ?> / <?php echo $row["kichthuoc"] ?></span>
+                                                                                    <span class="pro-quantity"><?php echo $row["soluong"] ?></span>
+                                                                                    <span class="pro-price-view"><?php echo number_format($row["giatien"]) ?>₫</span>
+                                                                                    <span class="remove-pro" data-id="<?php echo $row["masp"] ?>" data-color="<?php echo $row["mausac"] ?>" data-size="<?php echo $row["kichthuoc"] ?>" data-quantity="<?php echo $row["soluong"] ?>" data-price="<?php echo $row["giatien"] ?>" onclick="removeProduct(this)">
+                                                                                        <i class="fa-regular fa-rectangle-xmark"></i>
+                                                                                    </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                    <?php }
+                                                                    } ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <div class="view_product wrapper-view-product">
+                                                            <i class="fa-light fa-cart-shopping"></i>
+                                                            <p>Hiện chưa có sản phẩm</p>
+                                                        </div>
+                                                    <?php
+                                                    }
+                                                } else {
+                                                    ?>
+                                                    <div class="view_product wrapper-view-product">
+                                                        <i class="fa-light fa-cart-shopping"></i>
+                                                        <p>Hiện chưa có sản phẩm</p>
+                                                    </div>
+                                                <?php
+                                                }
+                                                ?>
+                                                <span class="line"></span>
                                                 <div class="payment">
                                                     <table class="table-total">
                                                         <tbody>
                                                             <tr>
                                                                 <td class="text-left">Tổng tiền</td>
+                                                                <?php
+                                                                $total = $db->prepare("SELECT sum(giatien) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
+                                                                $total->bindParam(':userID', $_SESSION['userID']);
+                                                                $total->execute();
+                                                                $totalCart = $total->fetch(PDO::FETCH_ASSOC);
+                                                                ?>
                                                                 <td class="text-right">
-                                                                    <span class="price">0</span>
-                                                                    <span class="unit">₫</span>
+                                                                    <span class="price"><?php echo number_format($totalCart["sum(giatien)"]) ?></span>
+                                                                    <span>₫</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>

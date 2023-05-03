@@ -109,13 +109,15 @@ function searchProductScroll(product) {
   xhr.send();
 }
 
-
 // * check username khi nhập
 function checkUsername(username) {
   // Tạo XMLHttpRequest object
   var xhr = new XMLHttpRequest();
   // Gửi request đến PHP script để kiểm tra tài khoản
-  xhr.open("GET", "/controller/checkUserName.php?username=" + encodeURIComponent(username));
+  xhr.open(
+    "GET",
+    "/controller/checkUserName.php?username=" + encodeURIComponent(username)
+  );
   xhr.onload = function () {
     if (xhr.status === 200) {
       // Nhận kết quả trả về từ PHP script
@@ -132,7 +134,10 @@ function checkEmail(email) {
   // Tạo XMLHttpRequest object
   var xhr = new XMLHttpRequest();
   // Gửi request đến PHP script để kiểm tra tài khoản
-  xhr.open("GET", "/controller/checkEmail.php?email=" + encodeURIComponent(email));
+  xhr.open(
+    "GET",
+    "/controller/checkEmail.php?email=" + encodeURIComponent(email)
+  );
   xhr.onload = function () {
     if (xhr.status === 200) {
       // Nhận kết quả trả về từ PHP script
@@ -153,4 +158,39 @@ function checkPassword() {
   } else {
     $(".notificationPassword").innerText = "";
   }
+}
+
+// * xoá sản phẩm
+function removeProduct(element) {
+  let pId = element.getAttribute("data-id");
+  let pS = element.getAttribute("data-size");
+  let pC = element.getAttribute("data-color");
+  let pQ = element.getAttribute("data-quantity");
+  let pP = element.getAttribute("data-price");
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      let result = xhr.responseText;
+      $(".wrapper-product table tbody").innerHTML = result;
+    }
+  };
+  xhr.open(
+    "GET",
+    "/controller/removeCart.php?id=" +
+      encodeURIComponent(pId) +
+      "&size=" +
+      encodeURIComponent(pS) +
+      "&color=" +
+      encodeURIComponent(pC) +
+      "&quantity=" +
+      encodeURIComponent(pQ),
+    true
+  );
+  xhr.send();
+  let price = parseInt($(".price").innerText.replace(/,/g, "")) - parseInt(pP);
+  console.log(price);
+  console.log(pP);
+  console.log(parseInt($(".price").innerText.replace(/,/g, "")));
+  $(".price").innerText = price.toLocaleString("en-US");
+  $(".count").innerText = parseInt($(".count").innerText) - 1;
 }

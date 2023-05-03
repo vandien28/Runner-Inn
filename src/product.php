@@ -180,14 +180,24 @@ $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
                                 $productInfo = $db->prepare("SELECT distinct tensp,sanpham.masp,urlmain,giatien FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                                 $productInfo->execute();
                                 $info = $productInfo->fetchAll(PDO::FETCH_ASSOC);
-                                foreach ($info as $row) {
-                                    if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
+                                if (isset($_SESSION['userID'])) {
+                                    foreach ($info as $row) {
+                                        if (isset($_GET['type']) && $_GET['type'] == $row["masp"]) {
                                 ?>
-                                        <button class="add-cart" data-id="<?php echo $row["masp"]; ?>" data-size="" data-color="" data-quantity="" onclick="renderDataProduct(),addToCart()" name="addToCart">
+                                            <button class="add-cart" data-userID="<?php echo $_SESSION['userID']; ?>" data-name="<?php echo $row["tensp"]; ?>" data-id="<?php echo $row["masp"]; ?>" data-price="<?php echo $row["giatien"]; ?>" data-size="" data-color="" data-quantity="" data-img="<?php echo $row["urlmain"]; ?>" onclick="renderDataProduct(),addToCart()" name="addToCart">
+                                                <span>Thêm vào giỏ</span>
+                                            </button>
+                                    <?php }
+                                    }
+                                } else {
+                                    ?><a href="login.php">
+                                        <button class="add-cart" data-userID="" data-name="" data-id="" data-price="" data-size="" data-color="" data-quantity="" data-img="" name="addToCart">
                                             <span>Thêm vào giỏ</span>
                                         </button>
-                                <?php }
-                                } ?>
+                                    </a>
+                                <?php
+                                }
+                                ?>
                                 <button class="purchase">
                                     <span>Mua ngay</span>
                                 </button>

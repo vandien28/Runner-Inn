@@ -330,7 +330,7 @@
         <?php include "gallery.php" ?>
     </main>
     <?php include "footer.php"  ?>
-    <script type="text/javascript" src="../asset/js/product.js"></script>
+    <script type="text/javascript" src="../asset/js/collection.js"></script>
 
 </body>
 

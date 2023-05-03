@@ -793,11 +793,12 @@ table tr td:first-child, table tr th:first-child {
 
 .information a.pro-title {
     float: left;
-    width: 100%;
     font-size: 12px;
-    font-weight: bolder;
+    font-weight: 700;
     text-transform: uppercase;
     color: #272727;
+    word-wrap: break-word;
+    width: 80%;
 }
 
  .variant {
