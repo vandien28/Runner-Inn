@@ -1,7 +1,6 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-
 let flag = false;
 let recover_panels = $(".recover_panels");
 let login_panels = $(".login_panels");
@@ -12,6 +11,17 @@ let restore = $(".restorepass");
 let return_login = $(".returnlogin");
 
 // * ẩn hiện popup đăng nhập
+
+function box_account() {
+  if (flag == false) {
+    accounts.classList.remove("hide");
+    flag = true;
+  } else {
+    accounts.classList.add("hide");
+    flag = false;
+  }
+}
+
 function box_accounts() {
   if (flag == false) {
     accounts.classList.remove("hide");
@@ -23,6 +33,7 @@ function box_accounts() {
 }
 
 // * ẩn hiện giữa đăng nhập và khôi phục mật khẩu
+
 restore.onclick = function () {
   recover_panels.classList.remove("hide");
   login_panels.classList.add("hide");
@@ -99,30 +110,29 @@ function searchProductScroll(product) {
   xhr.send();
 }
 
-
 // * giảm số lượng sản phẩm
 const minus = $$(".qtyminus");
-minus.forEach(function(minus,index) {
-  minus.addEventListener("click",function(event) {
-      let minus1 = event.target.parentElement.querySelector(".item-quantity")
-      let minus2 = parseInt(minus1.value)
-      if(minus1.value  == 1) {
-        // * thêm code xoá sản phẩm vào
-      } else {
-        minus1.value = minus2 - 1;
-      }
-  })
-})
+minus.forEach(function (minus, index) {
+  minus.addEventListener("click", function (event) {
+    let minus1 = event.target.parentElement.querySelector(".item-quantity");
+    let minus2 = parseInt(minus1.value);
+    if (minus1.value == 1) {
+      // * thêm code xoá sản phẩm vào
+    } else {
+      minus1.value = minus2 - 1;
+    }
+  });
+});
 
 // * tăng số lượng sản phẩm
 const plus = $$(".qtyplus");
-plus.forEach(function(plus,index) {
-  plus.addEventListener("click",function(event) {
-      let plus1 = event.target.parentElement.querySelector(".item-quantity")
-      let plus2 = parseInt(plus1.value)
-      plus1.value = plus2 + 1;
-  })
-})
+plus.forEach(function (plus, index) {
+  plus.addEventListener("click", function (event) {
+    let plus1 = event.target.parentElement.querySelector(".item-quantity");
+    let plus2 = parseInt(plus1.value);
+    plus1.value = plus2 + 1;
+  });
+});
 
 // * xoá sản phẩm
 function removeProduct(element) {
@@ -136,6 +146,21 @@ function removeProduct(element) {
     if (this.readyState === 4 && this.status === 200) {
       let result = xhr.responseText;
       $(".wrapper-product table tbody").innerHTML = result;
+      if ($(".wrapper-product table tbody").innerHTML.trim().length === 0) {
+        $(".wrapper-product").innerHTML = "";
+        $(".wrapper-product").classList.add(
+          "view_product",
+          "wrapper-view-product"
+        );
+        $(".wrapper-product").innerHTML = `
+          <i class="fa-light fa-cart-shopping"></i>
+          <p>Hiện chưa có sản phẩm</p>
+        `;
+        $(".wrapper-product").classList.remove(
+          "wrapper-product",
+          "scroll-product"
+        );
+      }
     }
   };
   xhr.open(
@@ -152,11 +177,54 @@ function removeProduct(element) {
   );
   xhr.send();
   let price = parseInt($(".price").innerText.replace(/,/g, "")) - parseInt(pP);
-  console.log(price);
-  console.log(pP);
-  console.log(parseInt($(".price").innerText.replace(/,/g, "")));
   $(".price").innerText = price.toLocaleString("en-US");
   $(".count").innerText = parseInt($(".count").innerText) - 1;
 }
 
-
+// * xoá sản phẩm ở trang giỏ hàng
+function removeProductToCart(element) {
+  let pId = element.getAttribute("data-id");
+  let pS = element.getAttribute("data-size");
+  let pC = element.getAttribute("data-color");
+  let pQ = element.getAttribute("data-quantity");
+  let pP = element.getAttribute("data-price");
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      let result = xhr.responseText;
+      $(".table-cart").innerHTML = result;
+      if ($(".table-cart").innerHTML.trim().length === 0) {
+        $(".col-md-9").removeChild($(".list-pageform-cart"));
+        $(".col-md-9").removeChild($(".cart-note"));
+        let div = document.createElement("div");
+        div.classList.add("expanded-message");
+        $(".col-md-9").appendChild(div);
+        $(".expanded-message").innerHTML = `
+        <p>Giỏ hàng của bạn đang trống</p>
+        <a href="collection.php?type=bosuutap">
+          <button><i class="fa fa-reply"></i>Tiếp tục mua hàng</button>
+        </a>`;
+      }
+    }
+  };
+  xhr.open(
+    "GET",
+    "/controller/removeToCart.php?id=" +
+      encodeURIComponent(pId) +
+      "&size=" +
+      encodeURIComponent(pS) +
+      "&color=" +
+      encodeURIComponent(pC) +
+      "&quantity=" +
+      encodeURIComponent(pQ),
+    true
+  );
+  xhr.send();
+  let price =
+    parseInt($(".summary-total p span").innerText.replace(/,/g, "")) -
+    parseInt(pP);
+  $(".summary-total p span").innerText = price.toLocaleString("en-US");
+  $(".count-cart .counts").innerText =
+    parseInt($(".count-cart .counts").innerText) - 1;
+  $(".productNumber").innerText = parseInt($(".productNumber").innerText) - 1;
+}

@@ -532,7 +532,7 @@ svg:not(:root) {
 
 }
 
-.login_panel i, .recover_panel i, .cart_panel i, .search_panel i, .login_panels i, .recover_panels i {
+.cart_panel i, .search_panel i,.login_panel i,.login_panels i,.recover_panels i {
     font-size: 25px;
     position: absolute;
     right: 15px;
@@ -540,7 +540,7 @@ svg:not(:root) {
     opacity: 0.3;
 }
 
-.cart_panel i:hover, .search_panel i:hover,.login_panel i:hover,.recover_panels i:hover  {
+.cart_panel i:hover, .search_panel i:hover,.login_panel i:hover,.login_panels i:hover,.recover_panels i:hover  {
     cursor: pointer;
     opacity: 1;
 }
@@ -740,6 +740,14 @@ svg:not(:root) {
     letter-spacing: 1px;
     text-align: center;
     margin-top: 10px;
+}
+
+.scroll-product {
+    max-height: 360px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    overflow-y: auto;
 }
 
 .scroll-product::-webkit-scrollbar {

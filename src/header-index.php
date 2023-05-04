@@ -246,7 +246,7 @@ if (isset($_SESSION['userName'])) {
                                                     if ($checkUser1 > 0) {
                                                     ?>
                                                         <div class="scroll-product scroll-listProduct">
-                                                            <table class="productList">
+                                                            <table>
                                                                 <tbody>
                                                                     <?php
                                                                     $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
@@ -261,7 +261,7 @@ if (isset($_SESSION['userName'])) {
                                                                                 </td>
                                                                                 <td class="information">
                                                                                     <a class="pro-title" href="/src/product.php?type=<?php echo $row["masp"] ?>"><?php echo $row["tensp"] ?></a>
-                                                                                    <span class="variant"><?php echo $row["mausac"] ?> / <?php echo $row["kichthuoc"] ?></span>
+                                                                                    <span class="variant"><?php echo $row["mausac"] ?> &nbsp;/&nbsp; <?php echo $row["kichthuoc"] ?></span>
                                                                                     <span class="pro-quantity"><?php echo $row["soluong"] ?></span>
                                                                                     <span class="pro-price-view"><?php echo number_format($row["giatien"]) ?>₫</span>
                                                                                     <span class="remove-pro" data-id="<?php echo $row["masp"] ?>" data-color="<?php echo $row["mausac"] ?>" data-size="<?php echo $row["kichthuoc"] ?>" data-quantity="<?php echo $row["soluong"] ?>" data-price="<?php echo $row["giatien"] ?>" onclick="removeProduct(this)">
@@ -305,12 +305,13 @@ if (isset($_SESSION['userName'])) {
                                                                 $totalCart = $total->fetch(PDO::FETCH_ASSOC);
                                                                 ?>
                                                                 <td class="text-right">
-                                                                    <span class="price"><?php echo number_format($totalCart["sum(giatien)"]) ?>₫</span>
+                                                                    <span class="price"><?php echo number_format($totalCart["sum(giatien)"]) ?></span>
+                                                                    <span>₫</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <a href="src/cart.php">
+                                                                    <a href="/src/cart.php">
                                                                         <button class="form__submit btn-view">Xem giỏ hàng</button>
                                                                     </a>
                                                                 </td>
@@ -486,7 +487,7 @@ if (isset($_SESSION['userName'])) {
                                         $countProduct = $count->fetch(PDO::FETCH_ASSOC);
                                         ?>
                                         <span class="count-holder">
-                                            <span class="count"><?php echo $countProduct["count(makhachhang)"] ?></span>
+                                            <span class="count counts"><?php echo $countProduct["count(makhachhang)"] ?></span>
                                         </span>
                                     </span>
                                     <span class="txtAccount">Giỏ hàng</span>
@@ -516,7 +517,7 @@ if (isset($_SESSION['userName'])) {
                                                     if ($checkUser1 > 0) {
                                                     ?>
                                                         <div class="scroll-product wrapper-listProduct">
-                                                            <table class="productList">
+                                                            <table>
                                                                 <tbody>
                                                                     <?php
                                                                     $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
@@ -531,7 +532,7 @@ if (isset($_SESSION['userName'])) {
                                                                                 </td>
                                                                                 <td class="information">
                                                                                     <a class="pro-title" href="/src/product.php?type=<?php echo $row["masp"] ?>"><?php echo $row["tensp"] ?></a>
-                                                                                    <span class="variant"><?php echo $row["mausac"] ?> / <?php echo $row["kichthuoc"] ?></span>
+                                                                                    <span class="variant"><?php echo $row["mausac"] ?> &nbsp;/&nbsp; <?php echo $row["kichthuoc"] ?></span>
                                                                                     <span class="pro-quantity"><?php echo $row["soluong"] ?></span>
                                                                                     <span class="pro-price-view"><?php echo number_format($row["giatien"]) ?>₫</span>
                                                                                     <span class="remove-pro" data-id="<?php echo $row["masp"] ?>" data-color="<?php echo $row["mausac"] ?>" data-size="<?php echo $row["kichthuoc"] ?>" data-quantity="<?php echo $row["soluong"] ?>" data-price="<?php echo $row["giatien"] ?>" onclick="removeProduct(this)">
@@ -575,12 +576,13 @@ if (isset($_SESSION['userName'])) {
                                                                 $totalCart = $total->fetch(PDO::FETCH_ASSOC);
                                                                 ?>
                                                                 <td class="text-right">
-                                                                    <span class="price"><?php echo number_format($totalCart["sum(giatien)"]) ?>₫</span>
+                                                                    <span class="price prices"><?php echo number_format($totalCart["sum(giatien)"]) ?></span>
+                                                                    <span>₫</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <a href="src/cart.php">
+                                                                    <a href="/src/cart.php">
                                                                         <button class="form__submit btn-view">Xem giỏ hàng</button>
                                                                     </a>
                                                                 </td>

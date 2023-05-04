@@ -121,6 +121,21 @@ function removeProduct(element) {
     if (this.readyState === 4 && this.status === 200) {
       let result = xhr.responseText;
       $(".wrapper-product table tbody").innerHTML = result;
+      if ($(".wrapper-product table tbody").innerHTML.trim().length === 0) {
+        $(".wrapper-product").innerHTML = "";
+        $(".wrapper-product").classList.add(
+          "view_product",
+          "wrapper-view-product"
+        );
+        $(".wrapper-product").innerHTML = `
+          <i class="fa-light fa-cart-shopping"></i>
+          <p>Hiện chưa có sản phẩm</p>
+        `;
+        $(".wrapper-product").classList.remove(
+          "wrapper-product",
+          "scroll-product"
+        );
+      }
     }
   };
   xhr.open(
@@ -137,9 +152,6 @@ function removeProduct(element) {
   );
   xhr.send();
   let price = parseInt($(".price").innerText.replace(/,/g, "")) - parseInt(pP);
-  console.log(price);
-  console.log(pP);
-  console.log(parseInt($(".price").innerText.replace(/,/g, "")));
   $(".price").innerText = price.toLocaleString("en-US");
   $(".count").innerText = parseInt($(".count").innerText) - 1;
 }

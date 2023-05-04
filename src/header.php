@@ -262,7 +262,7 @@ if (isset($_SESSION['userName'])) {
                                                                                 </td>
                                                                                 <td class="information">
                                                                                     <a class="pro-title" href="/src/product.php?type=<?php echo $row["masp"] ?>"><?php echo $row["tensp"] ?></a>
-                                                                                    <span class="variant"><?php echo $row["mausac"] ?> / <?php echo $row["kichthuoc"] ?></span>
+                                                                                    <span class="variant"><?php echo $row["mausac"] ?> &nbsp;/&nbsp; <?php echo $row["kichthuoc"] ?></span>
                                                                                     <span class="pro-quantity"><?php echo $row["soluong"] ?></span>
                                                                                     <span class="pro-price-view"><?php echo number_format($row["giatien"]) ?>₫</span>
                                                                                     <span class="remove-pro" data-id="<?php echo $row["masp"] ?>" data-color="<?php echo $row["mausac"] ?>" data-size="<?php echo $row["kichthuoc"] ?>" data-quantity="<?php echo $row["soluong"] ?>" data-price="<?php echo $row["giatien"] ?>" onclick="removeProduct(this)">
@@ -312,7 +312,7 @@ if (isset($_SESSION['userName'])) {
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <a href="">
+                                                                    <a href="cart.php">
                                                                         <button class="form__submit btn-view">Xem giỏ hàng</button>
                                                                     </a>
                                                                 </td>
