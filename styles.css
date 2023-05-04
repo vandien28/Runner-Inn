@@ -506,10 +506,11 @@ form.searchform .btn-search:hover {
     top: calc(100% + 5px);
     left: 50px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.08);
+    padding: 25px 15px;
 }
 
 .resultContent {
-    height: 182.4px;
+    max-height: 182.4px;
     overflow-y: auto;
 }
 
@@ -663,7 +664,7 @@ svg:not(:root) {
     position: relative;
     font-size: 14px;
     overflow: hidden;
-    padding: 25px 15px 15px;
+    padding: 25px 15px;
     
 }
 

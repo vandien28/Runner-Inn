@@ -7,6 +7,11 @@ $inputNameProduct->execute();
 $checkNameProduct = $inputNameProduct->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($productInput)) {
+} else if (count($checkNameProduct) == 0) {
+    echo '<p style="text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+    color: #272727;">Không có sản phẩm nào</p>';
 } else {
     foreach ($checkNameProduct as $product) {
         echo '<div class="item-ult">

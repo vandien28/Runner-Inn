@@ -329,7 +329,7 @@ img {
 }
 
 .resultContent {
-    height: 182.4px;
+    max-height: 182.4px;
     overflow-y: auto;
 }
 
@@ -510,7 +510,7 @@ svg:not(:root) {
     position: relative;
     font-size: 14px;
     overflow: hidden;
-    padding: 25px 15px 15px;
+    padding: 25px 15px;
 }
 
 .site_panel {

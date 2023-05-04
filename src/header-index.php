@@ -92,11 +92,6 @@ if (isset($_SESSION['userName'])) {
                                                 <div class="scroll-search-wrapper hide">
                                                     <div class="resultContent searchResultScroll" id="styleScroll">
 
-
-
-                                                    </div>
-                                                    <div class="resultsMore">
-                                                        <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -362,9 +357,7 @@ if (isset($_SESSION['userName'])) {
                                 <div class="resultContent searchResult" id="styleScroll">
 
                                 </div>
-                                <div class="resultsMore">
-                                    <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>

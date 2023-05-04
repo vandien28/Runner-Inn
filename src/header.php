@@ -99,9 +99,7 @@ if (isset($_SESSION['userName'])) {
 
 
                                                     </div>
-                                                    <div class="resultsMore">
-                                                        <a href="src/collection.php?type=bosuutap">Tất cả sản phẩm</a>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
