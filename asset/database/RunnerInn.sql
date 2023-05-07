@@ -1,6 +1,6 @@
 ﻿/* import lên xampp */
-CREATE DATABASE runnerinn;
-USE runnerinn;
+CREATE DATABASE runnerinns;
+USE runnerinns;
 
 CREATE TABLE danhmuc (
     madanhmuc INT,
@@ -28,7 +28,7 @@ CREATE TABLE diachi (
     quan VARCHAR(256),
     thanhpho VARCHAR(256),
     macdinh int,
-    FOREIGN KEY (makhachhang) REFERENCES khachhang (makhachhang),
+    FOREIGN KEY (makhachhang) REFERENCES khachhang (makhachhang)
 );
 
 CREATE TABLE khachhang (

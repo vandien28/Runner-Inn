@@ -624,6 +624,7 @@ td:last-child, th:last-child {
 
 .section-info {
     padding-top: 1.5em;
+    padding-bottom: 1.5em;
 }
 
 .section-info .content-box {
@@ -648,5 +649,58 @@ td:last-child, th:last-child {
 .content-box-info h3 {
     font-size: 17px;
     font-weight: 500;
+    color: #333333;
 }
 
+
+.content-box-info p {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 1px;
+    color: #5d5d5d;
+}
+
+.step-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+}
+
+.contact i {
+    font-size: 20px;
+}
+
+.contact p {
+    margin-left: 7px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+}
+
+.contact a {
+    margin-left: 7px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #338DBC;
+}
+
+.return-collection a button{
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 1.3em 1.6em;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out;
+    background: #338dbc;
+    color: white;
+    border: 0;
+    font-size: 14px;
+}
+
+.return-collection a button:hover {
+    color: white;
+    filter: brightness(1.2);
+}

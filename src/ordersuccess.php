@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="row">
         <div class="main">
@@ -46,11 +48,22 @@
                                 <p>Phường 1</p>
                                 <p>Quận 5</p>
                                 <p>Thành phố Hồ Chí Minh</p>
+                                <p>Việt Nam</p>
                                 <br>
                                 <h3>Phương thức thanh toán</h3>
                                 <br>
                                 <p>Thanh toán khi giao hàng (COD)</p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="step-footer">
+                        <div class="contact">
+                            <i class="fa-sharp fa-regular fa-circle-question"></i>
+                            <p>Cần hỗ trợ?</p>
+                            <a href="mailto:runnerinn@gmail.com">Liên hệ chúng tôi</a>
+                        </div>
+                        <div class="return-collection">
+                            <a href="collection.php?type=bosuutap"><button>Tiếp tục mua hàng</button></a>
                         </div>
                     </div>
                 </div>
@@ -65,9 +78,7 @@
                                 <td class="product-image">
                                     <div class="product-thumbnail">
                                         <div class="product-thumbnail-wrapper">
-                                            <img class="product-thumbnail-image" alt="Adidas Nmd Xr1 W " pearl=""
-                                                grey""=""
-                                                src="//product.hstatic.net/1000375638/product/801270_1_c42c68dac62843d8b2d3835de4afb829_small.jpg">
+                                            <img class="product-thumbnail-image" alt="Adidas Nmd Xr1 W " pearl="" grey""="" src="//product.hstatic.net/1000375638/product/801270_1_c42c68dac62843d8b2d3835de4afb829_small.jpg">
                                         </div>
                                         <span class="product-thumbnail-quantity" aria-hidden="true">1</span>
                                     </div>
@@ -89,27 +100,13 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="order-summary-section order-summary-section-discount">
-                    <div class="fieldset">
-                        <div class="field">
-                            <div class="field-input-btn-wrapper">
-                                <div class="field-input-wrapper">
-                                    <input placeholder="" class="field-input"  size="30" type="text" value="">
-                                    <label for=""  class="field-label" for="">Mã giảm giá</label>
-                                </div>
-                                <button type="submit" class="field-input-btn">Sử dụng</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="order-summary-section order-summary-section-total-lines payment-lines">
                     <table class="total-line-table">
                         <tbody>
                             <tr class="total-line total-line-subtotal">
                                 <td class="total-line-name">Tạm tính</td>
                                 <td class="total-line-price">
-                                    <span class="order-summary-emphasis"
-                                        data-checkout-subtotal-price-target="575000000">
+                                    <span class="order-summary-emphasis" data-checkout-subtotal-price-target="575000000">
                                         5,750,000₫
                                     </span>
                                 </td>
@@ -142,5 +139,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>
