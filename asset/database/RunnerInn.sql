@@ -81,7 +81,6 @@ CREATE TABLE donhang (
     ngaydathang DATE,
     makhachhang INT,
     trangthaidonhang VARCHAR(50) CHECK (trangthaidonhang = 'đang xử lý' OR trangthaidonhang = 'đã giao' OR trangthaidonhang = 'đã huỷ'),
-    diachigiaohang varchar(256),
     phuongthucthanhtoan varchar(256),
     PRIMARY KEY (madonhang),
     FOREIGN KEY (makhachhang) REFERENCES khachhang (makhachhang)

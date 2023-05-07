@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <?php
+    $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    session_start();
+    ?>
     <div class="row">
         <div class="main">
             <div class="main-header">
@@ -29,10 +35,10 @@
                 <div class="section">
                     <div class="section-shipping field-bottom">
                         <div class="section-header">
-                            <h2 class="section-title" >Phương thức vận chuyển</h2>
+                            <h2 class="section-title">Phương thức vận chuyển</h2>
                         </div>
                         <div class="section-content">
-                            <div class="content-box">			
+                            <div class="content-box">
                                 <div class="content-box-row">
                                     <div class="radio-wrapper">
                                         <label class="radio-label" for="">
@@ -45,7 +51,7 @@
                                         </label>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                     </div>
                     <div class="section-payment field-bottom">
@@ -57,22 +63,22 @@
                                 <div class="radio-wrapper content-box-row">
                                     <label class="two-page" for="payment_method_1">
                                         <div class="radio-input payment-method-checkbox">
-                                            <input  id="payment_method_1" class="input-radio" name="payment_method" type="radio"  checked>
+                                            <input id="payment_method_1" class="input-radio" name="payment_method" type="radio" checked>
                                             <label for="payment_method_1" class="circle"></label>
                                         </div>
-                                        
+
                                         <div class="radio-content-input">
                                             <img class="main-img" src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=4">
                                             <div class="content-wrapper">
                                                 <span class="radio-label-primary">Thanh toán khi giao hàng (COD)</span>
-                                           </div>
-                                         </div>
+                                            </div>
+                                        </div>
                                     </label>
                                 </div>
                                 <div class="radio-wrapper content-box-row">
                                     <label class="two-page" for="payment_method_2">
                                         <div class="radio-input payment-method-checkbox">
-                                            <input  id="payment_method_2" class="input-radio" name="payment_method" type="radio"  >
+                                            <input id="payment_method_2" class="input-radio" name="payment_method" type="radio">
                                             <label for="payment_method_2" class="circle"></label>
                                         </div>
                                         <div class="radio-content-input">
@@ -100,31 +106,36 @@
                 <div class="order-summary-section order-summary-section-product-list">
                     <table class="product-table">
                         <tbody>
-                            <tr class="product" data-product-id="1020297433" data-variant-id="1040409894">
-                                <td class="product-image">
-                                    <div class="product-thumbnail">
-                                        <div class="product-thumbnail-wrapper">
-                                            <img class="product-thumbnail-image" alt="Adidas Nmd Xr1 W " pearl=""
-                                                grey""=""
-                                                src="//product.hstatic.net/1000375638/product/801270_1_c42c68dac62843d8b2d3835de4afb829_small.jpg">
-                                        </div>
-                                        <span class="product-thumbnail-quantity" aria-hidden="true">1</span>
-                                    </div>
-                                </td>
-                                <td class="product-description">
-                                    <span class="product-description-name order-summary-emphasis">Adidas Nmd Xr1 W
-                                        "Pearl Grey"</span>
+                            <?php
+                            $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+                            $productCart->execute();
+                            $listProduct = $productCart->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($listProduct as $row) {
+                                if ($row["makhachhang"] == $_SESSION["userID"]) {
+                            ?>
+                                    <tr class="product" data-product-id="<?php echo $row["masp"] ?>">
+                                        <td class="product-image">
+                                            <div class="product-thumbnail">
+                                                <div class="product-thumbnail-wrapper">
+                                                    <img class="product-thumbnail-image" alt="<?php echo $row["tensp"] ?>" src="<?php echo $row["urlmain"] ?>">
+                                                </div>
+                                                <span class="product-thumbnail-quantity" aria-hidden="true"><?php echo $row["soluong"] ?></span>
+                                            </div>
+                                        </td>
+                                        <td class="product-description">
+                                            <span class="product-description-name order-summary-emphasis"><?php echo $row["tensp"] ?></span>
 
-                                    <span class="product-description-variant order-summary-small-text">
-                                        Xám / 35
-                                    </span>
+                                            <span class="product-description-variant order-summary-small-text">
+                                                <?php echo $row["mausac"] ?>&nbsp;/&nbsp;<?php echo $row["kichthuoc"] ?>
+                                            </span>
 
-                                </td>
-                                <td class="product-price">
-                                    <span class="order-summary-emphasis">5,750,000₫</span>
-                                </td>
-                            </tr>
-
+                                        </td>
+                                        <td class="product-price">
+                                            <span class="order-summary-emphasis"><?php echo number_format($row["giatien"]) ?>₫</span>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -133,8 +144,8 @@
                         <div class="field">
                             <div class="field-input-btn-wrapper">
                                 <div class="field-input-wrapper">
-                                    <input placeholder="" class="field-input"  size="30" type="text" value="">
-                                    <label for=""  class="field-label" for="">Mã giảm giá</label>
+                                    <input placeholder="" class="field-input" size="30" type="text" value="">
+                                    <label for="" class="field-label" for="">Mã giảm giá</label>
                                 </div>
                                 <button type="submit" class="field-input-btn">Sử dụng</button>
                             </div>
@@ -142,14 +153,19 @@
                     </div>
                 </div>
                 <div class="order-summary-section order-summary-section-total-lines payment-lines">
-                    <table class="total-line-table">
+                <table class="total-line-table">
                         <tbody>
+                            <?php
+                            $total = $db->prepare("SELECT sum(giatien) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
+                            $total->bindParam(':userID', $_SESSION['userID']);
+                            $total->execute();
+                            $totalCart = $total->fetch(PDO::FETCH_ASSOC);
+                            ?>
                             <tr class="total-line total-line-subtotal">
                                 <td class="total-line-name">Tạm tính</td>
                                 <td class="total-line-price">
-                                    <span class="order-summary-emphasis"
-                                        data-checkout-subtotal-price-target="575000000">
-                                        5,750,000₫
+                                    <span class="order-summary-emphasis" data-price-target="<?php echo number_format($totalCart["sum(giatien)"]) ?>">
+                                    <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
                                     </span>
                                 </td>
                             </tr>
@@ -167,10 +183,8 @@
                                 </td>
                                 <td class="total-line-name payment-due">
                                     <span class="payment-due-currency">VND</span>
-                                    <span class="payment-due-price" data-checkout-payment-due-target="575000000">
-                                        5,750,000₫
-                                    </span>
-                                    <span class="checkout_version" display:none="" data_checkout_version="123">
+                                    <span class="payment-due-price" data-payment-target="<?php echo number_format($totalCart["sum(giatien)"]) ?>">
+                                    <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
                                     </span>
                                 </td>
                             </tr>
@@ -181,5 +195,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>
