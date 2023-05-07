@@ -33,13 +33,13 @@
                                 <div class="AccountList">
                                     <ul class="list-unstyled">
                                         <li class="current">
-                                            <a href="account.html">Thông tin tài khoản</a>
+                                            <a href="account.php">Thông tin tài khoản</a>
                                         </li>
                                         <li>
-                                            <a href="accountaddresses.html">Danh sách địa chỉ</a>
+                                            <a href="accountaddresses.php">Danh sách địa chỉ</a>
                                         </li>
                                         <li class="last">
-                                            <a href="/index.html">Đăng xuất</a>
+                                            <a href="/index.php">Đăng xuất</a>
                                         </li>
                                     </ul>
                                 </div>
