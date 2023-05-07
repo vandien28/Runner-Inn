@@ -54,7 +54,7 @@
                         <?php
                         if (isset($_SESSION['userName'])) {
                             $userName = $_SESSION['userName'];
-                            $user = $db->prepare("SELECT email,tenkhachhang,diachi,tentk FROM khachhang WHERE tentk = :tentk");
+                            $user = $db->prepare("SELECT email,tenkhachhang,quocgia,tentk FROM khachhang WHERE tentk = :tentk");
                             $user->bindParam(":tentk", $userName);
                             $user->execute();
                             $userInformation = $user->fetch(PDO::FETCH_ASSOC);
@@ -65,7 +65,7 @@
                                     <h2 class="name_account"><?php echo $userInformation["tentk"] ?></h2>
                                     <p class="email"><?php echo $userInformation["email"] ?></p>
                                     <div class="address ">
-                                        <p><?php echo $userInformation["diachi"] ?></p>
+                                        <p><?php echo $userInformation["quocgia"] ?></p>
                                         <a id="view_address" href="accountaddresses.php">Xem địa chỉ</a>
                                     </div>
                                 </div>

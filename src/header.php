@@ -88,7 +88,7 @@ if (isset($_SESSION['userName'])) {
                                                 </div>
                                             </div>
                                             <div class="search-scroll-box">
-                                                <form action="/src/search.php" class="search-scroll-form" method="post">
+                                                <form action="search.php" class="search-scroll-form" method="post">
                                                     <div class="search-inner">
                                                         <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..." name="productName" class="search-scroll-input" oninput="showSearchScroll(),searchProductScroll(this.value)">
                                                     </div>
@@ -143,7 +143,7 @@ if (isset($_SESSION['userName'])) {
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
-                                                            <a href="src/signup.php" class="link">Tạo tài khoản</a>
+                                                            <a href="signup.php" class="link">Tạo tài khoản</a>
                                                         </p>
                                                         <p>Quên mật khẩu?
                                                             <button aria-controls="header-recover-panel" class="restorepass link">Khôi phục mật khẩu</button>
@@ -188,7 +188,7 @@ if (isset($_SESSION['userName'])) {
                                                     <a href="">
                                                         <p class="account_name"><?php echo $_SESSION['userName'] ?></p>
                                                     </a>
-                                                    <a href="/src/account.php">
+                                                    <a href="account.php">
                                                         <p>Tài khoản của bạn</p>
                                                     </a>
                                                     <a href="/src/accountaddresses.php">

@@ -15,7 +15,7 @@ if (isset($_POST["submitSignup"])) {
     if (count($checkUser) > 0) {
         echo "Đăng ký không thành công";
     } else {
-        $sql = "INSERT INTO khachhang (makhachhang, tenkhachhang, sdt, diachi, email, tentk, matkhau) VALUES (?, ?, null, null, ?, ?, ?)";
+        $sql = "INSERT INTO khachhang (makhachhang, tenkhachhang, sdt, quocgia, email, tentk, matkhau) VALUES (?, ?, null, null, ?, ?, ?)";
         $stmt = $db->prepare($sql);
         $stmt->execute([$userID, "$firstName $lastName", $email, $userName, $enterPassword]);
         $_SESSION['userName'] = $userName;

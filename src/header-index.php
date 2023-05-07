@@ -118,7 +118,7 @@ if (isset($_SESSION['userName'])) {
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="controller/login.php" accept-charset="UTF-8" method="post" id="form_login">
+                                                    <form action="/controller/login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
                                                             <input type="email" id="login-customer[email]" class="form__field form__field--text" name="email" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
@@ -138,7 +138,7 @@ if (isset($_SESSION['userName'])) {
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
-                                                            <a href="src/signup.php" class="link">Tạo tài khoản</a>
+                                                            <a href="/src/signup.php" class="link">Tạo tài khoản</a>
                                                         </p>
                                                         <p>Quên mật khẩu?
                                                             <button aria-controls="header-recover-panel" class="restorepass link">Khôi phục mật khẩu</button>
@@ -187,11 +187,11 @@ if (isset($_SESSION['userName'])) {
                                                     <a href="/src/account.php">
                                                         <p>Tài khoản của bạn</p>
                                                     </a>
-                                                    <a href="src/accountaddresses.php">
+                                                    <a href="/src/accountaddresses.php">
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
-                                                        <form action="controller/logout.php" id="logout-form" method="POST">
+                                                        <form action="/controller/logout.php" id="logout-form" method="POST">
                                                             <button type="submit" name="logout">Đăng xuất</button>
                                                         </form>
                                                     </a>
@@ -341,7 +341,7 @@ if (isset($_SESSION['userName'])) {
                     <div class="wrapper-upper-logo">
                         <div class="wrap-logo">
                             <a href="index.php" aria-label="logo">
-                                <img src="asset/img/logo.png" alt="Runner Inn" class="header-logo">
+                                <img src="/asset/img/logo.png" alt="Runner Inn" class="header-logo">
                             </a>
                         </div>
                     </div>
@@ -386,7 +386,7 @@ if (isset($_SESSION['userName'])) {
                                                     <p class="account_legend">Nhập email và mật khẩu của bạn:</p>
                                                 </div>
                                                 <div class="account-list">
-                                                    <form action="controller/login.php" accept-charset="UTF-8" method="post" id="form_login">
+                                                    <form action="/controller/login.php" accept-charset="UTF-8" method="post" id="form_login">
                                                         <div class="form__input-wrapper form__input-wrapper--labelled">
                                                             <input type="email" id="login-customer[email]" class="form__field form__field--text" name="email" required="required" autocomplete="email" placeholder=" ">
                                                             <label for="login-customer[email]" class="form__floating-label">Email</label>
@@ -406,7 +406,7 @@ if (isset($_SESSION['userName'])) {
                                                     </form>
                                                     <div class="site_account_secondary-action">
                                                         <p>Khách hàng mới?
-                                                            <a href="src/signup.php" class="link">Tạo tài khoản</a>
+                                                            <a href="/src/signup.php" class="link">Tạo tài khoản</a>
                                                         </p>
                                                         <p>Quên mật khẩu?
                                                             <button aria-controls="header-recover-panel" class="js-link1 link">Khôi phục mật khẩu</button>
@@ -459,7 +459,7 @@ if (isset($_SESSION['userName'])) {
                                                         <p>Danh sách địa chỉ</p>
                                                     </a>
                                                     <a href="">
-                                                        <form action="controller/logout.php" id="logout-form" method="POST">
+                                                        <form action="/controller/logout.php" id="logout-form" method="POST">
                                                             <button type="submit" name="logout">Đăng xuất</button>
                                                         </form>
                                                     </a>
@@ -604,8 +604,8 @@ if (isset($_SESSION['userName'])) {
                     <div class="main-header-menu">
                         <nav class="desk-menu">
                             <ul class="text-center">
-                                <li class="active"><a class="active_2" href="index.php">trang chủ</a></li>
-                                <li class="active"><a href="src/collection.php?type=bosuutap">bộ sưu tập</a></li>
+                                <li class="active"><a class="active_2" href="/index.php">trang chủ</a></li>
+                                <li class="active"><a href="/src/collection.php?type=bosuutap">bộ sưu tập</a></li>
                                 <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
                                         <?php
@@ -627,9 +627,9 @@ if (isset($_SESSION['userName'])) {
                                         ?>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="src/introduce.php">giới thiệu</a></li>
-                                <li class="active"><a href="src/news.php">blog</a></li>
-                                <li class="active"><a href="src/contact.php">liên hệ</a></li>
+                                <li class="active"><a href="/src/introduce.php">giới thiệu</a></li>
+                                <li class="active"><a href="/src/news.php">blog</a></li>
+                                <li class="active"><a href="/src/contact.php">liên hệ</a></li>
                             </ul>
                         </nav>
                     </div>
