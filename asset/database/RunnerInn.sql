@@ -1,4 +1,4 @@
-﻿/* import lên xampp */
+﻿
 CREATE DATABASE runnerinn;
 USE runnerinn;
 
