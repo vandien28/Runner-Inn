@@ -21,8 +21,6 @@ CREATE TABLE loaigiay (
 );
 
 
-
-
 CREATE TABLE khachhang (
     makhachhang INT,
     tenkhachhang VARCHAR(50),
