@@ -198,9 +198,6 @@ $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
                                 <?php
                                 }
                                 ?>
-                                <button class="purchase">
-                                    <span>Mua ngay</span>
-                                </button>
                             </div>
                         </div>
                     </div>

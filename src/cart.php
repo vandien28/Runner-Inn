@@ -162,7 +162,7 @@
                                     </div>
                                     <div class="summary-action">
                                         <p>Bạn có thể nhập mã giảm giá ở trang thanh toán</p>
-                                        <a class="checkout-btn" href="#">THANH TOÁN</a>
+                                        <a class="checkout-btn" href="shipdetails.php">THANH TOÁN</a>
                                     </div>
                                 </div>
                             </div>

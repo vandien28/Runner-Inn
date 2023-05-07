@@ -20,12 +20,23 @@ CREATE TABLE loaigiay (
     PRIMARY KEY (maloai)
 );
 
+
+CREATE TABLE diachi (
+    makhachhang int,
+    tenduong VARCHAR(256),
+    phuong VARCHAR(256),
+    quan VARCHAR(256),
+    thanhpho VARCHAR(256),
+    macdinh int,
+    FOREIGN KEY (makhachhang) REFERENCES khachhang (makhachhang),
+);
+
 CREATE TABLE khachhang (
     makhachhang INT,
     tenkhachhang VARCHAR(50),
     email VARCHAR(256),
     sdt INT,
-    diachi VARCHAR(256),
+    quocgia VARCHAR(256),
     tentk VARCHAR(256),
     matkhau int,
     PRIMARY KEY (makhachhang)
@@ -70,6 +81,8 @@ CREATE TABLE donhang (
     ngaydathang DATE,
     makhachhang INT,
     trangthaidonhang VARCHAR(50) CHECK (trangthaidonhang = 'đang xử lý' OR trangthaidonhang = 'đã giao' OR trangthaidonhang = 'đã huỷ'),
+    diachigiaohang varchar(256),
+    phuongthucthanhtoan varchar(256),
     PRIMARY KEY (madonhang),
     FOREIGN KEY (makhachhang) REFERENCES khachhang (makhachhang)
 );
@@ -79,6 +92,8 @@ CREATE TABLE chitietdonhang
 madonhang INT,
 masp INT,
 soluongsp INT,
+mausac varchar(256),
+kichthuoc int,
 FOREIGN KEY (masp) REFERENCES sanpham (masp),
 FOREIGN KEY (madonhang) REFERENCES donhang (madonhang)
 );
@@ -114,9 +129,6 @@ INSERT INTO loaigiay (maloai, tenloai) VALUES (456, 'Adidas');
 INSERT INTO loaigiay (maloai, tenloai) VALUES (789, 'Sản phẩm tặng');
 INSERT INTO thuonghieu (mathuonghieu, tenthuonghieu) VALUES (123, 'Nike');
 INSERT INTO thuonghieu (mathuonghieu, tenthuonghieu) VALUES (456, 'Adidas');
-INSERT INTO khachhang (makhachhang, tenkhachhang, email, sdt, diachi, tentk, matkhau) VALUES (123456, 'Lê Văn Diễn', 'dien@gmail.com', 123456789, 'Thành phố Hồ Chí Minh', 'dien123', '1234567890');
-INSERT INTO khachhang (makhachhang, tenkhachhang, email, sdt, diachi, tentk, matkhau) VALUES (234567, 'Nguyễn Tăng Chương', 'chuong@gmail.com', 123456789, 'Thành phố Hồ Chí Minh', 'chuong123', '1234567890');
-INSERT INTO khachhang (makhachhang, tenkhachhang, email, sdt, diachi, tentk, matkhau) VALUES (345678, 'Nguyễn Hoàng Thiên Phú', 'phu@gmail.com', 123456789, 'Thành phố Hồ Chí Minh', 'phu123', '1234567890');
 INSERT INTO sanpham (masp, tensp, giatien, mathuonghieu, maloai, madanhmuc) VALUES (103294, 'Nike Air Max 1 Anniversary', 4200000, 123, 123, 456);
 INSERT INTO sanpham (masp, tensp, giatien, mathuonghieu, maloai, madanhmuc) VALUES (123213, 'Sản phẩm tặng 3', 0, 456, 789, 345);
 INSERT INTO sanpham (masp, tensp, giatien, mathuonghieu, maloai, madanhmuc) VALUES (123217, 'Nike Wmns Air Huarache City Move', 5200000, 123, 123, 567);
@@ -385,3 +397,5 @@ INSERT INTO mausacsp (mausac, masp, mamau) VALUES ('Cam', 324123, '#FB4727');
 INSERT INTO mausacsp (mausac, masp, mamau) VALUES ('Đen', 721043, '#000000');
 INSERT INTO mausacsp (mausac, masp, mamau) VALUES ('Đen', 723041, '#000000');
 INSERT INTO mausacsp (mausac, masp, mamau) VALUES ('Xanh', 743027, '#6DAEF4');
+
+
