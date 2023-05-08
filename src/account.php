@@ -25,64 +25,64 @@
                 <h1>Tài khoản của bạn </h1>
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3 sidebar-account">
-                        <div class="AccountSidebar">
-                            <h3 class="AccountTitle titleSidebar">Tài khoản</h3>
-                            <div class="AccountContent">
-                                <div class="AccountList">
-                                    <ul class="list-unstyled">
-                                        <li class="current">
-                                            <a href="/src/account.php">Thông tin tài khoản</a>
-                                        </li>
-                                        <li>
-                                            <a href="/src/accountaddresses.php">Danh sách địa chỉ</a>
-                                        </li>
-                                        <li class="last">
-                                            <a href="">
-                                                <form action="/controller/logout.php" id="logout-form" method="POST">
-                                                    <button type="submit" name="logout">Đăng xuất</button>
-                                                </form>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-9">
-                        <?php
-                        if (isset($_SESSION['userName'])) {
-                            $userName = $_SESSION['userName'];
-                            $user = $db->prepare("SELECT email,tenkhachhang,quocgia,tentk FROM khachhang WHERE tentk = :tentk");
-                            $user->bindParam(":tentk", $userName);
-                            $user->execute();
-                            $userInformation = $user->fetch(PDO::FETCH_ASSOC);
-                        ?>
-                            <div class="row">
-                                <div class="col-xs-12" id="customer_sidebar">
-                                    <p class="title-detail">Thông tin tài khoản</p>
-                                    <h2 class="name_account"><?php echo $userInformation["tentk"] ?></h2>
-                                    <p class="email"><?php echo $userInformation["email"] ?></p>
-                                    <div class="address ">
-                                        <p><?php echo $userInformation["quocgia"] ?></p>
-                                        <a id="view_address" href="accountaddresses.php">Xem địa chỉ</a>
-                                    </div>
-                                </div>
-
-                            <?php
-                        }
-                            ?>
-                            <div class="col-xs-12" id="customer_orders">
-                                <div class="customer-table-wrap">
-                                    <div class="customer_order customer-table-bg">
-                                        <p>Bạn chưa đặt mua sản phẩm.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
+            <div class="row">
+    <div class="col-xs-12 col-sm-3 sidebar-account">
+        <div class="AccountSidebar">
+            <h3 class="AccountTitle titleSidebar">Tài khoản</h3>
+            <div class="AccountContent">
+                <div class="AccountList">
+                    <ul class="list-unstyled">
+                        <li class="current">
+                            <a href="/src/account.php">Thông tin tài khoản</a>
+                        </li>
+                        <li>
+                            <a href="/src/accountaddresses.php">Danh sách địa chỉ</a>
+                        </li>
+                        <li class="last">
+                            <a href="">
+                                <form action="/controller/logout.php" id="logout-form" method="POST">
+                                    <button type="submit" name="logout">Đăng xuất</button>
+                                </form>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <?php
+        if (isset($_SESSION['userName'])) {
+            $userName = $_SESSION['userName'];
+            $user = $db->prepare("SELECT email,tenkhachhang,quocgia,tentk FROM khachhang WHERE tentk = :tentk");
+            $user->bindParam(":tentk", $userName);
+            $user->execute();
+            $userInformation = $user->fetch(PDO::FETCH_ASSOC);
+        ?>
+        <div class="row">
+            <div class="col-xs-12" id="customer_sidebar">
+                <p class="title-detail">Thông tin tài khoản</p>
+                <h2 class="name_account"><?php echo $userInformation["tentk"] ?></h2>
+                <p class="email"><?php echo $userInformation["email"] ?></p>
+                <div class="address">
+                    <p><?php echo $userInformation["quocgia"] ?></p>
+                    <a id="view_address" href="accountaddresses.php">Xem địa chỉ</a>
+                </div>
+            </div>
+            <div class="col-xs-12" id="customer_orders">
+                <div class="customer-table-wrap">
+                    <div class="customer_order customer-table-bg">
+                        <p>Bạn chưa đặt mua sản phẩm.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+
             </div>
         </section>
         <?php include "gallery.php" ?>

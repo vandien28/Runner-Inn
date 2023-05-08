@@ -1007,6 +1007,79 @@ td, th {
     transition: all 0.3s linear;
 }
 
+.AccountTitle {
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+h1, h3, h4, h5, h6 {
+    font-family: inherit;
+    color: #272727;
+    margin: 0 0 13px 0;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.AccountList ul > li > a > button > form {
+    display: block;
+    position: relative;
+    padding: 5px 0px;
+}
+
+a {
+    transition: opacity 150ms linear, color 150ms linear, background 150ms linear;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-xs-12 {
+    flex-basis: 100%;
+}
+
+@media (min-width: 576px) {
+    .col-sm-3 {
+        flex-basis: 25%;
+    }
+
+    .col-sm-9 {
+        flex-basis: 75%;
+    }
+}
+
+.address {
+    margin-bottom: 60px;
+}
+
+.customer_order {
+    margin-top: 60px;
+}
+
+
+li {
+    text-align: -webkit-match-parent;
+}
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
 .list-gallery {
     min-height: 250px;
 }
