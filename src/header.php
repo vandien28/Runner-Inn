@@ -248,7 +248,7 @@ if (isset($_SESSION['userName'])) {
                                                             <table class="productList">
                                                                 <tbody>
                                                                     <?php
-                                                                    $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+                                                                    $productCart = $db->prepare("SELECT distinct tensp, urlmain,giohang.soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
                                                                     $productCart->execute();
                                                                     $listProduct = $productCart->fetchAll(PDO::FETCH_ASSOC);
                                                                     foreach ($listProduct as $row) {
@@ -298,13 +298,13 @@ if (isset($_SESSION['userName'])) {
                                                             <tr>
                                                                 <td class="text-left">Tổng tiền</td>
                                                                 <?php
-                                                                $total = $db->prepare("SELECT sum(giatien) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
+                                                                $total = $db->prepare("SELECT sum(giatien*giohang.soluong) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
                                                                 $total->bindParam(':userID', $_SESSION['userID']);
                                                                 $total->execute();
                                                                 $totalCart = $total->fetch(PDO::FETCH_ASSOC);
                                                                 ?>
                                                                 <td class="text-right">
-                                                                    <span class="price"><?php echo number_format($totalCart["sum(giatien)"]) ?></span>
+                                                                    <span class="price"><?php echo number_format($totalCart["sum(giatien*giohang.soluong)"]) ?></span>
                                                                     <span>₫</span>
                                                                 </td>
                                                             </tr>
@@ -315,7 +315,7 @@ if (isset($_SESSION['userName'])) {
                                                                     </a>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="">
+                                                                    <a href="shipdetails.php">
                                                                         <button class="form__submit btn-payment">Thanh toán</button>
                                                                     </a>
                                                                 </td>

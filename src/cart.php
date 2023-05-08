@@ -63,7 +63,7 @@
                                         </h2>
                                         <div class="table-cart">
                                             <?php
-                                            $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+                                            $productCart = $db->prepare("SELECT distinct tensp, urlmain,giohang.soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
                                             $productCart->execute();
                                             $listProduct = $productCart->fetchAll(PDO::FETCH_ASSOC);
                                             foreach ($listProduct as $row) {
@@ -101,7 +101,7 @@
                                                             <div class="item-total-price">
                                                                 <div class="price">
                                                                     <span class="text">Thành tiền:</span>
-                                                                    <span class="line-item-total"><?php echo number_format($row["giatien"]) ?>₫</span>
+                                                                    <span class="line-item-total"><?php echo number_format($row["giatien"]*$row["soluong"]) ?>₫</span>
                                                                 </div>
                                                                 <div class="remove" data-id="<?php echo $row["masp"] ?>" data-color="<?php echo $row["mausac"] ?>" data-size="<?php echo $row["kichthuoc"] ?>" data-quantity="<?php echo $row["soluong"] ?>" data-price="<?php echo $row["giatien"] ?>" onclick="removeProduct(this),removeProductToCart(this)">
                                                                     <i class="fa-light fa-trash-can"></i>
@@ -150,7 +150,7 @@
                         <div class="col-md-3 sidebar-cart">
                             <a href="collection.php?type=bosuutap" class="continue">Tiếp tục mua hàng&nbsp;<i class="fa-sharp fa-light fa-arrow-right"></i></a>
                             <?php
-                            $total = $db->prepare("SELECT sum(giatien) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
+                            $total = $db->prepare("SELECT sum(giatien*giohang.soluong) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
                             $total->bindParam(':userID', $_SESSION['userID']);
                             $total->execute();
                             $totalCart = $total->fetch(PDO::FETCH_ASSOC); ?>
@@ -158,7 +158,7 @@
                                 <h2 class="order-summary-title">Thông tin đơn hàng</h2>
                                 <div class="summary-subtotal hidden">
                                     <div class="summary-total">
-                                        <p>Tổng tiền: <span><?php echo number_format($totalCart["sum(giatien)"]) ?>₫</span></p>
+                                        <p>Tổng tiền: <span><?php echo number_format(($totalCart["sum(giatien*giohang.soluong)"])) ?>₫</span></p>
                                     </div>
                                     <div class="summary-action">
                                         <p>Bạn có thể nhập mã giảm giá ở trang thanh toán</p>

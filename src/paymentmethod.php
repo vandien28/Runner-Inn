@@ -107,7 +107,7 @@
                     <table class="product-table">
                         <tbody>
                             <?php
-                            $productCart = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+                            $productCart = $db->prepare("SELECT distinct tensp, urlmain,giohang.soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
                             $productCart->execute();
                             $listProduct = $productCart->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($listProduct as $row) {
@@ -156,7 +156,7 @@
                     <table class="total-line-table">
                         <tbody>
                             <?php
-                            $total = $db->prepare("SELECT sum(giatien) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
+                            $total = $db->prepare("SELECT sum(giatien*giohang.soluong) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
                             $total->bindParam(':userID', $_SESSION['userID']);
                             $total->execute();
                             $totalCart = $total->fetch(PDO::FETCH_ASSOC);
@@ -164,8 +164,8 @@
                             <tr class="total-line total-line-subtotal">
                                 <td class="total-line-name">Tạm tính</td>
                                 <td class="total-line-price">
-                                    <span class="order-summary-emphasis" data-price-target="<?php echo number_format($totalCart["sum(giatien)"]) ?>">
-                                        <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
+                                    <span class="order-summary-emphasis" data-price-target="<?php echo number_format($totalCart["sum(giatien*giohang.soluong)"]) ?>">
+                                        <?php echo number_format($totalCart["sum(giatien*giohang.soluong)"]) ?>₫
                                     </span>
                                 </td>
                             </tr>
@@ -183,8 +183,8 @@
                                 </td>
                                 <td class="total-line-name payment-due">
                                     <span class="payment-due-currency">VND</span>
-                                    <span class="payment-due-price" data-payment-target="<?php echo number_format($totalCart["sum(giatien)"]) ?>">
-                                        <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
+                                    <span class="payment-due-price" data-payment-target="<?php echo number_format($totalCart["sum(giatien*giohang.soluong)"]) ?>">
+                                        <?php echo number_format($totalCart["sum(giatien*giohang.soluong)"]) ?>₫
                                     </span>
                                 </td>
                             </tr>
@@ -206,6 +206,7 @@
                 methodPayment = event.target.value;
             });
         });
+        var total = $(".payment-due-price").innerText
         var day = (new Date()).getHours() + ":" + (new Date().getMinutes()) + " - " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) + "/" + (new Date()).getFullYear();
         $(".ordersuccess").addEventListener("click", function() {
             let xhr = new XMLHttpRequest();
@@ -215,6 +216,8 @@
                 encodeURIComponent(day) +
                 "&status=" +
                 encodeURIComponent("đang xử lý") +
+                "&total=" +
+                encodeURIComponent(total) +
                 "&method=" +
                 encodeURIComponent(methodPayment),
                 true);

@@ -9,7 +9,7 @@ $sql = "INSERT INTO giohang (masp, makhachhang, soluong, kichthuoc, mausac) VALU
 $addProduct = $db->prepare($sql);
 $addProduct->execute([(int)$id, (int)$_SESSION['userID'], (int)$quantity, (int)$size, $color]);
 
-$renderProduct = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+$renderProduct = $db->prepare("SELECT distinct tensp, urlmain,giohang.soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
 $renderProduct->execute();
 $addToCart = $renderProduct->fetchAll(PDO::FETCH_ASSOC);
 foreach ($addToCart as $row) {

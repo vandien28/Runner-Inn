@@ -74,7 +74,7 @@
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
                                                     <h3 class="pro-name">
-                                                        <a href="/src/product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                        <a href="/src/product.php?type=<?php echo $row["masp"] ?>" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
                                                     </h3>
                                                     <div class="box-pro-prices">
                                                         <p class="pro-price"><?php echo number_format($row["giatien"]) ?>₫</p>
@@ -164,7 +164,7 @@
                                             <div class="product-detail">
                                                 <div class="box-pro-detail">
                                                     <h3 class="pro-name">
-                                                        <a href="/src/product.php" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                        <a href="/src/product.php?type=<?php echo $row["masp"] ?>" title="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
                                                     </h3>
                                                     <div class="box-pro-prices">
                                                         <p class="pro-price"><?php echo number_format($row["giatien"]) ?>₫</p>

@@ -1,5 +1,4 @@
 
-
 --
 -- Cơ sở dữ liệu: `runnerinn`
 --
@@ -18,15 +17,6 @@ CREATE TABLE `chitietdonhang` (
   `mausac` varchar(256) DEFAULT NULL,
   `kichthuoc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `chitietdonhang`
---
-
-INSERT INTO `chitietdonhang` (`madonhang`, `masp`, `soluongsp`, `mausac`, `kichthuoc`) VALUES
-(256460, 238934, 1, 'Trắng', 38),
-(256460, 324123, 1, 'Trắng', 40),
-(256460, 324123, 1, 'Cam', 37);
 
 -- --------------------------------------------------------
 
@@ -98,18 +88,12 @@ INSERT INTO `diachi` (`makhachhang`, `tenduong`, `phuong`, `quan`, `thanhpho`, `
 
 CREATE TABLE `donhang` (
   `madonhang` int(11) NOT NULL,
+  `tongtien` varchar(256) DEFAULT NULL,
   `ngaydathang` varchar(256) DEFAULT NULL,
   `makhachhang` int(11) DEFAULT NULL,
   `trangthaidonhang` varchar(50) DEFAULT NULL CHECK (`trangthaidonhang` = 'đang xử lý' or `trangthaidonhang` = 'đã giao' or `trangthaidonhang` = 'đã huỷ'),
   `phuongthucthanhtoan` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `donhang`
---
-
-INSERT INTO `donhang` (`madonhang`, `ngaydathang`, `makhachhang`, `trangthaidonhang`, `phuongthucthanhtoan`) VALUES
-(256460, '10:33 - 8/5/2023', 123456, 'đang xử lý', 'Thanh toán khi giao hàng (COD)');
 
 -- --------------------------------------------------------
 
@@ -262,7 +246,7 @@ CREATE TABLE `khachhang` (
   `makhachhang` int(11) NOT NULL,
   `tenkhachhang` varchar(50) DEFAULT NULL,
   `email` varchar(256) DEFAULT NULL,
-  `sdt` int(11) DEFAULT NULL,
+  `sdt` varchar(11) DEFAULT NULL,
   `tentk` varchar(256) DEFAULT NULL,
   `matkhau` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -272,9 +256,15 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`makhachhang`, `tenkhachhang`, `email`, `sdt`, `tentk`, `matkhau`) VALUES
-(123456, 'Lê Văn Diễn', 'dien@gmail.com', 123456789, 'dien123', 1234567890),
-(234567, 'Nguyễn Tăng Chương', 'chuong@gmail.com', 123456789, 'chuong123', 1234567890),
-(345678, 'Nguyễn Hoàng Thiên Phú', 'phu@gmail.com', 123456789, 'phu123', 1234567890);
+(123456, 'Lê Văn Diễn', 'dien@gmail.com', '0335710213', 'dien123', 1234567890),
+(234234, 'Tống Đức Duy', 'duy@gmail.com', '0335710213', 'duy123', 1234567890),
+(234567, 'Nguyễn Tăng Chương', 'chuong@gmail.com', '0335710213', 'chuong123', 1234567890),
+(345678, 'Nguyễn Hoàng Thiên Phú', 'phu@gmail.com', '0335710213', 'phu123', 1234567890),
+(430192, 'Lê Trung Kiên', 'kien@gmail.com', '0335710213', 'kien123', 1234567890),
+(723414, 'Dương Văn Sinl', 'sinl@gmail.com', '0335710213', 'sinl123', 1234567890),
+(743913, 'Đinh Văn Nam', 'nam@gmail.com', '0335710213', 'nam123', 1234567890),
+(895463, 'Đặng Ngân Đông', 'dong@gmail.com', '0335710213', 'dong123', 1234567890),
+(980234, 'Lê Bùi Minh Khoa', 'khoa@gmail.com', '0335710213', 'khoa123', 1234567890);
 
 -- --------------------------------------------------------
 
@@ -480,37 +470,38 @@ CREATE TABLE `sanpham` (
   `giatien` int(11) DEFAULT NULL,
   `mathuonghieu` int(11) DEFAULT NULL,
   `maloai` int(11) DEFAULT NULL,
-  `madanhmuc` int(11) DEFAULT NULL
+  `madanhmuc` int(11) DEFAULT NULL,
+  `soluong` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`masp`, `tensp`, `mota`, `giatien`, `mathuonghieu`, `maloai`, `madanhmuc`) VALUES
-(103294, 'Nike Air Max 1 Anniversary', NULL, 4200000, 123, 123, 456),
-(123213, 'Sản phẩm tặng 3', NULL, 0, 456, 789, 345),
-(123217, 'Nike Wmns Air Huarache City Move', NULL, 5200000, 123, 123, 567),
-(123563, 'Adidas PW Solar HU NMD \"Inspiration Pack\"', NULL, 4200000, 456, 456, 234),
-(182131, 'Adidas Nmd Xr1 W \"Pearl Grey\"', NULL, 5750000, 456, 456, 456),
-(213313, 'Sản phẩm tặng 1', NULL, 0, 123, 789, 345),
-(234234, 'Sản phẩm tặng 2', NULL, 0, 456, 789, 345),
-(238934, 'ZX 930 X EQT NEVER MADE PACK', NULL, 4000000, 123, 123, 123),
-(255462, 'Ultra Boost', NULL, 4700000, 456, 456, 456),
-(324123, 'Nike Air Max 1 Se \"Just Do It\"', NULL, 4900000, 123, 123, 123),
-(345435, 'Adidas Ultraboost W', NULL, 5300000, 456, 456, 567),
-(435435, 'Adidas NMD_R1 \"Molded Stripes\"', NULL, 5400000, 456, 456, 456),
-(464645, 'Adidas Zx 4000 4d', NULL, 6400000, 456, 456, 234),
-(472411, 'Adidas Nmd R1', NULL, 3500000, 456, 456, 567),
-(546239, 'Adidas EQT Cushion ADV \"North America\"', NULL, 7000000, 456, 456, 456),
-(565467, 'Adidas Nmd R1 \"Villa Exclusive\"', NULL, 7000000, 456, 456, 456),
-(628412, 'Adidas Ultra Boost M', NULL, 6100000, 456, 456, 456),
-(721043, 'Nike W\'s Air Huarache Run \"Triple White\"', NULL, 7300000, 123, 123, 123),
-(723041, 'The 10: Nike Air Presto \"Off White\"', NULL, 8000000, 123, 123, 123),
-(734052, 'Adidas Yeezy Boost 700 \"Wave Runner\"', NULL, 6800000, 456, 456, 567),
-(743027, 'Nike Air Max 90 Essential \"Grape\"', NULL, 4800000, 123, 123, 123),
-(846212, 'Nike Air Max 97 Premium', NULL, 8000000, 123, 123, 456),
-(934732, 'Adidas Yeezy boost 350 v2 \"zebra\"', NULL, 6000000, 456, 456, 234);
+INSERT INTO `sanpham` (`masp`, `tensp`, `mota`, `giatien`, `mathuonghieu`, `maloai`, `madanhmuc`, `soluong`) VALUES
+(103294, 'Nike Air Max 1 Anniversary', NULL, 4200000, 123, 123, 456, 100),
+(123213, 'Sản phẩm tặng 3', NULL, 0, 456, 789, 345, 100),
+(123217, 'Nike Wmns Air Huarache City Move', NULL, 5200000, 123, 123, 567, 100),
+(123563, 'Adidas PW Solar HU NMD \"Inspiration Pack\"', NULL, 4200000, 456, 456, 234, 100),
+(182131, 'Adidas Nmd Xr1 W \"Pearl Grey\"', NULL, 5750000, 456, 456, 456, 100),
+(213313, 'Sản phẩm tặng 1', NULL, 0, 123, 789, 345, 100),
+(234234, 'Sản phẩm tặng 2', NULL, 0, 456, 789, 345, 100),
+(238934, 'ZX 930 X EQT NEVER MADE PACK', NULL, 4000000, 123, 123, 123, 100),
+(255462, 'Ultra Boost', NULL, 4700000, 456, 456, 456, 100),
+(324123, 'Nike Air Max 1 Se \"Just Do It\"', NULL, 4900000, 123, 123, 123, 100),
+(345435, 'Adidas Ultraboost W', NULL, 5300000, 456, 456, 567, 100),
+(435435, 'Adidas NMD_R1 \"Molded Stripes\"', NULL, 5400000, 456, 456, 456, 100),
+(464645, 'Adidas Zx 4000 4d', NULL, 6400000, 456, 456, 234, 100),
+(472411, 'Adidas Nmd R1', NULL, 3500000, 456, 456, 567, 100),
+(546239, 'Adidas EQT Cushion ADV \"North America\"', NULL, 7000000, 456, 456, 456, 100),
+(565467, 'Adidas Nmd R1 \"Villa Exclusive\"', NULL, 7000000, 456, 456, 456, 100),
+(628412, 'Adidas Ultra Boost M', NULL, 6100000, 456, 456, 456, 100),
+(721043, 'Nike W\'s Air Huarache Run \"Triple White\"', NULL, 7300000, 123, 123, 123, 100),
+(723041, 'The 10: Nike Air Presto \"Off White\"', NULL, 8000000, 123, 123, 123, 100),
+(734052, 'Adidas Yeezy Boost 700 \"Wave Runner\"', NULL, 6800000, 456, 456, 567, 100),
+(743027, 'Nike Air Max 90 Essential \"Grape\"', NULL, 4800000, 123, 123, 123, 100),
+(846212, 'Nike Air Max 97 Premium', NULL, 8000000, 123, 123, 456, 100),
+(934732, 'Adidas Yeezy boost 350 v2 \"zebra\"', NULL, 6000000, 456, 456, 234, 100);
 
 -- --------------------------------------------------------
 
@@ -539,8 +530,8 @@ INSERT INTO `thuonghieu` (`mathuonghieu`, `tenthuonghieu`) VALUES
 -- Chỉ mục cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  ADD KEY `masp` (`masp`),
-  ADD KEY `madonhang` (`madonhang`);
+  ADD KEY `chitietdonhang_ibfk_1` (`masp`),
+  ADD KEY `chitietdonhang_ibfk_2` (`madonhang`);
 
 --
 -- Chỉ mục cho bảng `danhgiasp`
@@ -559,27 +550,27 @@ ALTER TABLE `danhmuc`
 -- Chỉ mục cho bảng `diachi`
 --
 ALTER TABLE `diachi`
-  ADD KEY `makhachhang` (`makhachhang`);
+  ADD KEY `diachi_ibfk_1` (`makhachhang`);
 
 --
 -- Chỉ mục cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`madonhang`),
-  ADD KEY `makhachhang` (`makhachhang`);
+  ADD KEY `donhang_ibfk_1` (`makhachhang`);
 
 --
 -- Chỉ mục cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  ADD KEY `masp` (`masp`),
-  ADD KEY `makhachhang` (`makhachhang`);
+  ADD KEY `giohang_ibfk_1` (`masp`),
+  ADD KEY `giohang_ibfk_2` (`makhachhang`);
 
 --
 -- Chỉ mục cho bảng `hinhanhsp`
 --
 ALTER TABLE `hinhanhsp`
-  ADD KEY `masp` (`masp`);
+  ADD KEY `hinhanhsp_ibfk_1` (`masp`);
 
 --
 -- Chỉ mục cho bảng `khachhang`
@@ -610,9 +601,9 @@ ALTER TABLE `mausacsp`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`masp`),
-  ADD KEY `mathuonghieu` (`mathuonghieu`),
-  ADD KEY `maloai` (`maloai`),
-  ADD KEY `madanhmuc` (`madanhmuc`);
+  ADD KEY `sanpham_ibfk_1` (`mathuonghieu`),
+  ADD KEY `sanpham_ibfk_2` (`maloai`),
+  ADD KEY `sanpham_ibfk_3` (`madanhmuc`);
 
 --
 -- Chỉ mục cho bảng `thuonghieu`
@@ -628,8 +619,8 @@ ALTER TABLE `thuonghieu`
 -- Các ràng buộc cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  ADD CONSTRAINT `chitietdonhang_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`),
-  ADD CONSTRAINT `chitietdonhang_ibfk_2` FOREIGN KEY (`madonhang`) REFERENCES `donhang` (`madonhang`);
+  ADD CONSTRAINT `chitietdonhang_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `chitietdonhang_ibfk_2` FOREIGN KEY (`madonhang`) REFERENCES `donhang` (`madonhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `danhgiasp`
@@ -641,26 +632,26 @@ ALTER TABLE `danhgiasp`
 -- Các ràng buộc cho bảng `diachi`
 --
 ALTER TABLE `diachi`
-  ADD CONSTRAINT `diachi_ibfk_1` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`);
+  ADD CONSTRAINT `diachi_ibfk_1` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`);
+  ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`),
-  ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`);
+  ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `hinhanhsp`
 --
 ALTER TABLE `hinhanhsp`
-  ADD CONSTRAINT `hinhanhsp_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`);
+  ADD CONSTRAINT `hinhanhsp_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `kichthuocsp`
@@ -678,8 +669,9 @@ ALTER TABLE `mausacsp`
 -- Các ràng buộc cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`mathuonghieu`) REFERENCES `thuonghieu` (`mathuonghieu`),
-  ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`maloai`) REFERENCES `loaigiay` (`maloai`),
-  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`madanhmuc`) REFERENCES `danhmuc` (`madanhmuc`);
+  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`mathuonghieu`) REFERENCES `thuonghieu` (`mathuonghieu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`maloai`) REFERENCES `loaigiay` (`maloai`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`madanhmuc`) REFERENCES `danhmuc` (`madanhmuc`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
 
