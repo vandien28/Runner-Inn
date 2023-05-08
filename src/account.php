@@ -54,7 +54,7 @@
         <?php
         if (isset($_SESSION['userName'])) {
             $userName = $_SESSION['userName'];
-            $user = $db->prepare("SELECT email,tenkhachhang,quocgia,tentk FROM khachhang WHERE tentk = :tentk");
+            $user = $db->prepare("SELECT * FROM khachhang,diachi WHERE khachhang.makhachhang = diachi.makhachhang and tentk = :tentk");
             $user->bindParam(":tentk", $userName);
             $user->execute();
             $userInformation = $user->fetch(PDO::FETCH_ASSOC);

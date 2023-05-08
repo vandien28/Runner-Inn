@@ -12,10 +12,6 @@ CREATE TABLE `chitietdonhang` (
 -- Đang đổ dữ liệu cho bảng `chitietdonhang`
 --
 
-INSERT INTO `chitietdonhang` (`madonhang`, `masp`, `soluongsp`, `mausac`, `kichthuoc`) VALUES
-(256460, 238934, 1, 'Trắng', 38),
-(256460, 324123, 1, 'Trắng', 40),
-(256460, 324123, 1, 'Cam', 37);
 
 
 -- --------------------------------------------------------
