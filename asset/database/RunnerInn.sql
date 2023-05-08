@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-﻿CREATE DATABASE runnerinn;
-
-CREATE TABLE `chitietdonhang` (
-  `madonhang` int(11) DEFAULT NULL,
-  `masp` int(11) DEFAULT NULL,
-  `soluongsp` int(11) DEFAULT NULL,
-  `mausac` varchar(256) DEFAULT NULL,
-  `kichthuoc` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-=======
---
--- Cơ sở dữ liệu: `runnerinn`
---
 CREATE DATABASE runnerinn;
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `chitietdonhang`
---
 
 CREATE TABLE `chitietdonhang` (
   `madonhang` int(11) DEFAULT NULL,
@@ -28,7 +8,6 @@ CREATE TABLE `chitietdonhang` (
   `kichthuoc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
->>>>>>> fd015ca57507dede7653e7041a2b18cf4a65ccde
 --
 -- Đang đổ dữ liệu cho bảng `chitietdonhang`
 --
@@ -38,7 +17,6 @@ INSERT INTO `chitietdonhang` (`madonhang`, `masp`, `soluongsp`, `mausac`, `kicht
 (256460, 324123, 1, 'Trắng', 40),
 (256460, 324123, 1, 'Cam', 37);
 
-<<<<<<< HEAD
 
 -- --------------------------------------------------------
 
@@ -652,60 +630,6 @@ ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`madanhmuc`) REFERENCES `danhmuc` (`madanhmuc`);
 COMMIT;
 
-=======
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `danhgiasp`
---
-
-CREATE TABLE `danhgiasp` (
-  `madanhgia` int(11) NOT NULL,
-  `masp` int(11) DEFAULT NULL,
-  `tieude` varchar(50) DEFAULT NULL,
-  `noidung` varchar(256) DEFAULT NULL,
-  `ngaydanhgia` date DEFAULT NULL,
-  `sosao` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `danhmuc`
---
-
-CREATE TABLE `danhmuc` (
-  `madanhmuc` int(11) NOT NULL,
-  `tendanhmuc` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `danhmuc`
---
-
-INSERT INTO `danhmuc` (`madanhmuc`, `tendanhmuc`) VALUES
-(123, 'Nike'),
-(234, 'Adidas'),
-(345, 'Sản phẩm tặng'),
-(456, 'Sản phẩm mới'),
-(567, 'Sản phẩm bán chạy');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `diachi`
---
-
-CREATE TABLE `diachi` (
-  `makhachhang` int(11) DEFAULT NULL,
-  `tenduong` varchar(256) DEFAULT NULL,
-  `phuong` varchar(256) DEFAULT NULL,
-  `quan` varchar(256) DEFAULT NULL,
-  `thanhpho` varchar(256) DEFAULT NULL,
-  `quocgia` varchar(256) NOT NULL,
-  `macdinh` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
->>>>>>> fd015ca57507dede7653e7041a2b18cf4a65ccde
 
 --
 -- Đang đổ dữ liệu cho bảng `diachi`
