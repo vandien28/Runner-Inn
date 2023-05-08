@@ -59,21 +59,17 @@
         ?>
         <div class="row1">
             <div class="col-xs-12" id="customer_sidebar">
-                <h2 class="title-detail">Thông tin tài khoản</h2>
-                <p class="name_account"><?php echo $userInformation["tentk"] ?></p>
-                <p class="email"><?php echo $userInformation["email"] ?></p>
-                <div class="address">
-                    <p><?php echo $userInformation["quocgia"] ?></p>
-                    <a id="view_address" href="accountaddresses.php">Xem địa chỉ</a>
+                <h4 class="name-order">
+                    ĐƠN HÀNG: #100057,
+                    <span class="order_date">Đặt lúc — 07/05/2023, 03:56CH</span>
+                </h4>
+                
+                <div class="account">
+                    
+                    <a  href="account.php">Quay lại trang tài khoản</a>
                 </div>
             </div>
-            <div class="col-xs-12" id="customer_orders">
-                <div class="customer-table-wrap">
-                    <div class="customer_order customer-table-bg">
-                        <p>Bạn chưa đặt mua sản phẩm.</p>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <?php
         }

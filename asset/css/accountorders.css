@@ -1024,7 +1024,7 @@ h1, h3, h4, h5, h6 {
     line-height: 1.2;
 }
 
-h3 {
+h3,h4 {
     display: block;
     font-size: 1.17em;
     margin-block-start: 1em;
@@ -1105,6 +1105,20 @@ form {
     display: inline-block;
     margin-right: 8px;
     vertical-align: 2px;
+}
+
+.name-order {
+    margin-bottom: 5px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.order_date {
+    font-weight: normal;
+    font-size: 14px;
+    text-transform: none;
 }
 
 li {
