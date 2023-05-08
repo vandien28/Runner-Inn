@@ -63,7 +63,7 @@
                                 <div class="radio-wrapper content-box-row">
                                     <label class="two-page" for="payment_method_1">
                                         <div class="radio-input payment-method-checkbox">
-                                            <input id="payment_method_1" class="input-radio" name="payment_method" type="radio" checked>
+                                            <input id="payment_method_1" class="input-radio" name="payment_method" type="radio" checked value="Thanh toán khi giao hàng (COD)">
                                             <label for="payment_method_1" class="circle"></label>
                                         </div>
 
@@ -78,7 +78,7 @@
                                 <div class="radio-wrapper content-box-row">
                                     <label class="two-page" for="payment_method_2">
                                         <div class="radio-input payment-method-checkbox">
-                                            <input id="payment_method_2" class="input-radio" name="payment_method" type="radio">
+                                            <input id="payment_method_2" class="input-radio" name="payment_method" type="radio" value="Chuyển khoản qua ngân hàng">
                                             <label for="payment_method_2" class="circle"></label>
                                         </div>
                                         <div class="radio-content-input">
@@ -95,7 +95,7 @@
                     <div class="section-footer">
                         <a href="cart.php" class="current">Giỏ hàng</a>
                         <form action="ordersuccess.php">
-                            <button>Hoàn tất đơn hàng</button>
+                            <button class="ordersuccess">Hoàn tất đơn hàng</button>
                         </form>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="order-summary-section order-summary-section-total-lines payment-lines">
-                <table class="total-line-table">
+                    <table class="total-line-table">
                         <tbody>
                             <?php
                             $total = $db->prepare("SELECT sum(giatien) from giohang,sanpham where sanpham.masp =giohang.masp and makhachhang = :userID");
@@ -165,7 +165,7 @@
                                 <td class="total-line-name">Tạm tính</td>
                                 <td class="total-line-price">
                                     <span class="order-summary-emphasis" data-price-target="<?php echo number_format($totalCart["sum(giatien)"]) ?>">
-                                    <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
+                                        <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
                                     </span>
                                 </td>
                             </tr>
@@ -184,7 +184,7 @@
                                 <td class="total-line-name payment-due">
                                     <span class="payment-due-currency">VND</span>
                                     <span class="payment-due-price" data-payment-target="<?php echo number_format($totalCart["sum(giatien)"]) ?>">
-                                    <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
+                                        <?php echo number_format($totalCart["sum(giatien)"]) ?>₫
                                     </span>
                                 </td>
                             </tr>
@@ -194,6 +194,33 @@
             </div>
         </div>
     </div>
+    <script>
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+        var methodPayment = "";
+        $$('input[name="payment_method"]').forEach((input) => {
+            if (input.checked) {
+                methodPayment = input.value;
+            }
+            input.addEventListener('change', (event) => {
+                methodPayment = event.target.value;
+            });
+        });
+        var day = (new Date()).getHours() + ":" + (new Date().getMinutes()) + " - " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) + "/" + (new Date()).getFullYear();
+        $(".ordersuccess").addEventListener("click", function() {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {}
+            xhr.open("GET",
+                "/controller/addOrder.php?&day=" +
+                encodeURIComponent(day) +
+                "&status=" +
+                encodeURIComponent("đang xử lý") +
+                "&method=" +
+                encodeURIComponent(methodPayment),
+                true);
+            xhr.send();
+        })
+    </script>
 </body>
 
 </html>

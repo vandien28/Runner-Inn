@@ -17,6 +17,6 @@ if (isset($_POST["submitLogin"])) {
         header("Location: ../index.php");
         exit();
     } else {
-        echo "Đăng nhập không thành công";
+        header("Location: /src/login.php");
     }
 }

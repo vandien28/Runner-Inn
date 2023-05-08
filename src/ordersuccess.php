@@ -52,13 +52,13 @@
                                 ?>
                                 <h3>Thông tin giao hàng</h3>
                                 <br>
-                                <p class="name-customer" ><?php echo $infoUser["tenkhachhang"] ?></p>
-                                <p class="phone-customer" ><?php echo $infoUser["sdt"] ?></p>
-                                <p class="apartment-customer" ><?php echo $infoUser["tenduong"] ?></p>
-                                <p class="ward-customer" ><?php echo $infoUser["phuong"] ?></p>
-                                <p class="district-customer" ><?php echo $infoUser["quan"] ?></p>
-                                <p class="city-customer" ><?php echo $infoUser["thanhpho"] ?></p>
-                                <p class="country-customer" ><?php echo $infoUser["quocgia"] ?></p>
+                                <p class="name-customer"><?php echo $infoUser["tenkhachhang"] ?></p>
+                                <p class="phone-customer"><?php echo $infoUser["sdt"] ?></p>
+                                <p class="apartment-customer"><?php echo $infoUser["tenduong"] ?></p>
+                                <p class="ward-customer"><?php echo $infoUser["phuong"] ?></p>
+                                <p class="district-customer"><?php echo $infoUser["quan"] ?></p>
+                                <p class="city-customer"><?php echo $infoUser["thanhpho"] ?></p>
+                                <p class="country-customer"><?php echo $infoUser["quocgia"] ?></p>
                                 <br>
                                 <h3>Phương thức thanh toán</h3>
                                 <br>
@@ -73,7 +73,7 @@
                             <a href="mailto:runnerinn@gmail.com">Liên hệ chúng tôi</a>
                         </div>
                         <div class="return-collection">
-                            <a href="collection.php?type=bosuutap"><button>Tiếp tục mua hàng</button></a>
+                            <a href="collection.php?type=bosuutap"><button class="purchase">Tiếp tục mua hàng</button></a>
                         </div>
                     </div>
                 </div>
@@ -159,6 +159,16 @@
             </div>
         </div>
     </div>
+    <script>
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+        $(".purchase").addEventListener("click", function() {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {}
+            xhr.open("GET", "/controller/deleteAllCart.php", true);
+            xhr.send();
+        })
+    </script>
 </body>
 
 </html>

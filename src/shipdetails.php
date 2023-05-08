@@ -196,7 +196,7 @@
                     </div>
                     <div class="section-footer">
                         <a href="cart.php" class="current">Giỏ hàng</a>
-                        <form action="paymentmethod.php">
+                        <form action="paymentmethod.php" id="nextPayment">
                             <button class="nextPayment">Tiếp tục đến phương thức thanh toán</button>
                         </form>
                     </div>
@@ -322,8 +322,8 @@
             let selectedOption = selectElement.options[selectElement.selectedIndex];
             let value = selectedOption.value;
             if (value == 0) {
-                $(".name").value = "";
-                $(".phone").value = "";
+                $(".name").value = propertiesObjects.hoten;
+                $(".phone").value = propertiesObjects.sdt;
                 $(".apartment").value = "";
                 $(".ward").value = "";
                 $(".district").value = "";
@@ -336,6 +336,59 @@
                 $(".district").disabled = false
                 document.getElementById("city").disabled = false
                 document.getElementById("country").disabled = false
+                let xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "/controller/update_macdinh.php", true);
+                xhttp.send();
+                let apartmentN = ""
+                $(".apartment").addEventListener("change", function() {
+                    apartmentN = $(".apartment").value
+                })
+                let wardN = ""
+                $(".ward").addEventListener("change", function() {
+                    wardN = $(".ward").value
+                })
+                let districtN = ""
+                $(".district").addEventListener("change", function() {
+                    districtN = $(".district").value
+                })
+                var cityN = ""
+                document.getElementById("city").addEventListener("change", function() {
+                    let selectedOption = this.options[this.selectedIndex];
+                    cityN = selectedOption.innerText;
+                });
+                let coutryN = ""
+                document.getElementById("country").addEventListener("change", function() {
+                    let selectedOption = this.options[this.selectedIndex];
+                    coutryN = selectedOption.innerText;
+                    let objProperties = {
+                        "sonha": apartmentN,
+                        "phuong": wardN,
+                        "quan": districtN,
+                        "thanhpho": cityN,
+                        "quocgia": coutryN
+                    };
+                    var stringProperties = JSON.stringify(objProperties);
+                    $(".nextPayment").setAttribute("data-properties", stringProperties);
+                    $(".nextPayment").addEventListener("click", function() {
+                        let data = $(".nextPayment").getAttribute("data-properties")
+                        let dataInfo = JSON.parse(data)
+                        let xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = function() {}
+                        xhr.open("GET",
+                            "/controller/addAddress.php?apartment=" +
+                            encodeURIComponent(dataInfo.sonha) +
+                            "&ward=" +
+                            encodeURIComponent(dataInfo.phuong) +
+                            "&district=" +
+                            encodeURIComponent(dataInfo.quan) +
+                            "&city=" +
+                            encodeURIComponent(dataInfo.thanhpho) +
+                            "&country=" +
+                            encodeURIComponent(dataInfo.quocgia),
+                            true);
+                        xhr.send();
+                    });
+                });
             } else {
                 let dataProperties = selectedOption.getAttribute("data-properties");
                 let propertiesObject = JSON.parse(dataProperties);
@@ -353,51 +406,8 @@
                 $(".district").disabled = true
                 document.getElementById("city").disabled = true
                 document.getElementById("country").disabled = true
-
             }
         });
-
-        var update = document.getElementById("address");
-        update.addEventListener("change", function() {
-            let selectedOption = update.options[update.selectedIndex];
-            let value = selectedOption.value;
-            if (value == 0) {
-                let xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "/controller/update_macdinh.php", true);
-                xhttp.send();
-                var apartmentN = ""
-                $(".apartment").addEventListener("change", function() {
-                    apartmentN = $(".apartment").value
-                })
-                var wardN = ""
-                $(".ward").addEventListener("change", function() {
-                    wardN = $(".ward").value
-                })
-                var districtN = ""
-                $(".district").addEventListener("change", function() {
-                    districtN = $(".district").value
-                })
-                var cityN = ""
-                document.getElementById("city").addEventListener("change", function() {
-                    let selectedOption = this.options[this.selectedIndex];
-                    cityN = selectedOption.innerText;
-                });
-                var coutryN = ""
-                document.getElementById("country").addEventListener("change", function() {
-                    let selectedOption = this.options[this.selectedIndex];
-                    coutryN = selectedOption.innerText;
-                });
-                let objProperties = {
-                    "sonha": apartmentN,
-                    "phuong": wardN,
-                    "quan": districtN,
-                    "thanhpho": cityN,
-                    "quocgia": coutryN
-                };
-                var stringProperties = JSON.stringify(objProperties);
-                $(".nextPayment").setAttribute("data-properties", stringProperties);
-            }
-        })
     </script>
 </body>
 
