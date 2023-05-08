@@ -1,4 +1,5 @@
 CREATE DATABASE runnerinn;
+use runnerinn;
 
 CREATE TABLE `chitietdonhang` (
   `madonhang` int(11) DEFAULT NULL,
@@ -631,10 +632,6 @@ COMMIT;
 -- Đang đổ dữ liệu cho bảng `diachi`
 --
 
-INSERT INTO `diachi` (`makhachhang`, `tenduong`, `phuong`, `quan`, `thanhpho`, `quocgia`, `macdinh`) VALUES
-(123456, '9 Nguyễn Văn Cừ', 'Phường 1', 'Quận 5', 'Hồ Chí Minh', 'Việt Nam', 1),
-(234567, '9 Nguyễn Văn Cừ', 'Phường 1', 'Quận 5', 'Hồ Chí Minh', 'Việt Nam', 1),
-(345678, '9 Nguyễn Văn Cừ', 'Phường 1', 'Quận 5', 'Hồ Chí Minh', 'Việt Nam', 1);
 
 -- --------------------------------------------------------
 
