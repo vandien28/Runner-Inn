@@ -73,7 +73,7 @@
                             <a href="mailto:runnerinn@gmail.com">Liên hệ chúng tôi</a>
                         </div>
                         <div class="return-collection">
-                            <a href="collection.php?type=bosuutap"><button class="purchase">Tiếp tục mua hàng</button></a>
+                            <a href="/controller/deleteAllCart.php" class="linkCollection"><button class="purchase">Tiếp tục mua hàng</button></a>
                         </div>
                     </div>
                 </div>
@@ -159,16 +159,6 @@
             </div>
         </div>
     </div>
-    <script>
-        const $ = document.querySelector.bind(document);
-        const $$ = document.querySelectorAll.bind(document);
-        $(".purchase").addEventListener("click", function() {
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {}
-            xhr.open("GET", "/controller/deleteAllCart.php", true);
-            xhr.send();
-        })
-    </script>
 </body>
 
 </html>

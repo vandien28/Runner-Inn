@@ -101,7 +101,7 @@
                                                             <div class="item-total-price">
                                                                 <div class="price">
                                                                     <span class="text">Thành tiền:</span>
-                                                                    <span class="line-item-total"><?php echo number_format($row["giatien"]*$row["soluong"]) ?>₫</span>
+                                                                    <span class="line-item-total"><?php echo number_format($row["giatien"] * $row["soluong"]) ?>₫</span>
                                                                 </div>
                                                                 <div class="remove" data-id="<?php echo $row["masp"] ?>" data-color="<?php echo $row["mausac"] ?>" data-size="<?php echo $row["kichthuoc"] ?>" data-quantity="<?php echo $row["soluong"] ?>" data-price="<?php echo $row["giatien"] ?>" onclick="removeProduct(this),removeProductToCart(this)">
                                                                     <i class="fa-light fa-trash-can"></i>
@@ -162,7 +162,22 @@
                                     </div>
                                     <div class="summary-action">
                                         <p>Bạn có thể nhập mã giảm giá ở trang thanh toán</p>
-                                        <a class="checkout-btn" href="shipdetails.php">THANH TOÁN</a>
+                                        <?php $user = $db->prepare("SELECT * from khachhang where makhachhang = :userID");
+                                        $user->bindParam(":userID", $_SESSION["userID"]);
+                                        $user->execute();
+                                        $users = $user->fetch(PDO::FETCH_ASSOC); ?>
+                                        <a class="checkout-btn" href="<?php if ($users["khoa"] == 1) {
+                                                                            echo '#';
+                                                                        } else {
+                                                                            echo 'shipdetails.php';
+                                                                        } ?>" <?php if ($users["khoa"] == 1) {
+                                                                                    echo 'disabled';
+                                                                                } ?> style="<?php if ($users["khoa"] == 1) {
+                                                                                                echo 'cursor:no-drop;';
+                                                                                            } else {
+                                                                                                echo 'cursor: pointer;';
+                                                                                            } ?>">THANH TOÁN
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management - Runner Inn</title>
+    <title>Quản lý - Runner Inn</title>
     <link rel="stylesheet" href="../asset/font/awesome-6-pro/css/all.css">
     <link rel="icon" href="../asset/img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,23 +23,11 @@
         <div class="ntfc-box">
             <div class="noti-box">
                 <div class="noti-title">
-                    <p>Remove product?</p>
+                    <p>Bạn có muốn xoá sản phẩm?</p>
                 </div>
                 <div class="noti-btn">
-                    <p class="btn-no">no</p>
-                    <p class="btn-yes">yes</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="notifications hide">
-        <div class="ntfc-boxs">
-            <div class="noti-btns">
-                <i class="btn-ok fa-solid fa-xmark"></i>
-            </div>
-            <div class="noti-boxs">
-                <div class="noti-titles">
-                    <p>You have not entered product information!</p>
+                    <p class="btn-no">không</p>
+                    <p class="btn-yes">Có</p>
                 </div>
             </div>
         </div>
@@ -54,31 +42,25 @@
                     <li>
                         <a href="dashboard.php" class="nav-link">
                             <i class="fa-solid fa-gauge"></i>
-                            <p>Dashboard</p>
+                            <p>Bảng điều khiển</p>
                         </a>
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link">
                             <i class="fa-solid fa-user"></i>
-                            <p>User Profile</p>
+                            <p>hồ sơ</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="management.php" class="nav-link">
                             <i class="fa-solid fa-bars-progress"></i>
-                            <p>Management</p>
+                            <p>quản lý</p>
                         </a>
                     </li>
                     <li>
-                        <a href="" class="nav-link">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <p>Statistics</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="nav-link">
+                        <a href="map.php" class="nav-link">
                             <i class="fa-solid fa-map-location-dot"></i>
-                            <p>Map</p>
+                            <p>bản đồ</p>
                         </a>
                     </li>
                 </ul>
@@ -88,14 +70,14 @@
             <header class="header">
                 <div class="expand">
                     <div class="expand-left">
-                        <p>Dashboard</p>
+                        <p>Quản lý</p>
                         <i class="fa-solid fa-palette"></i>
                         <i class="fa-solid fa-earth-americas"></i>
-                        <a><i class="fa-solid fa-magnifying-glass"></i>Search</a>
+                        <a><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm</a>
                     </div>
                     <div class="expand-right">
                         <a href=""><img src="/asset/img/sidebar.jpg" alt=""></a>
-                        <p><a href="admin.php">Log out</a></p>
+                        <p><a href="admin.php">Đăng xuất</a></p>
                         <i class="fa-solid fa-gear"></i>
                         <i class="fa-solid fa-bell"></i>
                     </div>
@@ -186,7 +168,7 @@
                                                     </td>
                                                     <td class="quantity" style="width: calc(100%/9);"><?php echo $row["soluong"] ?></td>
                                                     <td style="width: calc(100%/9);">
-                                                        <button class="edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                        <a href="editProduct.php?type=<?php echo $row["masp"] ?>"><button class="edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
                                                         <button class="remove"><i class="fa-solid fa-xmark"></i></button>
                                                     </td>
                                                 </tr>
@@ -197,7 +179,9 @@
                                     </table>
                                 </div>
                                 <div class="management-btn">
-                                    <button class="add"><i class="fa-solid fa-plus" style="margin-right: 7px;"></i></button>
+                                    <a href="addProduct.php">
+                                        <button class="add"><i class="fa-solid fa-plus" style="margin-right: 7px;"></i></button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +200,7 @@
                                     <p>Hành động</p>
                                 </div>
                                 <div class="table-responsive" style="height: 200px;">
-                                    <table class="table table-bordered table-nowrap mb-0">
+                                    <table class="table table-bordered table-nowrap mb-0 table-user">
                                         <tbody>
                                             <?php
                                             $user = $db->prepare("SELECT * from khachhang");
@@ -231,10 +215,14 @@
                                                     <td style="width: calc(100%/6.41);"><?php echo $row["tentk"] ?></td>
                                                     <td style="width: calc(100%/6.41);"><?php echo $row["matkhau"] ?></td>
                                                     <td style="width: calc(100%/6.41);"><?php echo $row["sdt"] ?></td>
-                                                    <td><i class="fa-solid fa-unlock"></i></td>
+                                                    <td><?php if ($row["khoa"] == 0) {
+                                                            echo '<i class="fa-solid fa-unlock">';
+                                                        } else {
+                                                            echo '<i class="fa-solid fa-lock">';
+                                                        } ?></td>
                                                     <td>
-                                                        <input type="checkbox" id="checkbox1" name="checkbox1" class="checkbox">
-                                                        <label class="checkboxs" for="checkbox1"></label>
+                                                        <input type="checkbox" id="checkbox-<?php echo $row['makhachhang']; ?>" name="checkbo-<?php echo $row['makhachhang']; ?>" class="checkbox" data-id="<?php echo $row['makhachhang']; ?>">
+                                                        <label class="checkboxs" for="checkbox-<?php echo $row['makhachhang']; ?>"></label>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -255,24 +243,47 @@
                             <div class="management-box management-order">
                                 <h4>Quản lý đơn hàng</h4>
                                 <div class="management-sidebar">
-                                    <p style="width: calc(100%/6);">Mã đơn hàng</p>
-                                    <p style="width: calc(100%/6);">Mã khách hàng</p>
-                                    <p style="width: calc(100%/6);">Trạng thái đơn hàng</p>
-                                    <p style="width: calc(100%/6);">Ngày đặt hàng</p>
-                                    <p style="width: calc(100%/6);">Tổng tiền</p>
-                                    <p class="tool" style="width: calc(100%/6);">Chi tiết</p>
+                                    <p style="width: calc(100%/5);">Mã đơn hàng</p>
+                                    <p style="width: calc(100%/5);">Mã khách hàng</p>
+                                    <p style="width: calc(100%/5);">Trạng thái đơn hàng</p>
+                                    <p style="width: calc(100%/5);">Ngày đặt hàng</p>
+                                    <p style="width: calc(100%/5);">Tổng tiền</p>
                                 </div>
                                 <div class="table-responsive" style="height: 200px;">
                                     <table class="table table-bordered table-nowrap mb-0">
                                         <tbody class="tableorder">
-<?php
-$order = $db->prepare("SELECT * from donhang");
-
-?>
+                                            <?php
+                                            $order = $db->prepare("SELECT * from donhang");
+                                            $order->execute();
+                                            $orders = $order->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($orders as $o) {
+                                            ?>
+                                                <tr>
+                                                    <td id="id" style="width: calc(100%/5); height: 50px; color:rgb(0 0 0/40%);"><?php echo $o["madonhang"] ?></td>
+                                                    <td id="customer" style="width: calc(100%/5); height: 50px;"><?php echo $o["makhachhang"] ?></td>
+                                                    <td id="status" style="width: calc(100%/5); height: 50px;" class="orderinfo">
+                                                        <select name="selectStt-<?php echo $o["madonhang"] ?>" id="selectStt-<?php echo $o["madonhang"] ?>" class="selectStt" onchange='updateStatus(<?php echo $o["madonhang"] ?>, this.value)'>
+                                                            <option value="">Chọn trạng thái</option>
+                                                            <option value="Đang xử lý" <?php if ($o["trangthaidonhang"] == "Đang xử lý") echo "selected"; ?>>Đang xử lý</option>
+                                                            <option value="Đã xử lý" <?php if ($o["trangthaidonhang"] == "Đã xử lý") echo "selected"; ?>>Đã xử lý</option>
+                                                            <option value="Đã giao" <?php if ($o["trangthaidonhang"] == "Đã giao") echo "selected"; ?>>Đã giao</option>
+                                                            <option value="Đã huỷ" <?php if ($o["trangthaidonhang"] == "Đã huỷ") echo "selected"; ?>>Đã huỷ</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="date" style="width: calc(100%/5); height: 50px;"><?php echo $o["ngaydathang"] ?></td>
+                                                    <td id="total" style="width: calc(100%/5); height: 50px;"><?php echo $o["tongtien"] ?></td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div style="width:100%; height: 30px;"></div>
+                                <!-- <div style="width:100%; height: 30px;">
+                                    <label for="">Lọc sản phẩm</label>
+                                    <input type="date">
+                                    <input type="text" value="Địa điểm giao hàng">
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -289,6 +300,79 @@ $order = $db->prepare("SELECT * from donhang");
             </footer>
         </div>
     </div>
+    <script>
+        function updateStatus(orderId, status) {
+            // Tạo đối tượng XMLHTTPRequest để gửi yêu cầu đến server
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Nhận kết quả trả về từ server và cập nhật lại trạng thái trên bảng
+                    document.getElementById("selectStt").value = status;
+                }
+            };
+            // Gửi yêu cầu đến server để cập nhật trạng thái đơn hàng
+            xhttp.open("GET", "/controller/updateStatus.php?orderId=" + orderId + "&status=" + status, true);
+            xhttp.send();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var lockBtn = document.querySelector(".lock");
+            var unlockBtn = document.querySelector(".unlock");
+
+            lockBtn.addEventListener("click", function() {
+                var selectedRows = getSelectedRows();
+                if (selectedRows.length > 0) {
+                    updateStatus(selectedRows, "lock");
+                }
+            });
+
+            unlockBtn.addEventListener("click", function() {
+                var selectedRows = getSelectedRows();
+                if (selectedRows.length > 0) {
+                    updateStatus(selectedRows, "unlock");
+                }
+            });
+
+            function getSelectedRows() {
+                var selectedRows = [];
+                var checkboxes = document.querySelectorAll("input.checkbox:checked");
+                for (var i = 0; i < checkboxes.length; i++) {
+                    selectedRows.push(checkboxes[i].getAttribute("data-id"));
+                }
+                return selectedRows;
+            }
+
+            function updateStatus(ids, action) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let result = xhttp.responseText;
+                        document.querySelector(".table-user tbody").innerHTML = result;
+                    }
+                };
+                xhttp.open("GET", "/controller/lock.php?action=" + action + "&ids=" + ids.join(","), true);
+                xhttp.send();
+            }
+        });
+
+        var offset = 400;
+        var duration = 1;
+        var right = document.querySelector('.right');
+        var topUp = document.querySelector('.top-up');
+        right.addEventListener('scroll', function() {
+            if (right.scrollTop > offset) {
+                topUp.style.display = 'block';
+            } else {
+                topUp.style.display = 'none';
+            }
+        });
+        topUp.addEventListener('click', function() {
+            right.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 
 </html>

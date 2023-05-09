@@ -311,8 +311,20 @@ if (isset($_SESSION['userName'])) {
                                                                     </a>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="/src/shipdetails.php">
-                                                                        <button class="form__submit btn-payment">Thanh toán</button>
+                                                                    <?php $user = $db->prepare("SELECT * from khachhang where makhachhang = :userID");
+                                                                    $user->bindParam(":userID", $_SESSION["userID"]);
+                                                                    $user->execute();
+                                                                    $users = $user->fetch(PDO::FETCH_ASSOC); ?>
+                                                                    <a href="<?php if ($users["khoa"] == 1) {
+                                                                                    echo '#';
+                                                                                } else {
+                                                                                    echo '/src/shipdetails.php';
+                                                                                } ?>"">
+                                                                        <button class=" form__submit btn-payment" style="<?php if ($users["khoa"] == 1) {
+                                                                                                                                echo 'cursor:no-drop;';
+                                                                                                                            } else {
+                                                                                                                                echo 'cursor: pointer;';
+                                                                                                                            } ?>">Thanh toán</button>
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -580,8 +592,20 @@ if (isset($_SESSION['userName'])) {
                                                                     </a>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="/src/shipdetails.php">
-                                                                        <button class="form__submit btn-payment">Thanh toán</button>
+                                                                    <?php $user = $db->prepare("SELECT * from khachhang where makhachhang = :userID");
+                                                                    $user->bindParam(":userID", $_SESSION["userID"]);
+                                                                    $user->execute();
+                                                                    $users = $user->fetch(PDO::FETCH_ASSOC); ?>
+                                                                    <a href="<?php if ($users["khoa"] == 1) {
+                                                                                    echo '#';
+                                                                                } else {
+                                                                                    echo '/src/shipdetails.php';
+                                                                                } ?>"">
+                                                                        <button class=" form__submit btn-payment" style="<?php if ($users["khoa"] == 1) {
+                                                                                                                                echo 'cursor:no-drop;';
+                                                                                                                            } else {
+                                                                                                                                echo 'cursor: pointer;';
+                                                                                                                            } ?>">Thanh toán</button>
                                                                     </a>
                                                                 </td>
                                                             </tr>

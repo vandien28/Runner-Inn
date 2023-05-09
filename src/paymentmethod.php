@@ -207,7 +207,7 @@
             });
         });
         var total = $(".payment-due-price").innerText
-        var day = (new Date()).getHours() + ":" + (new Date().getMinutes()) + " - " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) + "/" + (new Date()).getFullYear();
+        var day = (new Date()).getDate().toString().padStart(2, '0') + "/" + ((new Date()).getMonth() + 1).toString().padStart(2, '0') + "/" + (new Date()).getFullYear();
         $(".ordersuccess").addEventListener("click", function() {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {}

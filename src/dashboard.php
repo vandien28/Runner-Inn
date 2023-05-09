@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Runner Inn</title>
+    <title>Bảng điều khiển - Runner Inn</title>
     <link rel="stylesheet" href="../asset/font/awesome-6-pro/css/all.css">
     <link rel="icon" href="../asset/img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,31 +29,25 @@
                     <li class="nav-item">
                         <a href="dashboard.php" class="nav-link">
                             <i class="fa-solid fa-gauge"></i>
-                            <p>Dashboard</p>
+                            <p>Bảng điều khiển</p>
                         </a>
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link">
                             <i class="fa-solid fa-user"></i>
-                            <p>User Profile</p>
+                            <p>hồ sơ</p>
                         </a>
                     </li>
                     <li>
                         <a href="management.php" class="nav-link">
                             <i class="fa-solid fa-bars-progress"></i>
-                            <p>Management</p>
+                            <p>quản lý</p>
                         </a>
                     </li>
                     <li>
-                        <a href="" class="nav-link">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <p>Statistics</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="nav-link">
+                        <a href="map.php" class="nav-link">
                             <i class="fa-solid fa-map-location-dot"></i>
-                            <p>Map</p>
+                            <p>bản đồ</p>
                         </a>
                     </li>
                 </ul>
@@ -63,14 +57,14 @@
             <header class="header">
                 <div class="expand">
                     <div class="expand-left">
-                        <p>Dashboard</p>
+                        <p>Bảng điều khiển</p>
                         <i class="fa-solid fa-palette"></i>
                         <i class="fa-solid fa-earth-americas"></i>
-                        <a><i class="fa-solid fa-magnifying-glass"></i>Search</a>
+                        <a><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm</a>
                     </div>
                     <div class="expand-right">
                         <a href=""><img src="/asset/img/sidebar.jpg" alt=""></a>
-                        <p><a href="admin.php">Log out </a></p>
+                        <p><a href="admin.php">Đăng xuất</a></p>
                         <i class="fa-solid fa-gear"></i>
                         <i class="fa-solid fa-bell"></i>
                     </div>
@@ -82,44 +76,44 @@
                         <div class="col" style="padding-left: 0;">
                             <div class="card-box">
                                 <i class="fa-solid fa-layer-group"></i>
-                                <h6>orders</h6>
+                                <h6>đơn hàng</h6>
                                 <h3><span id="counter1">1,587</span></h3>
                                 <span class="badge">+11%</span>
-                                <span class="muted">From previous period</span>
+                                <span class="muted">So với quý trước</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card-box">
                                 <i class="fa-brands fa-cc-paypal"></i>
-                                <h6>revenue</h6>
-                                <h3>₫<span id="counter2">55,550,000</span></h3>
+                                <h6>doanh thu</h6>
+                                <h3><span id="counter2">55,550,000</span>₫</h3>
                                 <span class="badge" style="background-color: rgb(255 93 72);">-23%</span>
-                                <span class="muted">From previous period</span>
+                                <span class="muted">So với quý trước</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card-box">
                                 <i class="fa-solid fa-chart-simple"></i>
-                                <h6>average price</h6>
-                                <h3>₫<span id="counter3">7,000,000</span></h3>
+                                <h6>giá trung bình</h6>
+                                <h3><span id="counter3">7,000,000</span>₫</h3>
                                 <span class="badge" style="background-color: rgb(255 122 163);">0%</span>
-                                <span class="muted">From previous period</span>
+                                <span class="muted">So với quý trước</span>
                             </div>
                         </div>
                         <div class="col" style="padding-right: 0;">
                             <div class="card-box">
                                 <i class="fa-solid fa-rocket"></i>
-                                <h6>products sold</h6>
+                                <h6>sản phẩm đã bán</h6>
                                 <h3 id="counter4">2,354</h3>
                                 <span class="badge" style="background-color: rgb(241 181 61)">+30%</span>
-                                <span class="muted">Last year</span>
+                                <span class="muted">So với năm ngoái</span>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="justify-content: space-between;">
                         <div class="col-md" style="width: calc(100%/1.55);">
                             <div class="card-box">
-                                <h4>Sales Statistics</h4>
+                                <h4>Thống kê bán hàng</h4>
                                 <div>
                                     <canvas id="myChart"></canvas>
                                 </div>
@@ -127,7 +121,7 @@
                         </div>
                         <div class="col-lg" style=" width: calc(100%/3);">
                             <div class="card-box">
-                                <h4>Trends monthly</h4>
+                                <h4>Xu hướng hàng tháng</h4>
                                 <div>
                                     <canvas id="myCharts"></canvas>
                                 </div>
@@ -137,7 +131,7 @@
                     <div class="row">
                         <div class="col" style="width: 30%; padding-left: 0;">
                             <div class="card-box">
-                                <h4>Inbox</h4>
+                                <h4>Hộp thư đến</h4>
                                 <div class="inbox">
                                     <div class="inbox-item">
                                         <img src="/asset/img/sidebar.jpg" alt="">
@@ -182,9 +176,9 @@
                         </div>
                         <div class="col" style="width: 30%;">
                             <div class="card-box" style=" margin-bottom: 42px;">
-                                <h4>Sales Statistics</h4>
+                                <h4>Thống kê bán hàng</h4>
                                 <p class="text">
-                                   Sản phẩm
+                                    Sản phẩm đã bán
                                     <span>78%</span>
                                 </p>
                                 <div class="progress" style="height: 10px;">
@@ -192,9 +186,9 @@
                                 </div>
                             </div>
                             <div class="card-box" style="  margin-bottom: 42px;">
-                                <h4>Monthly Sales</h4>
+                                <h4>Tháng giảm giá</h4>
                                 <p class="text">
-                                   Sản phẩm
+                                    Sản phẩm đã bán
                                     <span style="color: rgb(27 185 154);">25%</span>
                                 </p>
                                 <div class="progress" style="height: 10px;">
@@ -202,9 +196,9 @@
                                 </div>
                             </div>
                             <div class="card-box">
-                                <h4>Daily Sales</h4>
+                                <h4>Doanh số hàng ngày</h4>
                                 <p class="text">
-                                    Sản phẩm
+                                    Sản phẩm đã bán
                                     <span style="color: rgb(241 181 61);">75%</span>
                                 </p>
                                 <div class="progress" style="height: 10px;">
@@ -214,15 +208,15 @@
                         </div>
                         <div class="col" style="width: 40%; padding-right: 0;">
                             <div class="card-box">
-                                <h4>Top Contacts</h4>
+                                <h4>Liên hệ hàng đầu</h4>
                                 <div class="table-responsive" id="style-1">
                                     <table class="table table-bordered table-nowrap mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Company</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
-                                                <th>Status</th>
+                                                <th>Công ty</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                                <th>Trạng thái</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -230,37 +224,37 @@
                                                 <th class="text-muted">Apple Technology</th>
                                                 <td>20/02/2014</td>
                                                 <td>19/02/2020</td>
-                                                <td><span class="badge badge-success">Paid</span></td>
+                                                <td><span class="badge badge-success">Đã thanh toán</span></td>
                                             </tr>
                                             <tr>
                                                 <th class="text-muted">Envato Pty Ltd.</th>
                                                 <td>20/02/2014</td>
                                                 <td>19/02/2020</td>
-                                                <td><span class="badge badge-danger">Unpaid</span></td>
+                                                <td><span class="badge badge-danger">Chưa thanh toán</span></td>
                                             </tr>
                                             <tr>
                                                 <th class="text-muted">Dribbble LLC.</th>
                                                 <td>20/02/2014</td>
                                                 <td>19/02/2020</td>
-                                                <td><span class="badge badge-success">Paid</span></td>
+                                                <td><span class="badge badge-success">Đã thanh toán</span></td>
                                             </tr>
                                             <tr>
                                                 <th class="text-muted">Adobe Family</th>
                                                 <td>20/02/2014</td>
                                                 <td>19/02/2020</td>
-                                                <td><span class="badge badge-success">Paid</span></td>
+                                                <td><span class="badge badge-success">Đã thanh toán</span></td>
                                             </tr>
                                             <tr>
                                                 <th class="text-muted">Apple Technology</th>
                                                 <td>20/02/2014</td>
                                                 <td>19/02/2020</td>
-                                                <td><span class="badge badge-danger">Unpaid</span></td>
+                                                <td><span class="badge badge-danger">Chưa thanh toán</span></td>
                                             </tr>
                                             <tr>
                                                 <th class="text-muted">Envato Pty Ltd.</th>
                                                 <td>20/02/2014</td>
                                                 <td>19/02/2020</td>
-                                                <td><span class="badge badge-success">Paid</span></td>
+                                                <td><span class="badge badge-success">Đã thanh toán</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -284,9 +278,9 @@
     <script>
         const chart = document.getElementById('myChart');
         const data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
             datasets: [{
-                label: 'Total revenue for the year',
+                label: 'Doanh thu trong tháng',
                 data: [59, 65, 52, 78, 63, 85, 92, 66, 83, 91, 96, 101],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.6)',
@@ -316,17 +310,16 @@
                 }
             },
         });
-    </script>
-    <script>
+    
         const charts = document.getElementById('myCharts');
         const datas = {
             labels: [
-                'Today',
-                'This week',
-                'Last week'
+                'Hôm nay',
+                'Tuần này',
+                'Tuần trước'
             ],
             datasets: [{
-                label: 'My First Dataset',
+                label: ' Số sản phẩm',
                 data: [35, 40, 25],
                 backgroundColor: [
                     'rgb(27,185,154)',
@@ -343,8 +336,7 @@
             type: 'doughnut',
             data: datas,
         });
-    </script>
-    <script>
+    
         function animateNumber(finalNumber, duration = 5000, startNumber = 0, callback) {
             let currentNumber = startNumber
             const interval = window.setInterval(updateNumber, 17)
@@ -385,6 +377,24 @@
                 document.getElementById('counter4').innerText = formattedNumber
             })
         })
+
+        var offset = 400;
+        var duration = 1;
+        var right = document.querySelector('.right');
+        var topUp = document.querySelector('.top-up');
+        right.addEventListener('scroll', function() {
+            if (right.scrollTop > offset) {
+                topUp.style.display = 'block';
+            } else {
+                topUp.style.display = 'none';
+            }
+        });
+        topUp.addEventListener('click', function() {
+            right.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 

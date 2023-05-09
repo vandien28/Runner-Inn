@@ -17,8 +17,17 @@
 <body>
     <?php
     $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
-    ?>
-    <?php include "header.php" ?>
+    include "header.php"; ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php
+            if (isset($_SESSION['errormessage'])) {
+                echo 'alert("Đăng nhập không thành công!")';
+                session_destroy();
+            }
+            ?>
+        });
+    </script>
     <main id="main">
         <section class="layout-account">
             <div class="container">
@@ -60,7 +69,8 @@
         </section>
         <?php include "gallery.php" ?>
     </main>
-    <?php include "footer.php"  ?>
+    <?php include "footer.php";
+    ?>
     <script type="text/javascript" src="../asset/js/account.js"></script>
 </body>
 

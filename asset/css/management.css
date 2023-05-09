@@ -14,7 +14,7 @@ html {
 }
 
 
-.notification, .notifications {
+.notification {
     background-color: rgb(0 0 0 / 70%);
     position: fixed;
     width: 100%;
@@ -26,8 +26,8 @@ html {
 
 
 
-.ntfc-box, .ntfc-boxs {
-    width: 350px;
+.ntfc-box {
+    width: 450px;
     height: 120px;
     margin: auto;
     background-color: rgb(255 255 255);
@@ -36,13 +36,7 @@ html {
     padding: 20px;
 }
 
-.ntfc-boxs {
-    width: 500px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .noti-title > p {
     font-size: 22px;
@@ -51,11 +45,7 @@ html {
     color: rgb(52 58 64);
 }
 
-.noti-titles > p {
-    font-size: 22px;
-    font-weight: bold;
-    color: rgb(52 58 64);
-}
+
 
 .noti-btn > p {
     float: right;
@@ -68,21 +58,15 @@ html {
     text-align: right;
 }
 
-.noti-btns > i {
-    position: absolute;
-    font-size: 30px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: rgb(108 117 125);
-    right: 20px;
-    top: 10px;
-}
 
-.noti-btn > p:hover, .noti-btns > i:hover {
+.noti-btn > p:hover {
     color: rgb(23 154 148);
     cursor: pointer;
 }
 
+.btn-yes {
+    margin-right: 20px;
+}
 
 .btn-yes:hover {
     color: rgb(255 93 72) !important;
@@ -131,7 +115,7 @@ html {
 }
 
 .logo > h1 {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 35px;
     color: rgb(255 255 255);
     font-weight: 400;
@@ -211,7 +195,7 @@ li.nav-item .nav-link {
 
 .expand-left,.expand-right {
     padding: 5px 15px;
-    width: 400px;
+    /* width: 400px; */
     height: 100%;
     display: flex;
     align-items: center;
@@ -236,7 +220,7 @@ li.nav-item .nav-link {
 }
 
 .expand-right {
-    width: 260px;
+    width: 300px;
     height: 100%;
 }
 
@@ -353,9 +337,9 @@ li.nav-item .nav-link {
 .entername {
     font-size: 18px;
     color: rgb(34 34 34);
-    font-family: "Mulish",sans-serif;
-    margin-right: 10px;
-    padding-bottom: 7px;
+    margin-left: 10px;
+    padding: 10px 0;
+    font-weight: 500;
  }
  
 .inputname {
@@ -472,15 +456,33 @@ textarea {
 .uploadimgs {
     height: 200px;
     width: 200px;
-    display: flex;
+    position: relative;
 }
+
+.uploadimgss::before {
+    content: "";
+    height: 199px;
+    width: 199px;
+    position: absolute;
+    background: #000000;
+    opacity: 0.1;
+    z-index: 2;
+    display: none;
+
+}
+
 
 .uploadimgss {
     border: 1px solid rgb(0 0 0/20%);
     height: 100%;
     width: 100%;
-    display: flex;
 }
+
+.uploadimgs:hover  .uploadimgss::before {
+    display: block;
+    cursor: pointer;
+}
+
 
 #img-preview {
     width: 100%;
@@ -533,8 +535,12 @@ textarea {
      
 }
 
-.btn-add:hover,.close:hover,.save:hover, .closedetail:hover {
+.btn-add:hover,.save:hover, .closedetail:hover {
     background-color: rgb(27 185 154);
+}
+
+.close:hover {
+    background: rgb(255, 93, 72);
 }
 
 .management-sidebar > p {
@@ -836,4 +842,100 @@ button:hover {
 
 .icon-top:hover {
     color: rgb(255 255 255 );
+}
+
+.selectStt {
+    height: 30px;
+    width: 140px;
+    outline: 0;
+    padding: 0 5px;
+    font-size: 14px;
+    border-color: transparent;
+    border-bottom: 1px solid #515151;
+}
+
+
+  
+.fieldset{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.fieldset .field {
+    width: 30%;
+    float: left;
+    padding: 0.45em;
+    box-sizing: border-box;
+}
+
+.field-input-wrapper {
+    position: relative;
+}
+
+.fieldset .field .field-input-wrapper.field-input-wrapper-select::before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMSIgaGVpZ2h0PSIxOSIgdmlld0JveD0iMCAwIDIxIDE5Ij48dGl0bGU+QXJ0Ym9hcmQgMTwvdGl0bGU+PGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBmaWxsPSIjMDAwIj48Zz48cGF0aCBkPSJNMCAwaDF2MTlIMFYweiIgaWQ9IlNoYXBlIiBmaWxsLW9wYWNpdHk9Ii4xNSIvPjxwYXRoIGQ9Ik0xMSA4aDEwbC01IDUtNS01eiIgZmlsbC1vcGFjaXR5PSIuNSIvPjwvZz48L2c+PC9nPjwvc3ZnPg==),none;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.fieldset .field .field-input-wrapper .field-label {
+    -webkit-transform: none;
+    transform: none;
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" 100 ")";
+    filter: alpha(opacity=100);
+    font-size: 0.85em;
+    font-weight: 500;
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    padding: 3px 0.93333em 0;
+    z-index: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+    pointer-events: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" 0 ")";
+    filter: alpha(opacity=0);
+    color: #999999;
+    transition: all 0.2s ease-out;
+    margin: 0.5em 0;
+    margin-top: 0.2em;
+    display: block;
+}
+
+.fieldset .field .field-input-wrapper .field-input {
+    box-shadow: 0 0 0 1px #d9d9d9;
+    transition: all 0.2s ease-out;
+    background-color: white;
+    color: #333333;
+    border-radius: 4px;
+    display: block;
+    box-sizing: border-box;
+    width: 97%;
+    padding: 0.94em 2.8em 0.94em 0.8em;
+    word-break: normal;
+    padding-top: 1.5em;
+    font-weight: 500;
+    outline-color: #338DBC;
+    border: 0;
+    appearance: none;
+    padding-bottom: 0.5em;
+    font-size: 16px;
 }

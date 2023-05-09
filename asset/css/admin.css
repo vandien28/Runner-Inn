@@ -138,7 +138,6 @@ li.nav-item .nav-link {
 
 .expand-left, .expand-right {
     padding: 5px 15px;
-    width: calc(100%/3);
     height: 100%;
     display: flex;
     align-items: center;
@@ -162,10 +161,16 @@ li.nav-item .nav-link {
     margin-right: 7px;
 }
 
-.expand-right {
+/* .expand-right {
     width: calc(100%/4) !important;
     justify-content: end;
+} */
+
+.expand-right {
+    width: 300px;
+    height: 100%;
 }
+
 
 .expand-right > a > img {
     border-radius: 999px;
@@ -178,6 +183,7 @@ li.nav-item .nav-link {
 .expand-right > p > a {
     margin-right: 13px;
     color: rgb(136 136 136);
+
 
 }
 

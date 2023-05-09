@@ -3,7 +3,8 @@
 -- Cơ sở dữ liệu: `runnerinn`
 --
 CREATE DATABASE runnerinn;
-use runnerinn;
+USE runnerinn;
+
 -- --------------------------------------------------------
 
 --
@@ -17,6 +18,21 @@ CREATE TABLE `chitietdonhang` (
   `mausac` varchar(256) DEFAULT NULL,
   `kichthuoc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietdonhang`
+--
+
+INSERT INTO `chitietdonhang` (`madonhang`, `masp`, `soluongsp`, `mausac`, `kichthuoc`) VALUES
+(972974, 123217, 100, 'Trắng', 38),
+(972974, 238934, 100, 'Trắng', 39),
+(282983, 238934, 100, 'Trắng', 39),
+(282983, 846212, 100, 'Xanh', 37),
+(613469, 743027, 100, 'Tím', 37),
+(231933, 723041, 100, 'Trắng', 38),
+(482769, 182131, 100, 'Xám', 39),
+(250524, 846212, 100, 'Xanh', 39),
+(753993, 723041, 100, 'Trắng', 37);
 
 -- --------------------------------------------------------
 
@@ -91,9 +107,22 @@ CREATE TABLE `donhang` (
   `tongtien` varchar(256) DEFAULT NULL,
   `ngaydathang` varchar(256) DEFAULT NULL,
   `makhachhang` int(11) DEFAULT NULL,
-  `trangthaidonhang` varchar(50) DEFAULT NULL CHECK (`trangthaidonhang` = 'đang xử lý' or `trangthaidonhang` = 'đã giao' or `trangthaidonhang` = 'đã huỷ'),
+  `trangthaidonhang` varchar(50) DEFAULT NULL,
   `phuongthucthanhtoan` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`madonhang`, `tongtien`, `ngaydathang`, `makhachhang`, `trangthaidonhang`, `phuongthucthanhtoan`) VALUES
+(231933, '8,000,000₫', '8/5/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)'),
+(250524, '8,000,000₫', '8/5/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)'),
+(282983, '12,000,000₫', '8/5/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)'),
+(482769, '5,750,000₫', '8/5/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)'),
+(613469, '4,800,000₫', '8/5/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)'),
+(753993, '8,000,000₫', '8/5/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)'),
+(972974, '26,400,000₫', '8/5/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)');
 
 -- --------------------------------------------------------
 
@@ -248,23 +277,24 @@ CREATE TABLE `khachhang` (
   `email` varchar(256) DEFAULT NULL,
   `sdt` varchar(11) DEFAULT NULL,
   `tentk` varchar(256) DEFAULT NULL,
-  `matkhau` int(11) DEFAULT NULL
+  `matkhau` int(11) DEFAULT NULL,
+  `khoa` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
-INSERT INTO `khachhang` (`makhachhang`, `tenkhachhang`, `email`, `sdt`, `tentk`, `matkhau`) VALUES
-(123456, 'Lê Văn Diễn', 'dien@gmail.com', '0335710213', 'dien123', 1234567890),
-(234234, 'Tống Đức Duy', 'duy@gmail.com', '0335710213', 'duy123', 1234567890),
-(234567, 'Nguyễn Tăng Chương', 'chuong@gmail.com', '0335710213', 'chuong123', 1234567890),
-(345678, 'Nguyễn Hoàng Thiên Phú', 'phu@gmail.com', '0335710213', 'phu123', 1234567890),
-(430192, 'Lê Trung Kiên', 'kien@gmail.com', '0335710213', 'kien123', 1234567890),
-(723414, 'Dương Văn Sinl', 'sinl@gmail.com', '0335710213', 'sinl123', 1234567890),
-(743913, 'Đinh Văn Nam', 'nam@gmail.com', '0335710213', 'nam123', 1234567890),
-(895463, 'Đặng Ngân Đông', 'dong@gmail.com', '0335710213', 'dong123', 1234567890),
-(980234, 'Lê Bùi Minh Khoa', 'khoa@gmail.com', '0335710213', 'khoa123', 1234567890);
+INSERT INTO `khachhang` (`makhachhang`, `tenkhachhang`, `email`, `sdt`, `tentk`, `matkhau`, `khoa`) VALUES
+(123456, 'Lê Văn Diễn', 'dien@gmail.com', '0335710213', 'dien123', 1234567890, 0),
+(234234, 'Tống Đức Duy', 'duy@gmail.com', '0335710213', 'duy123', 1234567890, 0),
+(234567, 'Nguyễn Tăng Chương', 'chuong@gmail.com', '0335710213', 'chuong123', 1234567890, 0),
+(345678, 'Nguyễn Hoàng Thiên Phú', 'phu@gmail.com', '0335710213', 'phu123', 1234567890, 0),
+(430192, 'Lê Trung Kiên', 'kien@gmail.com', '0335710213', 'kien123', 1234567890, 0),
+(723414, 'Dương Văn Sinl', 'sinl@gmail.com', '0335710213', 'sinl123', 1234567890, 0),
+(743913, 'Đinh Văn Nam', 'nam@gmail.com', '0335710213', 'nam123', 1234567890, 0),
+(895463, 'Đặng Ngân Đông', 'dong@gmail.com', '0335710213', 'dong123', 1234567890, 0),
+(980234, 'Lê Bùi Minh Khoa', 'khoa@gmail.com', '0335710213', 'khoa123', 1234567890, 0);
 
 -- --------------------------------------------------------
 
@@ -406,9 +436,8 @@ CREATE TABLE `loaigiay` (
 --
 
 INSERT INTO `loaigiay` (`maloai`, `tenloai`) VALUES
-(123, 'Nike'),
-(456, 'Adidas'),
-(789, 'Sản phẩm tặng');
+(123, 'Sản phẩm bán'),
+(456, 'Sản phẩm tặng');
 
 -- --------------------------------------------------------
 
@@ -480,12 +509,12 @@ CREATE TABLE `sanpham` (
 
 INSERT INTO `sanpham` (`masp`, `tensp`, `mota`, `giatien`, `mathuonghieu`, `maloai`, `madanhmuc`, `soluong`) VALUES
 (103294, 'Nike Air Max 1 Anniversary', NULL, 4200000, 123, 123, 456, 100),
-(123213, 'Sản phẩm tặng 3', NULL, 0, 456, 789, 345, 100),
+(123213, 'Sản phẩm tặng 3', NULL, 0, 456, 456, 345, 100),
 (123217, 'Nike Wmns Air Huarache City Move', NULL, 5200000, 123, 123, 567, 100),
 (123563, 'Adidas PW Solar HU NMD \"Inspiration Pack\"', NULL, 4200000, 456, 456, 234, 100),
 (182131, 'Adidas Nmd Xr1 W \"Pearl Grey\"', NULL, 5750000, 456, 456, 456, 100),
-(213313, 'Sản phẩm tặng 1', NULL, 0, 123, 789, 345, 100),
-(234234, 'Sản phẩm tặng 2', NULL, 0, 456, 789, 345, 100),
+(213313, 'Sản phẩm tặng 1', NULL, 0, 123, 456, 345, 100),
+(234234, 'Sản phẩm tặng 2', NULL, 0, 456, 456, 345, 100),
 (238934, 'ZX 930 X EQT NEVER MADE PACK', NULL, 4000000, 123, 123, 123, 100),
 (255462, 'Ultra Boost', NULL, 4700000, 456, 456, 456, 100),
 (324123, 'Nike Air Max 1 Se \"Just Do It\"', NULL, 4900000, 123, 123, 123, 100),
@@ -673,5 +702,4 @@ ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`maloai`) REFERENCES `loaigiay` (`maloai`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`madanhmuc`) REFERENCES `danhmuc` (`madanhmuc`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
 
