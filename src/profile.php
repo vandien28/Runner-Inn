@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="nav-link">
+                        <a href="map.php" class="nav-link">
                             <i class="fa-solid fa-map-location-dot"></i>
                             <p>bản đồ</p>
                         </a>

@@ -57,9 +57,14 @@
                                                                     <i class="iconMP fa-thin fa-plus"></i>
                                                                 </span>
                                                                 <ul class="submenu-links hide">
-                                                                    <li><a href="collection.php?type=Nike" title="">Nike</a></li>
-                                                                    <li><a href="collection.php?type=Adidas" title="">Adidas</a></li>
-                                                                    <li><a href="collection.php?type=Sản phẩm tặng" title="">Sản phẩm tặng</a></li>
+                                                                    <?php
+                                                                    $cate = $db->prepare("SELECT * FROM loaigiay");
+                                                                    $cate->execute();
+                                                                    $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
+                                                                    foreach ($cateName as $row) {
+                                                                    ?>
+                                                                        <li><a href="collection.php?type=<?php echo $row["tenloai"]; ?>"><?php echo $row["tenloai"]; ?></a></li>
+                                                                    <?php } ?>
                                                                 </ul>
                                                                 <script>
                                                                     let isCheck = true
@@ -269,11 +274,11 @@
                             <div class="row">
                                 <div class="product-list">
                                     <?php
-                                    $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,tenloai,sanpham.masp FROM sanpham,hinhanhsp,loaigiay where sanpham.masp = hinhanhsp.masp and sanpham.maloai = loaigiay.maloai");
+                                    $productList = $db->prepare("SELECT distinct an,urlmain,tensp,giatien,tenloai,sanpham.masp FROM sanpham,hinhanhsp,loaigiay where sanpham.masp = hinhanhsp.masp and sanpham.maloai = loaigiay.maloai");
                                     $productList->execute();
                                     $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($product as $row) {
-                                        if (isset($_GET['type']) && $_GET['type'] == 'bosuutap') {
+                                        if (isset($_GET['type']) && $_GET['type'] == 'bosuutap' && $row["an"] === 0) {
                                     ?>
                                             <div class="col-sm-6 product-item">
                                                 <div class="product-block">

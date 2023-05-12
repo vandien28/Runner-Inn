@@ -72,7 +72,125 @@
                 </div>
             </header>
             <main class="content-page">
+                <div class="content">
+                    <div class="row">
+                        <div class="col">
+                            <div class="management-box">
+                                <p class="entername">Ảnh đại diện</p>
+                                <div style="display:flex;">
+                                    <div class="upload" style="display:flex; flex-flow:row wrap; padding-bottom: 0 !important; ">
+                                        <div class="uploadimgs" style="margin-left: 10px; margin-bottom: 10px;">
+                                            <div class="uploadimgss">
+                                                <img src="/asset/img/avt.webp" id="img-previews" class="editimg img avt">
+                                                <div class="editImg boxIcon" style="left:38% !important;" onclick="editImgs()">
+                                                    <i class="iconEdit fa-regular fa-pen-to-square">
+                                                        <input class="input-file" id="myavt" type="file" style="padding:0;">
+                                                    </i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fieldset">
+                                        <div class="field">
+                                            <div class="field-input-wrapper">
+                                                <label class="field-label" for="">Tên sản phẩm</label>
+                                                <input class="field-input name" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <?php
+                                        $productID = $db->prepare("SELECT masp from sanpham")->fetchAll(PDO::FETCH_COLUMN);
+                                        do {
+                                            $newProductID = mt_rand(100000, 999999);
+                                        } while (in_array($newProductID, $productID));
+                                        ?>
+                                        <div class="field">
+                                            <div class="field-input-wrapper">
+                                                <label class="field-label" for="">Mã sản phẩm</label>
+                                                <input class="field-input productID" type="text" disabled value="<?php echo  $newProductID; ?>" style="cursor: no-allowed;background-color: rgb(245 245 245);">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="field-input-wrapper">
+                                                <label class="field-label" for="">Giá tiền</label>
+                                                <input class="field-input price" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="field-input-wrapper field-input-wrapper-select">
+                                                <label class="field-label" for="">Thương hiệu</label>
+                                                <select class="field-input" name="" id="trademark">
+                                                    <option value="0">Chọn thương hiệu</option>
+                                                    <option value="123">Nike</option>
+                                                    <option value="456">Adidas</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="field-input-wrapper field-input-wrapper-select">
+                                                <label class="field-label" for="">Danh mục</label>
+                                                <select class="field-input" name="" id="category">
+                                                    <option value="0">Chọn danh mục</option>
+                                                    <option value="123">Sản Phẩm Thường</option>
+                                                    <option value="456">Sản Phẩm Mới</option>
+                                                    <option value="567">Sản Phẩm Bán Chạy</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="field-input-wrapper field-input-wrapper-select">
+                                                <label class="field-label" for="">Loại giày</label>
+                                                <select class="field-input" name="" id="type">
+                                                    <option value="0">Chọn loại giày</option>
+                                                    <option value="123">Giày Thể Thao</option>
+                                                    <option value="456">Giày Sneaker</option>
+                                                    <option value="789">Giày Chạy Bộ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="field-input-wrapper">
+                                                <label class="field-label" for="">Số lượng</label>
+                                                <input class="field-input quantity" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="field">
 
+                                            <div class="field-input-wrapper">
+                                                <label class="field-label" for="">Màu sắc</label>
+                                                <input class="field-input color" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+
+                                            <div class="field-input-wrapper">
+                                                <label class="field-label" for="">Kích thước</label>
+                                                <input class="field-input size" type="text" value="">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <p class="entername">Hình ảnh sản phẩm</p>
+                                <div class="upload listImg" style="display:flex; flex-flow:row wrap;">
+
+                                </div>
+                                <div class="input-file-container" onchange="addImage()">
+                                    <input class="input-file" id="my-file" type="file">
+                                    <label tabindex="0" for="my-file" class="input-file-trigger">Thêm ảnh</label>
+                                </div>
+                                <div class="btn-management" style="margin-top: 20px; margin-left:10px;">
+                                    <button type="submit" class="save" style="margin-right:15px;" onclick="addProduct()"><i class="fa-solid fa-floppy-disk"></i>
+                                    </button>
+                                    <a href="management.php">
+                                        <button type="submit" class="close"><i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </main>
             <footer class="footer">
                 <div class="end">
@@ -86,10 +204,13 @@
         </div>
     </div>
     <script>
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+        // * lên đầu trang
         var offset = 400;
         var duration = 1;
-        var right = document.querySelector('.right');
-        var topUp = document.querySelector('.top-up');
+        var right = $('.right');
+        var topUp = $('.top-up');
         right.addEventListener('scroll', function() {
             if (right.scrollTop > offset) {
                 topUp.style.display = 'block';
@@ -103,6 +224,185 @@
                 behavior: 'smooth'
             });
         });
+        // * xoá ảnh sản phẩm
+        function deleteImg() {
+            event.target.closest(".uploadimgs").remove();
+            $$(".uploadimgs").forEach((upload, index) => {
+                if (index > 0) {
+                    upload.style.marginLeft = "10px";
+                } else {
+                    upload.style.marginLeft = "0";
+                }
+            });
+        }
+        // * thay đổi ảnh sản phẩm
+        var avtImg;
+
+        function editImgs() {
+            const input = document.getElementById('myavt');
+            const imgPreview = document.querySelector('.avt');
+
+            input.addEventListener('change', function(event) {
+                const files = event.target.files[0];
+                const readers = new FileReader();
+
+                readers.onload = function(e) {
+                    // Tạo FormData object để lưu ảnh lên server
+                    const formData = new FormData();
+                    formData.append('file', files);
+
+                    // Gửi Ajax request đến server
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/controller/uploadavt.php', true);
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            // Lấy đường dẫn tới ảnh trên server và hiển thị ảnh đó
+                            const imgUrl = '/asset/upload/avt/' + xhr.responseText;
+                            imgPreview.src = imgUrl;
+                            avtImg = imgUrl;
+                        } else {
+                            alert('Đã có lỗi xảy ra khi tải lên ảnh!');
+                        }
+                    };
+                    xhr.send(formData);
+                };
+
+                readers.readAsDataURL(files);
+            });
+        }
+
+
+        function editImg() {
+            $$(".input-file").forEach(inputFile => {
+                inputFile.addEventListener("change", function() {
+                    let parent = this.closest(".uploadimgss");
+                    let img = parent.querySelector(".editimgs");
+                    let file = this.files[0];
+                    let reader = new FileReader();
+                    reader.addEventListener("load", function() {
+                        // Lưu ảnh vào thư mục /asset/upload/img
+                        let xhr = new XMLHttpRequest();
+                        let formData = new FormData();
+                        formData.append("image", file);
+                        xhr.onreadystatechange = function() {
+                            if (this.readyState === 4 && this.status === 200) {
+                                // Load lại ảnh
+                                img.src = "../asset/upload/img/" + file.name;
+                            }
+                        }
+                        xhr.open("POST", "/controller/uploadimg.php");
+                        xhr.send(formData);
+                    });
+                    reader.readAsDataURL(file);
+                });
+            });
+        }
+
+
+
+        // * thêm ảnh sản phẩm
+        var srcImgList = "" // * lưu tất cả link ảnh thành 1 chuỗi
+        function addImage() {
+            var imageUrl = "";
+            var xhr = new XMLHttpRequest();
+            var formData = new FormData();
+            formData.append("image", event.target.files[0]);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        imageUrl = '/asset/upload/img/' + xhr.responseText;
+                        // create the new image container and its child elements here
+                        var newImageContainer = document.createElement('div');
+                        newImageContainer.className = 'uploadimgs';
+                        newImageContainer.style = 'margin-left: 10px; margin-bottom: 10px;';
+
+                        var newImageDiv = document.createElement('div');
+                        newImageDiv.className = 'uploadimgss';
+
+                        var newImage = document.createElement('img');
+                        newImage.src = imageUrl;
+                        newImage.className = 'editimg img editimgs';
+
+                        var newEditImgDiv = document.createElement('div');
+                        newEditImgDiv.className = 'editImg boxIcon';
+                        newEditImgDiv.setAttribute("onclick", "editImg()");
+
+                        var newEditImgIcon = document.createElement('i');
+                        newEditImgIcon.className = 'iconEdit fa-regular fa-pen-to-square';
+
+                        var newInputFile = document.createElement('input');
+                        newInputFile.className = 'input-file';
+                        newInputFile.type = 'file';
+                        newInputFile.style = 'padding:0;';
+
+                        var newDeleteImgDiv = document.createElement('div');
+                        newDeleteImgDiv.className = 'deleteImg boxIcon';
+                        newDeleteImgDiv.setAttribute("onclick", "deleteImg()");
+
+                        var newDeleteImgIcon = document.createElement('i');
+                        newDeleteImgIcon.className = 'iconDelete fa-regular fa-rectangle-xmark';
+
+                        // Thêm các element mới vào container
+                        newEditImgIcon.appendChild(newInputFile);
+                        newEditImgDiv.appendChild(newEditImgIcon);
+                        newDeleteImgDiv.appendChild(newDeleteImgIcon);
+                        newImageDiv.appendChild(newImage);
+                        newImageDiv.appendChild(newEditImgDiv);
+                        newImageDiv.appendChild(newDeleteImgDiv);
+                        newImageContainer.appendChild(newImageDiv);
+                        $(".listImg").appendChild(newImageContainer);
+                          // * lấy danh sách đường link ảnh
+                        srcImgList = Array.from(document.querySelectorAll(".editimgs")).map(item => item.src).join(",");
+                    } else {
+                        console.error(xhr.status);
+                    }
+                }
+            };
+            xhr.open("POST", "/controller/uploadimg.php");
+            xhr.send(formData);
+          
+        }
+
+
+        function addProduct() {
+            let name = $(".name").value;
+            let id = $(".productID").value;
+            let price = $(".price").value;
+            let quantity = $(".quantity").value;
+            let color = $(".color").value;
+            let size = $(".size").value;
+
+            let type = document.getElementById("type").value
+            let trademark = document.getElementById("trademark").value
+            let cate = document.getElementById("category").value
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = xhttp.responseText;
+                    if (response == "success") {
+                        alert("Thêm sản phẩm thành công!")
+                        window.location.href = "management.php";
+                    } else {
+                        alert("Thêm sản phẩm không thành công!")
+                    }
+                }
+            };
+            xhttp.open("POST", "/controller/addProduct.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send(
+                "id=" + encodeURIComponent(id) +
+                "&name=" + encodeURIComponent(name) +
+                "&avt=" + encodeURIComponent(avtImg) +
+                "&price=" + encodeURIComponent(price) +
+                "&quantity=" + encodeURIComponent(quantity) +
+                "&color=" + encodeURIComponent(color) +
+                "&size=" + encodeURIComponent(size) +
+                "&trademark=" + encodeURIComponent(trademark) +
+                "&category=" + encodeURIComponent(cate) +
+                "&type=" + encodeURIComponent(type) +
+                "&img=" + encodeURIComponent(srcImgList)
+            );
+        }
     </script>
 </body>
 

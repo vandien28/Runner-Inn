@@ -60,11 +60,11 @@
                     <div class="row">
                         <div class="product-list">
                             <?php
-                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc,sanpham.masp FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc,sanpham.masp,an FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
-                                if ($row["madanhmuc"] == 456) {
+                                if ($row["madanhmuc"] == 456 && $row["an"] === 0) {
                             ?>
                                     <div class="col-md pro-loop">
                                         <div class="product">
@@ -150,11 +150,11 @@
                         <div class="product-list ">
 
                             <?php
-                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc,sanpham.masp FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
+                            $productList = $db->prepare("SELECT distinct urlmain,tensp,giatien,madanhmuc,an,sanpham.masp FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp");
                             $productList->execute();
                             $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($product as $row) {
-                                if ($row["madanhmuc"] == 567) {
+                                if ($row["madanhmuc"] == 567 && $row["an"] === 0) {
                             ?>
                                     <div class="col-md pro-loop">
                                         <div class="product">

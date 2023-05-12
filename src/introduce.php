@@ -50,13 +50,20 @@
                                     <li class="has-submenu level0">
                                         <a>Sản phẩm
                                         </a>
-                                        <span class="icon-plus-submenu" onclick="showMenubar()">
+                                        <span class="icon-plus-submenu" onclick="showMenubar()" style="top: 150px !important; ">
                                             <i class="iconMP fa-thin fa-plus"></i>
                                         </span>
                                         <ul class="submenu-links hide">
-                                            <li><a href="#" title="">Nike</a></li>
-                                            <li><a href="#" title="">Adidas</a></li>
-                                            <li><a href="#" title="">Sản phẩm tặng</a></li>
+                                            <?php
+                                            $cate = $db->prepare("SELECT * FROM loaigiay");
+                                            $cate->execute();
+                                            $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($cateName as $row) {
+
+                                            ?>
+                                                <li><a href="collection.php?type=<?php echo $row["tenloai"]; ?>"><?php echo $row["tenloai"]; ?></a></li>
+
+                                            <?php } ?>
                                         </ul>
                                         <script>
                                             let isCheck = true

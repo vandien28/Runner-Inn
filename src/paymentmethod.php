@@ -17,7 +17,6 @@
 <body>
     <?php
     $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
-    session_start();
     ?>
     <div class="row">
         <div class="main">
@@ -32,6 +31,14 @@
                 </ul>
             </div>
             <div class="main-content">
+
+                <?php
+                $address = $db->prepare("SELECT * from diachi where makhachhang = :userID and macdinh = 1");
+                $address->bindParam(":userID", $_SESSION["userID"]);
+                $address->execute();
+                $addressOrder = $address->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <p class="addressOrder hide"><?php echo $addressOrder["tenduong"] . ",&nbsp;" . $addressOrder["phuong"] . ",&nbsp;" . $addressOrder["quan"] . ",&nbsp;" . $addressOrder["thanhpho"] . ",&nbsp;" . $addressOrder["quocgia"] ?></p>
                 <div class="section">
                     <div class="section-shipping field-bottom">
                         <div class="section-header">
@@ -208,12 +215,15 @@
         });
         var total = $(".payment-due-price").innerText
         var day = (new Date()).getDate().toString().padStart(2, '0') + "/" + ((new Date()).getMonth() + 1).toString().padStart(2, '0') + "/" + (new Date()).getFullYear();
+        var address = $(".addressOrder").innerText
         $(".ordersuccess").addEventListener("click", function() {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {}
             xhr.open("GET",
                 "/controller/addOrder.php?&day=" +
                 encodeURIComponent(day) +
+                "&address=" +
+                encodeURIComponent(address) +
                 "&status=" +
                 encodeURIComponent("đang xử lý") +
                 "&total=" +

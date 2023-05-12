@@ -1,6 +1,5 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
-session_start();
 if (isset($_SESSION['userName'])) {
     echo "<script>
     const userObject = {name:'{$_SESSION['userName']}',id:{$_SESSION['userID']}}
@@ -40,22 +39,15 @@ if (isset($_SESSION['userName'])) {
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <?php
-                                                    $cate = $db->prepare("SELECT * FROM danhmuc");
+                                                    $cate = $db->prepare("SELECT * FROM loaigiay");
                                                     $cate->execute();
                                                     $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
                                                     foreach ($cateName as $row) {
-                                                        if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
-                                                    ?>
-                                                            <li><a href="collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
-                                                        <?php
 
-                                                        } else if ($row["madanhmuc"] == 345) {
-                                                        ?>
-                                                            <li><a href="collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
-                                                    <?php
-                                                        }
-                                                    }
                                                     ?>
+                                                        <li><a href="collection.php?type=<?php echo $row["tenloai"]; ?>"><?php echo $row["tenloai"]; ?></a></li>
+
+                                                    <?php } ?>
                                                 </ul>
                                             </li>
                                             <li class="active"><a href="introduce.php">giới thiệu</a></li>
@@ -99,7 +91,7 @@ if (isset($_SESSION['userName'])) {
 
 
                                                     </div>
-                                                   
+
                                                 </div>
                                             </div>
                                         </div>
@@ -315,20 +307,20 @@ if (isset($_SESSION['userName'])) {
                                                                     </a>
                                                                 </td>
                                                                 <td>
-                                                                <?php $user = $db->prepare("SELECT * from khachhang where makhachhang = :userID");
+                                                                    <?php $user = $db->prepare("SELECT * from khachhang where makhachhang = :userID");
                                                                     $user->bindParam(":userID", $_SESSION["userID"]);
                                                                     $user->execute();
                                                                     $users = $user->fetch(PDO::FETCH_ASSOC); ?>
                                                                     <a href="<?php if ($users["khoa"] == 1) {
-                                                                                        echo '#';
-                                                                                    } else {
-                                                                                        echo 'shipdetails.php';
-                                                                                    } ?>"">
-                                                                        <button class="form__submit btn-payment" style="<?php if ($users["khoa"] == 1) {
-                                                                                                                            echo 'cursor:no-drop;';
-                                                                                                                        } else {
-                                                                                                                            echo 'cursor: pointer;';
-                                                                                                                        } ?>">Thanh toán</button>
+                                                                                    echo '#';
+                                                                                } else {
+                                                                                    echo 'shipdetails.php';
+                                                                                } ?>"">
+                                                                        <button class=" form__submit btn-payment" style="<?php if ($users["khoa"] == 1) {
+                                                                                                                                echo 'cursor:no-drop;';
+                                                                                                                            } else {
+                                                                                                                                echo 'cursor: pointer;';
+                                                                                                                            } ?>">Thanh toán</button>
                                                                     </a>
                                                                 </td>
                                                             </tr>

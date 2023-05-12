@@ -18,7 +18,9 @@
 </head>
 
 <body>
-    <?php $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", ""); ?>
+    <?php $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    ?>
+
     <div class="notification hide">
         <div class="ntfc-box">
             <div class="noti-box">
@@ -127,52 +129,54 @@
                                     <table class="table table-bordered table-nowrap mb-0">
                                         <tbody class="tableproduct">
                                             <?php
-                                            $listProduct = $db->prepare("SELECT distinct tensp,sanpham.masp,urlmain,giatien,tenthuonghieu,soluong from sanpham,hinhanhsp,thuonghieu where sanpham.masp = hinhanhsp.masp and sanpham.mathuonghieu = thuonghieu.mathuonghieu");
+                                            $listProduct = $db->prepare("SELECT distinct tensp,sanpham.masp,urlmain,giatien,tenthuonghieu,soluong,an from sanpham,hinhanhsp,thuonghieu where sanpham.masp = hinhanhsp.masp and sanpham.mathuonghieu = thuonghieu.mathuonghieu");
                                             $listProduct->execute();
                                             $product = $listProduct->fetchAll(PDO::FETCH_ASSOC);
                                             foreach ($product as $row) {
+                                                if ($row["an"] == 0) {
                                             ?>
-                                                <tr>
-                                                    <th class="img" style="width: calc(100%/9);"><img src="<?php echo $row["urlmain"] ?>" alt=""></th>
-                                                    <td class="name" style="width: calc(100%/9);"><?php echo $row["tensp"] ?></td>
-                                                    <td class="id" style="width: calc(100%/9);"><?php echo $row["masp"] ?></td>
-                                                    <td class="price" style="width: calc(100%/9);"><?php echo number_format($row["giatien"]) ?>₫</td>
-                                                    <td class="trademark" style="width: calc(100%/9);"><?php echo $row["tenthuonghieu"] ?></td>
-                                                    <td class="color" style="width: calc(100%/9);">
-                                                        <?php
-                                                        $color = $db->prepare("SELECT mausac from mausacsp where masp = :productID");
-                                                        $color->bindParam(":productID", $row["masp"]);
-                                                        $color->execute();
-                                                        $colors = $color->fetchAll(PDO::FETCH_ASSOC);
-                                                        $lastIndex = count($colors) - 1;
-                                                        foreach ($colors as $index => $c) {
-                                                        ?>
-                                                            <?php echo $c["mausac"] ?><?php if ($index < $lastIndex) echo ', ' ?>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td class="size" style="width: calc(100%/9);">
-                                                        <?php
-                                                        $size = $db->prepare("SELECT kichthuoc from kichthuocsp where masp = :productID");
-                                                        $size->bindParam(":productID", $row["masp"]);
-                                                        $size->execute();
-                                                        $sizes = $size->fetchAll(PDO::FETCH_ASSOC);
-                                                        $lastIndex = count($sizes) - 1;
-                                                        foreach ($sizes as $index => $s) {
-                                                        ?>
-                                                            <?php echo $s["kichthuoc"] ?><?php if ($index < $lastIndex) echo ', ' ?>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td class="quantity" style="width: calc(100%/9);"><?php echo $row["soluong"] ?></td>
-                                                    <td style="width: calc(100%/9);">
-                                                        <a href="editProduct.php?type=<?php echo $row["masp"] ?>"><button class="edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                                                        <button class="remove"><i class="fa-solid fa-xmark"></i></button>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <th class="img" style="width: calc(100%/9);"><img src="<?php echo $row["urlmain"] ?>" alt=""></th>
+                                                        <td class="name" style="width: calc(100%/9);"><?php echo $row["tensp"] ?></td>
+                                                        <td class="id" style="width: calc(100%/9);"><?php echo $row["masp"] ?></td>
+                                                        <td class="price" style="width: calc(100%/9);"><?php echo number_format($row["giatien"]) ?>₫</td>
+                                                        <td class="trademark" style="width: calc(100%/9);"><?php echo $row["tenthuonghieu"] ?></td>
+                                                        <td class="color" style="width: calc(100%/9);">
+                                                            <?php
+                                                            $color = $db->prepare("SELECT mausac from mausacsp where masp = :productID");
+                                                            $color->bindParam(":productID", $row["masp"]);
+                                                            $color->execute();
+                                                            $colors = $color->fetchAll(PDO::FETCH_ASSOC);
+                                                            $lastIndex = count($colors) - 1;
+                                                            foreach ($colors as $index => $c) {
+                                                            ?>
+                                                                <?php echo $c["mausac"] ?><?php if ($index < $lastIndex) echo ', ' ?>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td class="size" style="width: calc(100%/9);">
+                                                            <?php
+                                                            $size = $db->prepare("SELECT kichthuoc from kichthuocsp where masp = :productID");
+                                                            $size->bindParam(":productID", $row["masp"]);
+                                                            $size->execute();
+                                                            $sizes = $size->fetchAll(PDO::FETCH_ASSOC);
+                                                            $lastIndex = count($sizes) - 1;
+                                                            foreach ($sizes as $index => $s) {
+                                                            ?>
+                                                                <?php echo $s["kichthuoc"] ?><?php if ($index < $lastIndex) echo ', ' ?>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td class="quantity" style="width: calc(100%/9);"><?php echo $row["soluong"] ?></td>
+                                                        <td style="width: calc(100%/9);">
+                                                            <a href="editProduct.php?type=<?php echo $row["masp"] ?>"><button class="edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                                                            <button class="remove" data-id="<?php echo $row["masp"] ?>" onclick="removeProduct(this)"><i class="fa-solid fa-xmark"></i></button>
+                                                        </td>
+                                                    </tr>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>
@@ -242,12 +246,84 @@
                         <div class="col">
                             <div class="management-box management-order">
                                 <h4>Quản lý đơn hàng</h4>
+                                <div class="field-input-wrapper field-input-wrapper-selects">
+                                    <p>Lọc đơn hàng:</p>
+                                    <select class="field-input" name="" id="city">
+                                        <option value="" selected="">Chọn tỉnh / thành</option>
+                                        <option value="0">Tất cả đơn hàng</option>
+                                        <option data-code="HC" value="Hồ Chí Minh">Hồ Chí Minh</option>
+                                        <option data-code="HI" value="Hà Nội">Hà Nội</option>
+                                        <option data-code="DA" value="Đà Nẵng">Đà Nẵng</option>
+                                        <option data-code="AG" value="An Giang">An Giang</option>
+                                        <option data-code="BV" value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                                        <option data-code="BI" value="Bình Dương">Bình Dương</option>
+                                        <option data-code="BP" value="Bình Phước">Bình Phước</option>
+                                        <option data-code="BU" value="Bình Thuận">Bình Thuận</option>
+                                        <option data-code="BD" value="Bình Định">Bình Định</option>
+                                        <option data-code="BL" value="Bạc Liêu">Bạc Liêu</option>
+                                        <option data-code="BG" value="Bắc Giang">Bắc Giang</option>
+                                        <option data-code="BK" value="Bắc Kạn">Bắc Kạn</option>
+                                        <option data-code="BN" value="Bắc Ninh">Bắc Ninh</option>
+                                        <option data-code="BT" value="Bến Tre">Bến Tre</option>
+                                        <option data-code="CB" value="Cao Bằng">Cao Bằng</option>
+                                        <option data-code="CM" value="Cà Mau">Cà Mau</option>
+                                        <option data-code="CN" value="Cần Thơ">Cần Thơ</option>
+                                        <option data-code="GL" value="Gia Lai">Gia Lai</option>
+                                        <option data-code="HG" value="Hà Giang">Hà Giang</option>
+                                        <option data-code="HM" value="Hà Nam">Hà Nam</option>
+                                        <option data-code="HT" value="Hà Tĩnh">Hà Tĩnh</option>
+                                        <option data-code="HO" value="Hòa Bình">Hòa Bình</option>
+                                        <option data-code="HY" value="Hưng Yên">Hưng Yên</option>
+                                        <option data-code="HD" value="Hải Dương">Hải Dương</option>
+                                        <option data-code="HP" value="Hải Phòng">Hải Phòng</option>
+                                        <option data-code="HU" value="Hậu Giang">Hậu Giang</option>
+                                        <option data-code="KH" value="Khánh Hòa">Khánh Hòa</option>
+                                        <option data-code="KG" value="Kiên Giang">Kiên Giang</option>
+                                        <option data-code="KT" value="Kon Tum">Kon Tum</option>
+                                        <option data-code="LI" value="Lai Châu">Lai Châu</option>
+                                        <option data-code="LA" value="Long An">Long An</option>
+                                        <option data-code="LO" value="Lào Cai">Lào Cai</option>
+                                        <option data-code="LD" value="Lâm Đồng">Lâm Đồng</option>
+                                        <option data-code="LS" value="Lạng Sơn">Lạng Sơn</option>
+                                        <option data-code="ND" value="Nam Định">Nam Định</option>
+                                        <option data-code="NA" value="Nghệ An">Nghệ An</option>
+                                        <option data-code="NB" value="Ninh Bình">Ninh Bình</option>
+                                        <option data-code="NT" value="Ninh Thuận">Ninh Thuận</option>
+                                        <option data-code="PT" value="Phú Thọ">Phú Thọ</option>
+                                        <option data-code="PY" value="Phú Yên">Phú Yên</option>
+                                        <option data-code="QB" value="Quảng Bình">Quảng Bình</option>
+                                        <option data-code="QM" value="Quảng Nam">Quảng Nam</option>
+                                        <option data-code="QG" value="Quảng Ngãi">Quảng Ngãi</option>
+                                        <option data-code="QN" value="Quảng Ninh">Quảng Ninh</option>
+                                        <option data-code="QT" value="Quảng Trị">Quảng Trị</option>
+                                        <option data-code="ST" value="Sóc Trăng">Sóc Trăng</option>
+                                        <option data-code="SL" value="Sơn La">Sơn La</option>
+                                        <option data-code="TH" value="Thanh Hóa">Thanh Hóa</option>
+                                        <option data-code="TB" value="Thái Bình">Thái Bình</option>
+                                        <option data-code="TY" value="Thái Nguyên">Thái Nguyên</option>
+                                        <option data-code="TT" value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                                        <option data-code="TG" value="Tiền Giang">Tiền Giang</option>
+                                        <option data-code="TV" value="Trà Vinh">Trà Vinh</option>
+                                        <option data-code="TQ" value="Tuyên Quang">Tuyên Quang</option>
+                                        <option data-code="TN" value="Tây Ninh">Tây Ninh</option>
+                                        <option data-code="VL" value="Vĩnh Long">Vĩnh Long</option>
+                                        <option data-code="VT" value="Vĩnh Phúc">Vĩnh Phúc</option>
+                                        <option data-code="YB" value="Yên Bái">Yên Bái</option>
+                                        <option data-code="DB" value="Điện Biên">Điện Biên</option>
+                                        <option data-code="DC" value="Đắk Lắk">Đắk Lắk</option>
+                                        <option data-code="DO" value="Đắk Nông">Đắk Nông</option>
+                                        <option data-code="DN" value="Đồng Nai">Đồng Nai</option>
+                                        <option data-code="DT" value="Đồng Tháp">Đồng Tháp</option>
+                                    </select>
+                                    <input type="date" class="field-input date">
+                                </div>
                                 <div class="management-sidebar">
-                                    <p style="width: calc(100%/5);">Mã đơn hàng</p>
-                                    <p style="width: calc(100%/5);">Mã khách hàng</p>
-                                    <p style="width: calc(100%/5);">Trạng thái đơn hàng</p>
-                                    <p style="width: calc(100%/5);">Ngày đặt hàng</p>
-                                    <p style="width: calc(100%/5);">Tổng tiền</p>
+                                    <p style="width: calc(100%/6);">Mã đơn hàng</p>
+                                    <p style="width: calc(100%/6);">Mã khách hàng</p>
+                                    <p style="width: calc(100%/6);">Trạng thái đơn hàng</p>
+                                    <p style="width: calc(100%/6);">Ngày đặt hàng</p>
+                                    <p style="width: calc(100%/6);">Địa chỉ giao hàng</p>
+                                    <p style="width: calc(100%/6);">Tổng tiền</p>
                                 </div>
                                 <div class="table-responsive" style="height: 200px;">
                                     <table class="table table-bordered table-nowrap mb-0">
@@ -259,9 +335,9 @@
                                             foreach ($orders as $o) {
                                             ?>
                                                 <tr>
-                                                    <td id="id" style="width: calc(100%/5); height: 50px; color:rgb(0 0 0/40%);"><?php echo $o["madonhang"] ?></td>
-                                                    <td id="customer" style="width: calc(100%/5); height: 50px;"><?php echo $o["makhachhang"] ?></td>
-                                                    <td id="status" style="width: calc(100%/5); height: 50px;" class="orderinfo">
+                                                    <td id="id" style="width: calc(100%/6); height: 50px; color:rgb(0 0 0/40%);"><?php echo $o["madonhang"] ?></td>
+                                                    <td id="customer" style="width: calc(100%/6); height: 50px;"><?php echo $o["makhachhang"] ?></td>
+                                                    <td id="status" style="width: calc(100%/6); height: 50px;" class="orderinfo">
                                                         <select name="selectStt-<?php echo $o["madonhang"] ?>" id="selectStt-<?php echo $o["madonhang"] ?>" class="selectStt" onchange='updateStatus(<?php echo $o["madonhang"] ?>, this.value)'>
                                                             <option value="">Chọn trạng thái</option>
                                                             <option value="Đang xử lý" <?php if ($o["trangthaidonhang"] == "Đang xử lý") echo "selected"; ?>>Đang xử lý</option>
@@ -270,8 +346,9 @@
                                                             <option value="Đã huỷ" <?php if ($o["trangthaidonhang"] == "Đã huỷ") echo "selected"; ?>>Đã huỷ</option>
                                                         </select>
                                                     </td>
-                                                    <td id="date" style="width: calc(100%/5); height: 50px;"><?php echo $o["ngaydathang"] ?></td>
-                                                    <td id="total" style="width: calc(100%/5); height: 50px;"><?php echo $o["tongtien"] ?></td>
+                                                    <td id="date" style="width: calc(100%/6); height: 50px;"><?php echo $o["ngaydathang"] ?></td>
+                                                    <td id="address" style="width: calc(100%/6); height: 50px;"><?php echo $o["diachi"] ?></td>
+                                                    <td id="total" style="width: calc(100%/6); height: 50px;"><?php echo $o["tongtien"] ?></td>
                                                 </tr>
                                             <?php
                                             }
@@ -279,11 +356,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- <div style="width:100%; height: 30px;">
-                                    <label for="">Lọc sản phẩm</label>
-                                    <input type="date">
-                                    <input type="text" value="Địa điểm giao hàng">
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -301,6 +373,7 @@
         </div>
     </div>
     <script>
+        // * quản lý tình trạng đơn hàng
         function updateStatus(orderId, status) {
             // Tạo đối tượng XMLHTTPRequest để gửi yêu cầu đến server
             var xhttp = new XMLHttpRequest();
@@ -314,7 +387,7 @@
             xhttp.open("GET", "/controller/updateStatus.php?orderId=" + orderId + "&status=" + status, true);
             xhttp.send();
         }
-
+        // * khoá người dùng
         document.addEventListener("DOMContentLoaded", function() {
             var lockBtn = document.querySelector(".lock");
             var unlockBtn = document.querySelector(".unlock");
@@ -355,6 +428,8 @@
             }
         });
 
+
+        // *lên đầu trang
         var offset = 400;
         var duration = 1;
         var right = document.querySelector('.right');
@@ -372,7 +447,93 @@
                 behavior: 'smooth'
             });
         });
+
+        // * lọc sản phẩm theo tỉnh thành
+        document.getElementById("city").addEventListener("change", function() {
+            let value = this.value; // Lấy giá trị của option đã chọn
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = xhttp.responseText;
+                    document.querySelector(".tableorder").innerHTML = response;
+                }
+            };
+            xhttp.open(
+                "GET",
+                "/controller/searchLocation.php?location=" +
+                encodeURIComponent(value),
+                true
+            );
+            xhttp.send();
+        });
+        // * lọc sản phẩm theo ngày
+        document.querySelector(".date").addEventListener("change", function() {
+            let value = ((new Date(this.value).getDate()) < 10 ? '0' : '') + (new Date(this.value).getDate()) + '/' + ((new Date(this.value).getMonth() + 1) < 10 ? '0' : '') + (new Date(this.value).getMonth() + 1) + '/' + (new Date(this.value).getFullYear());;
+            let xhttp = new XMLHttpRequest();
+            console.log(value);
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = xhttp.responseText;
+                    document.querySelector(".tableorder").innerHTML = response;
+                }
+            };
+            xhttp.open(
+                "GET",
+                "/controller/searchDate.php?date=" +
+                encodeURIComponent(value),
+                true
+            );
+            xhttp.send();
+        });
+        // * xoá sản phẩm
+        function removeProduct(element) {
+            var id = element.getAttribute("data-id");
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = xhttp.responseText;
+                    if (response == "success") {
+                        alert("Đã ẩn sản phẩm trên web");
+                        window.location.href = "management.php"
+
+                    } else {
+                        if (confirm("Bạn có muốn xoá sản phẩm không?")) {
+                            let xhr = new XMLHttpRequest();
+                            xhr.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    let result = xhr.responseText;
+                                    if (result == "success") {
+                                        alert("Xoá sản phẩm thành công");
+                                        window.location.href = "management.php";
+                                    } else {
+                                        alert("Xoá sản phẩm không thành công");
+                                    }
+                                }
+                            };
+                            xhr.open(
+                                "GET",
+                                "/controller/deleteProduct.php?id=" + encodeURIComponent(id),
+                                true
+                            );
+                            xhr.send();
+                        }
+                    }
+                }
+            };
+            xhttp.open(
+                "GET",
+                "/controller/checkOrder.php?id=" +
+                encodeURIComponent(id),
+                true
+            );
+            xhttp.send();
+        }
     </script>
+    <?php if (isset($_SESSION['success'])) {
+        echo 'document.addEventListener("DOMContentLoaded", function() {
+            alert("Thêm sản phẩm thành công!");
+          });';
+    } ?>
 </body>
 
 </html>

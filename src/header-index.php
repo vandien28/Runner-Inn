@@ -1,5 +1,4 @@
 <?php
-session_start();
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 if (isset($_SESSION['userName'])) {
     echo "<script>
@@ -35,22 +34,15 @@ if (isset($_SESSION['userName'])) {
                                             <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <?php
-                                                    $cate = $db->prepare("SELECT * FROM danhmuc");
+                                                    $cate = $db->prepare("SELECT * FROM loaigiay");
                                                     $cate->execute();
                                                     $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
                                                     foreach ($cateName as $row) {
-                                                        if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
-                                                    ?>
-                                                            <li><a href="src/collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
-                                                        <?php
 
-                                                        } else if ($row["madanhmuc"] == 345) {
-                                                        ?>
-                                                            <li><a href="src/collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
-                                                    <?php
-                                                        }
-                                                    }
                                                     ?>
+                                                        <li><a href="src/collection.php?type=<?php echo $row["tenloai"]; ?>"><?php echo $row["tenloai"]; ?></a></li>
+
+                                                    <?php } ?>
                                                 </ul>
                                             </li>
                                             <li class="active"><a href="src/introduce.php">giới thiệu</a></li>
@@ -633,22 +625,15 @@ if (isset($_SESSION['userName'])) {
                                 <li class="active"><a class="active_3">sản phẩm&nbsp;<i class="down fa-sharp fa-regular fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
                                         <?php
-                                        $cate = $db->prepare("SELECT * FROM danhmuc");
+                                        $cate = $db->prepare("SELECT * FROM loaigiay");
                                         $cate->execute();
                                         $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
                                         foreach ($cateName as $row) {
-                                            if ($row["madanhmuc"] == 123 || $row["madanhmuc"] == 234) {
-                                        ?>
-                                                <li><a href="src/collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
-                                            <?php
 
-                                            } else if ($row["madanhmuc"] == 345) {
-                                            ?>
-                                                <li><a href="src/collection.php?type=<?php echo $row["tendanhmuc"]; ?>"><?php echo $row["tendanhmuc"]; ?></a></li>
-                                        <?php
-                                            }
-                                        }
                                         ?>
+                                            <li><a href="src/collection.php?type=<?php echo $row["tenloai"]; ?>"><?php echo $row["tenloai"]; ?></a></li>
+
+                                        <?php } ?>
                                     </ul>
                                 </li>
                                 <li class="active"><a href="/src/introduce.php">giới thiệu</a></li>
