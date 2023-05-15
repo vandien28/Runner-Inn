@@ -57,8 +57,9 @@
                                             <button class="btn" type="submit" name="submitLogin">Đăng nhập</button>
                                         </div>
                                     </div>
-                                    <div class="clearfix req_pass">
-                                        <a class="come-back" href="../index.php"><i class="fa fa-long-arrow-left"></i> Quay lại trang chủ</a>
+                                    <div class="clearfix req_pass" style="display:flex">
+                                        <a class="come-back" href="../index.php"><i class="fa fa-long-arrow-left"></i> Quay lại trang chủ&nbsp;&nbsp;&nbsp;hoặc</a>
+                                        <a href="signup.php" class="come-back">&nbsp;&nbsp;&nbsp;Tạo tài khoản</a>
                                     </div>
                                 </form>
                             </div>

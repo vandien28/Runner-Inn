@@ -51,11 +51,82 @@
                             <?php
                             if (isset($_SESSION['userName'])) {
                                 $userName = $_SESSION['userName'];
-                                $user = $db->prepare("SELECT * FROM khachhang,diachi WHERE khachhang.makhachhang = diachi.makhachhang and tentk = :tentk");
+                                $user = $db->prepare("SELECT * FROM khachhang,diachi WHERE khachhang.makhachhang = diachi.makhachhang  and tentk = :tentk");
                                 $user->bindParam(":tentk", $userName);
                                 $user->execute();
                                 $userInformation = $user->fetch(PDO::FETCH_ASSOC);
+                                if (empty($userInformation)) {
                             ?>
+                                    <div class="row1">
+                                        <div class="col-xs-12" id="customer_sidebar">
+                                            <?php
+                                            $u = $db->prepare("SELECT tenkhachhang,email from khachhang where tentk = :tentk");
+                                            $u->bindParam(":tentk", $userName);
+                                            $u->execute();
+                                            $ui = $u->fetch(PDO::FETCH_ASSOC);
+                                            ?>
+                                            <h2 class="title-detail">Thông tin tài khoản</h2>
+                                            <p class="name_account"><?php echo $ui["tenkhachhang"] ?></p>
+                                            <p class="email"><?php echo $ui["email"] ?></p>
+                                            <div class="address">
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                                <a id="view_address" href="accountaddresses.php">Xem địa chỉ</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12" id="customer_orders">
+
+                                            <?php
+                                            $order = $db->prepare("SELECT * from donhang where makhachhang = :userID");
+                                            $order->bindParam(":userID", $_SESSION["userID"]);
+                                            $order->execute();
+                                            $orders = $order->fetchAll(PDO::FETCH_ASSOC);
+                                            if (empty($orders)) {
+                                            ?>
+                                                <p style="text-align:center">Bạn chưa có đơn hàng!</p>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <div class="customer-table-wrap">
+                                                    <div class="customer_order customer-table-bg">
+                                                        <p class="title-detail">Danh sách đơn hàng</p>
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="width:calc(100%/5)" class="order_number">Mã đơn hàng</th>
+                                                                        <th style="width:calc(100%/5)" class="date">Ngày đặt</th>
+                                                                        <th style="width:calc(100%/5)" class="total">Thành tiền</th>
+                                                                        <th style="width:calc(100%/5)" class="payment_status">Trạng thái thanh toán</th>
+                                                                        <th style="width:calc(100%/5)" class="fulfillment_status">Phương thức thanh toán</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    foreach ($orders as $o) {
+                                                                    ?>
+                                                                        <tr class="odd">
+                                                                            <td style="width:calc(100%/5)"><?php echo $o["madonhang"] ?></td>
+                                                                            <td style="width:calc(100%/5)"><?php echo $o["ngaydathang"] ?></td>
+                                                                            <td style="width:calc(100%/5)"><?php echo $o["tongtien"] ?></td>
+                                                                            <td style="width:calc(100%/5)"><?php echo $o["trangthaidonhang"] ?></td>
+                                                                            <td style="width:calc(100%/5)"><?php echo $o["phuongthucthanhtoan"] ?></td>
+                                                                        </tr>
+                                                                    <?php }
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                            }
+                                        } else {
+                                ?>
                                 <div class="row1">
                                     <div class="col-xs-12" id="customer_sidebar">
                                         <h2 class="title-detail">Thông tin tài khoản</h2>
@@ -71,48 +142,57 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12" id="customer_orders">
-                                        <div class="customer-table-wrap">
-                                            <div class="customer_order customer-table-bg">
-                                                <p class="title-detail">Danh sách đơn hàng mới nhất</p>
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="order_number text-center">Mã đơn hàng</th>
-                                                                <th class="date text-center">Ngày đặt</th>
-                                                                <th class="total text-right">Thành tiền</th>
-                                                                <th class="payment_status text-center">Trạng thái thanh toán</th>
-                                                                <th class="fulfillment_status text-center">Vận chuyển</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="odd ">
-                                                                <td class="text-center">
-                                                                    <a href="/account/orders/ad0c22f106114f31983a5f3206adf3aa" title="">#100057</a>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <span>07/05/2023</span>
-                                                                </td>
-                                                                <td class="text-right">
-                                                                    <span class="total money">5,750,000₫</span>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <span class="status_pending">Chờ xử lý</span>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <span class="status_not fulfilled">Chưa giao hàng</span>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+
+                                        <?php
+                                            $order = $db->prepare("SELECT * from donhang where makhachhang = :userID");
+                                            $order->bindParam(":userID", $_SESSION["userID"]);
+                                            $order->execute();
+                                            $orders = $order->fetchAll(PDO::FETCH_ASSOC);
+                                            if (empty($orders)) {
+                                        ?>
+                                            <p style="text-align:center">Bạn chưa có đơn hàng!</p>
+                                        <?php
+                                            } else {
+                                        ?>
+                                            <div class="customer-table-wrap">
+                                                <div class="customer_order customer-table-bg">
+                                                    <p class="title-detail">Danh sách đơn hàng</p>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="width:calc(100%/5)" class="order_number">Mã đơn hàng</th>
+                                                                    <th style="width:calc(100%/5)" class="date">Ngày đặt</th>
+                                                                    <th style="width:calc(100%/5)" class="total">Thành tiền</th>
+                                                                    <th style="width:calc(100%/5)" class="payment_status">Trạng thái thanh toán</th>
+                                                                    <th style="width:calc(100%/5)" class="fulfillment_status">Phương thức thanh toán</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                foreach ($orders as $o) {
+                                                                ?>
+                                                                    <tr class="odd">
+                                                                        <td style="width:calc(100%/5)"><?php echo $o["madonhang"] ?></td>
+                                                                        <td style="width:calc(100%/5)"><?php echo $o["ngaydathang"] ?></td>
+                                                                        <td style="width:calc(100%/5)"><?php echo $o["tongtien"] ?></td>
+                                                                        <td style="width:calc(100%/5)"><?php echo $o["trangthaidonhang"] ?></td>
+                                                                        <td style="width:calc(100%/5)"><?php echo $o["phuongthucthanhtoan"] ?></td>
+                                                                    </tr>
+                                                                <?php }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
-                            <?php
-                            }
-                            ?>
+                    <?php
+                                            }
+                                        }
+                                    }
+                    ?>
                         </div>
                     </div>
 

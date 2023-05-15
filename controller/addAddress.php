@@ -10,5 +10,5 @@ $city = $_GET["city"];
 $country = $_GET["country"];
 $sql = "INSERT INTO diachi(makhachhang,tenduong,phuong,quan,thanhpho,quocgia,macdinh) values(?,?,?,?,?,?,?)";
 $addAdress = $db->prepare($sql);
-$addAdress->execute([(int)$_SESSION['userID'], $apartment, $ward, $district, $city,$country, 1]);
-header("Location: /src/paymentmethod.php");
+$addAdress->execute([(int)$_SESSION['userID'], $apartment, $ward, $district, $city, $country, 1]);
+echo "true";

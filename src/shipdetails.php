@@ -372,7 +372,13 @@
                         let data = $(".nextPayment").getAttribute("data-properties")
                         let dataInfo = JSON.parse(data)
                         let xhr = new XMLHttpRequest();
-                        xhr.onreadystatechange = function() {}
+                        xhr.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                if (xhr.responseText == "true") {
+                                    window.location.href = "/src/paymentmethod.php";
+                                }
+                            }
+                        }
                         xhr.open("GET",
                             "/controller/addAddress.php?apartment=" +
                             encodeURIComponent(dataInfo.sonha) +

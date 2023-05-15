@@ -1563,7 +1563,7 @@ ul.submenu-links li a {
 
 
 .color-br .header_navbar-icon-link{
-    padding-left: 230px;    
+    float: right;    
 }
 
 .fa-iconn:before {

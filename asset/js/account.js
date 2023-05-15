@@ -226,3 +226,52 @@ function showEditAddress() {
     $(".inforAddresss").classList.remove("hide");
   }
 }
+
+// * thêm địa chỉ mới vào database
+function addAddress() {
+  let apartment = $(".apartment").value;
+  let ward = $(".ward").value;
+  let district = $(".district").value;
+  let city =
+    document.getElementById("city").options[
+      document.getElementById("city").selectedIndex
+    ].value;
+  let country =
+    document.getElementById("country_s").options[
+      document.getElementById("country_s").selectedIndex
+    ].value;
+  let numberphone = $(".numberphone").value;
+  let df = 0;
+  if ($(".checkdefault").checked) {
+    df = 1;
+  }
+  console.log(apartment, ward, district, city, country, numberphone, df);
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (xhr.responseText == "true") {
+        alert("Thêm địa chỉ thành công")
+        window.location.href = "../src/account.php";
+      }
+    }
+  };
+  xhr.open(
+    "GET",
+    "/controller/addAddress_s.php?apartment=" +
+      encodeURIComponent(apartment) +
+      "&ward=" +
+      encodeURIComponent(ward) +
+      "&district=" +
+      encodeURIComponent(district) +
+      "&city=" +
+      encodeURIComponent(city) +
+      "&country=" +
+      encodeURIComponent(country) +
+      "&default=" +
+      encodeURIComponent(df) +
+      "&numberphone=" +
+      encodeURIComponent(numberphone),
+    true
+  );
+  xhr.send();
+}
