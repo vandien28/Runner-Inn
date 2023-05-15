@@ -1,5 +1,4 @@
 <?php
-session_start();
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 $id = $_GET['id'];
 $size = $_GET['size'];
@@ -8,7 +7,7 @@ $quantity = $_GET['quantity'];
 $removeProduct = $db->prepare("DELETE from giohang WHERE masp = ? and makhachhang = ? and soluong = ? and kichthuoc = ? and mausac = ?");
 $removeProduct->execute([(int)$id, (int)$_SESSION['userID'], (int)$quantity, (int)$size, $color]);
 
-$renderProduct = $db->prepare("SELECT distinct tensp, urlmain,soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
+$renderProduct = $db->prepare("SELECT distinct tensp, urlmain,giohang.soluong,kichthuoc,mausac,makhachhang,sanpham.masp,giatien from sanpham,giohang,hinhanhsp where sanpham.masp = giohang.masp and sanpham.masp = hinhanhsp.masp");
 $renderProduct->execute();
 $addToCart = $renderProduct->fetchAll(PDO::FETCH_ASSOC);
 foreach ($addToCart as $row) {

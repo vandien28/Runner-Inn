@@ -37,11 +37,11 @@
                                 <a href="/src/account.php" title="Thông tin tài khoản">Thông tin tài khoản</a>
                             </li>
                             <li class="item">
-                                <a href="/src/accountaddress.php" title="Danh sách địa chỉ">Danh sách địa chỉ</a>
+                                <a href="/src/accountaddresses.php" title="Danh sách địa chỉ">Danh sách địa chỉ</a>
                             </li>
                             <li class="item">
                                 <form action="/controller/logout.php" id="logout-form" method="POST">
-                                    <button type="submit" name="logout">Đăng xuất</button>
+                                    <button type="submit" name="logout" class="buttonLogout">Đăng xuất</button>
                                 </form>
                             </li>
                         </ul>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
 
 if (isset($_GET["orderId"]) && isset($_GET["status"])) {

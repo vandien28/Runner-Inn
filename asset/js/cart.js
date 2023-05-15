@@ -115,11 +115,39 @@ const minus = $$(".qtyminus");
 minus.forEach(function (minus, index) {
   minus.addEventListener("click", function (event) {
     let minus1 = event.target.parentElement.querySelector(".item-quantity");
+    let color = minus1.getAttribute("data-color");
+    let size = minus1.getAttribute("data-size");
+    let id = minus1.getAttribute("data-id");
     let minus2 = parseInt(minus1.value);
     if (minus1.value == 1) {
       // * thêm code xoá sản phẩm vào
     } else {
       minus1.value = minus2 - 1;
+      event.target.parentElement.parentElement.parentElement.querySelector(
+        ".line-item-total"
+      ).innerText =
+        (
+          parseInt(
+            event.target.parentElement.parentElement.parentElement
+              .querySelector(".item-price .PRICE")
+              .innerText.replace(/,/g, "")
+          ) * parseInt(minus1.value)
+        ).toLocaleString("en-US") + "₫";
+      totalCart();
+      let xhr = new XMLHttpRequest();
+      xhr.open(
+        "GET",
+        "/controller/updateQuantity.php?id=" +
+          encodeURIComponent(id) +
+          "&size=" +
+          encodeURIComponent(size) +
+          "&color=" +
+          encodeURIComponent(color) +
+          "&quantity=" +
+          encodeURIComponent(minus1.value),
+        true
+      );
+      xhr.send();
     }
   });
 });
@@ -129,10 +157,47 @@ const plus = $$(".qtyplus");
 plus.forEach(function (plus, index) {
   plus.addEventListener("click", function (event) {
     let plus1 = event.target.parentElement.querySelector(".item-quantity");
+    let color = plus1.getAttribute("data-color");
+    let size = plus1.getAttribute("data-size");
+    let id = plus1.getAttribute("data-id");
     let plus2 = parseInt(plus1.value);
     plus1.value = plus2 + 1;
+    event.target.parentElement.parentElement.parentElement.querySelector(
+      ".line-item-total"
+    ).innerText =
+      (
+        parseInt(
+          event.target.parentElement.parentElement.parentElement
+            .querySelector(".item-price .PRICE")
+            .innerText.replace(/,/g, "")
+        ) * parseInt(plus1.value)
+      ).toLocaleString("en-US") + "₫";
+    totalCart();
+    let xhr = new XMLHttpRequest();
+    xhr.open(
+      "GET",
+      "/controller/updateQuantity.php?id=" +
+        encodeURIComponent(id) +
+        "&size=" +
+        encodeURIComponent(size) +
+        "&color=" +
+        encodeURIComponent(color) +
+        "&quantity=" +
+        encodeURIComponent(plus1.value),
+      true
+    );
+    xhr.send();
   });
 });
+
+// * Tính tổng tiền các sản phẩm trong giỏ hàng
+function totalCart() {
+  let total = 0;
+  $$(".line-item-total").forEach((item) => {
+    total += parseInt(item.innerText.replace(/,/g, ""));
+  });
+  $(".summary-total span").innerText = total.toLocaleString("en-US") + "₫";
+}
 
 // * xoá sản phẩm
 function removeProduct(element) {

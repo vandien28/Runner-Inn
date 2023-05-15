@@ -89,13 +89,14 @@
                                                             <div class="item-quan">
                                                                 <div class="qty quantity-partent qty-click clearfix">
                                                                     <button type="button" class="qtyminus qty-btn">-</button>
-                                                                    <input type="text" size="4" name="updates[]" min="1" id="updates_1040409894" data-price="575000000" value="<?php echo $row["soluong"] ?>" class="tc line-item-qty item-quantity">
+                                                                    <input type="text" size="4" name="updates[]" min="1" id="updates_1040409894" data-id="<?php echo $row["masp"] ?>" data-color="<?php echo $row["mausac"] ?>" data-size="<?php echo $row["kichthuoc"] ?>" value="<?php echo $row["soluong"] ?>" class="tc line-item-qty item-quantity">
                                                                     <button type="button" class="qtyplus qty-btn">+</button>
                                                                 </div>
                                                             </div>
                                                             <div class="item-price">
                                                                 <p>
-                                                                    <span><?php echo number_format($row["giatien"]) ?>₫</span>
+                                                                    <span class="PRICE"><?php echo number_format($row["giatien"]) ?></span>
+                                                                    <span>₫</span>
                                                                 </p>
                                                             </div>
                                                             <div class="item-total-price">

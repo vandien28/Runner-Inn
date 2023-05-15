@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="management-btn">
                                     <a href="addProduct.php">
-                                        <button class="add"><i class="fa-solid fa-plus" style="margin-right: 7px;"></i></button>
+                                        <button class="add">Thêm sản phẩm</i></button>
                                     </a>
                                 </div>
                             </div>

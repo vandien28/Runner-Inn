@@ -526,10 +526,25 @@ svg:not(:root) {
     border: 0;
     background: #ffff;
     color: #272727;
-    /* padding: 7px; */
-    font-size: 16px;
-    /* cursor: pointer; */
+    padding: 7px;
+    font-size: 14px;
+    cursor: pointer;
 
+}
+
+.buttonLogout {
+    font-size: 14px !important;
+    padding: 0 !important;
+
+}
+
+.buttonLogout::before {
+    content: "\f192";
+    font-family: "FontAwesome";
+    font-size: 8px;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: 2px;
 }
 
 .cart_panel i, .search_panel i,.login_panel i,.login_panels i,.recover_panels i {
