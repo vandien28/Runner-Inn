@@ -26,6 +26,7 @@
             </div>
             <div class="container">
             <div class="row1">
+<<<<<<< Updated upstream
     <div class="col-xs-12 col-sm-3 sidebar-account">
     <div class="two-left-one">
                     <h4 class="text-in-two">
@@ -45,9 +46,30 @@
                                 </form>
                             </li>
                         </ul>
+=======
+                <div class="col-xs-12 col-sm-3 sidebar-account">
+                    <div class="two-left-one">
+                        <h4 class="text-in-two">
+                            Tài Khoản
+                        </h4>
+                        <div class="footer-contentt">
+                            <ul>
+                                <li class="item">
+                                    <a href="/src/account.php" title="Thông tin tài khoản">Thông tin tài khoản</a>
+                                </li>
+                                <li class="item">
+                                    <a href="/src/accountaddress.php" title="Danh sách địa chỉ">Danh sách địa chỉ</a>
+                                </li>
+                                <li class="item">
+                                    <form action="/controller/logout.php" id="logout-form" method="POST">
+                                        <button type="submit" name="logout">Đăng xuất</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
                 </div>
-    </div>
     <div class="col-xs-12 col-sm-9">
         <?php
         if (isset($_SESSION['userName'])) {

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tài khoản – Runner Inn</title>
+    <title>Đơn hàng – Runner Inn</title>
     <link rel="stylesheet" href="../asset/css/account.css">
     <link rel="stylesheet" href="../asset/font/awesome-6-pro/css/all.css">
     <link rel="icon" href="../asset/img/favicon.png">
