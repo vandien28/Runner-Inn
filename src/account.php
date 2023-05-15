@@ -73,7 +73,39 @@
                                     <div class="col-xs-12" id="customer_orders">
                                         <div class="customer-table-wrap">
                                             <div class="customer_order customer-table-bg">
-                                                <p>Bạn chưa đặt mua sản phẩm.</p>
+                                                <p class="title-detail">Danh sách đơn hàng mới nhất</p>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="order_number text-center">Mã đơn hàng</th>
+                                                                <th class="date text-center">Ngày đặt</th>
+                                                                <th class="total text-right">Thành tiền</th>
+                                                                <th class="payment_status text-center">Trạng thái thanh toán</th>
+                                                                <th class="fulfillment_status text-center">Vận chuyển</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="odd ">
+                                                                <td class="text-center">
+                                                                    <a href="/account/orders/ad0c22f106114f31983a5f3206adf3aa" title="">#100057</a>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <span>07/05/2023</span>
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    <span class="total money">5,750,000₫</span>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <span class="status_pending">Chờ xử lý</span>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <span class="status_not fulfilled">Chưa giao hàng</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
