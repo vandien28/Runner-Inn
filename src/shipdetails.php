@@ -111,9 +111,9 @@
                             </div>
                             <div class="field field-half field-bottom">
                                 <div class="field-input-wrapper field-input-wrapper-select">
-                                    <label class="field-label" for="">Tỉnh / thành</label>
+                                    <label class="field-label" for="">Tỉnh / thành phố</label>
                                     <select class="field-input" name="" id="city">
-                                        <option value="0" selected="">Chọn tỉnh / thành</option>
+                                        <option value="0" selected="">Chọn tỉnh / thành phố</option>
                                         <option data-code="HC" value="Hồ Chí Minh">Hồ Chí Minh</option>
                                         <option data-code="HI" value="Hà Nội">Hà Nội</option>
                                         <option data-code="DA" value="Đà Nẵng">Đà Nẵng</option>

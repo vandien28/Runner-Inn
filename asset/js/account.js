@@ -206,3 +206,23 @@ function removeProduct(element) {
   $(".price").innerText = price.toLocaleString("en-US");
   $(".count").innerText = parseInt($(".count").innerText) - 1;
 }
+
+// * show / ẩn ô nhập địa chỉ
+function showInputAddress() {
+  if (document.getElementById("wrapper").classList.contains("hide")) {
+    document.getElementById("wrapper").classList.remove("hide");
+  } else {
+    document.getElementById("wrapper").classList.add("hide");
+  }
+}
+
+// * show / ẩn ô chỉnh sửa địa chỉ
+function showEditAddress() {
+  if ($(".editAddress").classList.contains("hide")) {
+    $(".editAddress").classList.remove("hide");
+    $(".inforAddresss").classList.add("hide");
+  } else {
+    $(".editAddress").classList.add("hide");
+    $(".inforAddresss").classList.remove("hide");
+  }
+}

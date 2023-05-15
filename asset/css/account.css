@@ -535,7 +535,6 @@ svg:not(:root) {
 .buttonLogout {
     font-size: 14px !important;
     padding: 0 !important;
-
 }
 
 .buttonLogout::before {
@@ -1067,23 +1066,21 @@ form {
     transition: opacity 150ms linear, color 150ms linear, background 150ms linear;
 }
 
-.row1 {
+.sidebar-account {
     display: flex;
     flex-wrap: wrap;
 }
 
-.col-xs-12 {
-    flex-basis: 100%;
+.two-left-one {
+    width: 30%;
 }
 
-@media (min-width: 576px) {
-    .col-sm-3 {
-        flex-basis: 25%;
-    }
+.two-right{
+    width: 70%;
+}
 
-    .col-sm-9 {
-        flex-basis: 75%;
-    }
+.row1 {
+    width: 100%;
 }
 
 .address {
@@ -1094,6 +1091,39 @@ form {
     margin-top: 60px;
 }
 
+.title-detail {
+    margin-bottom: 13px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.title-detail::after {
+    content: "";
+    height: 1px;
+    width: 100%;
+    background: #dedede;
+    margin-top: 10px;
+    display: block;
+}
+
+.name_account {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.address p {
+    margin-bottom: 5px;
+    font-size: 14px
+}
+
+.email {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.customer_order p{
+    text-align: center;
+}
 .footer-contentt .item{
     margin-bottom: 8px;
 }
