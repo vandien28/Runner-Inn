@@ -274,59 +274,72 @@
                             <div class="row">
                                 <div class="product-list">
                                     <?php
-                                    $productList = $db->prepare("SELECT distinct an,urlmain,tensp,giatien,tenloai,sanpham.masp FROM sanpham,hinhanhsp,loaigiay where sanpham.masp = hinhanhsp.masp and sanpham.maloai = loaigiay.maloai");
+                                    $limitProduct = 7;
+                                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                    $offset = ($page - 1) * $limitProduct;
+                                    if (isset($_GET["type"]) && $_GET["type"] == "bosuutap") {
+                                        $productList = $db->prepare("SELECT distinct an,urlmain,tensp,giatien,sanpham.masp FROM sanpham,hinhanhsp where sanpham.masp = hinhanhsp.masp LIMIT $limitProduct OFFSET $offset ");
+                                    } else {
+                                        $productList = $db->prepare("SELECT distinct an,urlmain,tensp,giatien,sanpham.masp,tenloai FROM sanpham,hinhanhsp,loaigiay where sanpham.masp = hinhanhsp.masp and sanpham.maloai = loaigiay.maloai and tenloai = :name  LIMIT $limitProduct OFFSET $offset ");
+                                        $productList->bindParam(":name", $_GET["type"]);
+                                    }
                                     $productList->execute();
                                     $product = $productList->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($product as $row) {
-                                        if (isset($_GET['type']) && $_GET['type'] == 'bosuutap' && $row["an"] === 0) {
                                     ?>
-                                            <div class="col-sm-6 product-item">
-                                                <div class="product-block">
-                                                    <div class="product-img">
-                                                        <a href="product.php?type=<?php echo $row["masp"]; ?>">
-                                                            <img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>">
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-detail">
+                                        <div class="col-sm-6 product-item">
+                                            <div class="product-block">
+                                                <div class="product-img">
+                                                    <a href="product.php?type=<?php echo $row["masp"]; ?>">
+                                                        <img src="<?php echo $row["urlmain"] ?>" alt="" title='<?php echo $row["tensp"] ?>'>
+                                                    </a>
+                                                </div>
+                                                <div class="product-detail">
+                                                    <div class="box-pro-detail">
+                                                        <h3 class="pro-name">
+                                                            <a href="product.php?type=<?php echo $row["masp"]; ?>" title='<?php echo $row["tensp"] ?>' data-name="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
+                                                        </h3>
                                                         <div class="box-pro-detail">
-                                                            <h3 class="pro-name">
-                                                                <a href="product.php?type=<?php echo $row["masp"]; ?>" title="<?php echo $row["tensp"] ?>" data-name="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
-                                                            </h3>
-                                                            <div class="box-pro-detail">
-                                                                <p class="pro-price" data-price="<?php echo $row["giatien"] ?>"><?php echo number_format($row["giatien"]) ?>₫</p>
-                                                            </div>
+                                                            <p class="pro-price" data-price="<?php echo $row["giatien"] ?>"><?php echo number_format($row["giatien"]) ?>₫</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div style="text-align: center;">
+                                    <?php
+                                    if (isset($_GET['type']) && $_GET['type'] == 'bosuutap') {
+                                        $totalProduct = $db->prepare("SELECT COUNT(*) from sanpham");
+                                        $totalProduct->execute();
+                                        $total = $totalProduct->fetchColumn();
+                                        $totalPage = ceil($total / $limitProduct);
+                                        for ($i = 1; $i <= $totalPage; $i++) {
+                                            $activeClass = ($i == $page) ? "activePage" : "";
+                                    ?>
+                                            <a href="collection.php?type=bosuutap&page=<?php echo $i ?>" class="<?php echo $activeClass ?>" style="font-size: 18px; margin-right: 30px; padding: 1px 7px; "><?php echo $i ?></a>
                                         <?php
-                                        } else if (isset($_GET['type']) && $_GET['type'] == $row["tenloai"]) {
+                                        }
+                                    } else {
+                                        $totalProducts = $db->prepare("SELECT COUNT(*) from sanpham,loaigiay where sanpham.maloai = loaigiay.maloai and tenloai = :name");
+                                        $totalProducts->bindParam(":name", $_GET["type"]);
+                                        $totalProducts->execute();
+                                        $totals = $totalProducts->fetchColumn();
+                                        $totalPages = ceil($totals / $limitProduct);
+                                        for ($i = 1; $i <= $totalPages; $i++) {
+                                            $activeClass = ($i == $page) ? "activePage" : "";
                                         ?>
-                                            <div class="col-sm-6 product-item">
-                                                <div class="product-block">
-                                                    <div class="product-img">
-                                                        <a href="product.php?type=<?php echo $row["masp"]; ?>">
-                                                            <img src="<?php echo $row["urlmain"] ?>" alt="" title="<?php echo $row["tensp"] ?>">
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="box-pro-detail">
-                                                            <h3 class="pro-name">
-                                                                <a href="product.php?type=<?php echo $row["masp"]; ?>" title="<?php echo $row["tensp"] ?>" data-name="<?php echo $row["tensp"] ?>"><?php echo $row["tensp"] ?></a>
-                                                            </h3>
-                                                            <div class="box-pro-detail">
-                                                                <p class="pro-price" data-price="<?php echo $row["giatien"] ?>"><?php echo number_format($row["giatien"]) ?>₫</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a href="collection.php?type=<?php echo $_GET["type"] ?>&page=<?php echo $i ?>" class="<?php echo $activeClass ?>" style="font-size: 18px; margin-right: 30px; padding: 1px 7px; "><?php echo $i ?></a>
                                     <?php
                                         }
                                     }
                                     ?>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

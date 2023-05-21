@@ -173,7 +173,9 @@
                                                                 foreach ($orders as $o) {
                                                                 ?>
                                                                     <tr class="odd">
-                                                                        <td style="width:calc(100%/5)"><?php echo $o["madonhang"] ?></td>
+                                                                        <td style="width:calc(100%/5)">
+                                                                            <a href="orderdetail.php?type=<?php echo $o["madonhang"] ?>"> <?php echo $o["madonhang"] ?></a>
+                                                                        </td>
                                                                         <td style="width:calc(100%/5)"><?php echo $o["ngaydathang"] ?></td>
                                                                         <td style="width:calc(100%/5)"><?php echo $o["tongtien"] ?></td>
                                                                         <td style="width:calc(100%/5)"><?php echo $o["trangthaidonhang"] ?></td>

@@ -423,10 +423,11 @@
             let quantity = $(".quantity").value;
             let color = $(".color").value;
             let size = $(".size").value;
-
             let type = document.getElementById("type").value
             let trademark = document.getElementById("trademark").value
             let cate = document.getElementById("category").value
+            let img = Array.from(document.querySelectorAll(".editimgs")).map(item => item.src).join(",");
+            let avt = document.querySelector(".avt").src
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -444,7 +445,7 @@
             xhttp.send(
                 "id=" + encodeURIComponent(id) +
                 "&name=" + encodeURIComponent(name) +
-                "&avt=" + encodeURIComponent(avtImg) +
+                "&avt=" + encodeURIComponent(avt) +
                 "&price=" + encodeURIComponent(price) +
                 "&quantity=" + encodeURIComponent(quantity) +
                 "&color=" + encodeURIComponent(color) +
@@ -452,7 +453,7 @@
                 "&trademark=" + encodeURIComponent(trademark) +
                 "&category=" + encodeURIComponent(cate) +
                 "&type=" + encodeURIComponent(type) +
-                "&img=" + encodeURIComponent(srcImgList)
+                "&img=" + encodeURIComponent(img)
             );
         }
     </script>

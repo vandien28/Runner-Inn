@@ -75,7 +75,7 @@ if (isset($_SESSION['userName'])) {
                                                 </div>
                                             </div>
                                             <div class="search-scroll-box">
-                                                <form action="/src/search.php" class="search-scroll-form" method="post">
+                                                <form action="/src/search.php" class="search-scroll-form" method="get">
                                                     <div class="search-inner">
                                                         <input type="text" size="20" name="productName" placeholder="Tìm kiếm sản phẩm..." class="search-scroll-input" oninput="showSearchScroll(),searchProductScroll(this.value)">
                                                     </div>
@@ -351,7 +351,7 @@ if (isset($_SESSION['userName'])) {
                     </div>
                     <div class="wrapper-upper-search">
                         <div class="search-box">
-                            <form accept-charset="UTF-8" action="/src/search.php" class="searchform" id="searchform" method="post">
+                            <form accept-charset="UTF-8" action="/src/search.php" class="searchform" id="searchform" method="get">
                                 <div class="search-inner">
                                     <input required="" type="text" size="20" name="productName" id="productName" placeholder="Tìm kiếm sản phẩm..." class="searchInput" oninput="showSearch(),searchProduct(this.value)">
                                 </div>

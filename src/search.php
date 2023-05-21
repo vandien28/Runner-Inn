@@ -23,24 +23,31 @@
         <section class="product">
             <div class="container">
                 <div class="row">
-                    <?php
-                    if (isset($_POST['searchProduct'])) {
-                    }
-                    $nameInput = $_POST['productName'];
-                    $product = $db->prepare("SELECT distinct sanpham.masp,tensp,giatien,urlmain FROM sanpham,hinhanhsp WHERE sanpham.masp = hinhanhsp.masp and tensp LIKE :nameProduct");
-                    $product->bindValue(":nameProduct", '%' . $nameInput . '%', PDO::PARAM_STR);
-                    $product->execute();
-                    $checkName = $product->fetchAll(PDO::FETCH_ASSOC);
-                    ?>
                     <div class="search-product">
+                        <?php
+                        $nameInput = $_GET['productName'];
+                        $product = $db->prepare("SELECT distinct sanpham.masp,tensp,giatien,urlmain FROM sanpham,hinhanhsp WHERE sanpham.masp = hinhanhsp.masp and tensp LIKE :nameProduct");
+                        $product->bindValue(":nameProduct", '%' . $nameInput . '%', PDO::PARAM_STR);
+                        $product->execute();
+                        $checkName = $product->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
                         <div class="search-heading">
                             <h1>Tìm kiếm</h1>
                             <p class="subtxt">Có <span class="numberProduct"><?php echo count($checkName) ?></span> sản phẩm cho tìm kiếm</p>
                         </div>
+                        <?php
+                        $limitProduct = 7;
+                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                        $offset = ($page - 1) * $limitProduct;
+                        $nameInput = $_GET['productName'];
+                        $product = $db->prepare("SELECT distinct sanpham.masp,tensp,giatien,urlmain FROM sanpham,hinhanhsp WHERE sanpham.masp = hinhanhsp.masp and tensp LIKE :nameProduct LIMIT $limitProduct OFFSET $offset ");
+                        $product->bindValue(":nameProduct", '%' . $nameInput . '%', PDO::PARAM_STR);
+                        $product->execute();
+                        $checkName = $product->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
                         <div class="row">
                             <p class="subtext-result"> Kết quả tìm kiếm cho <span class="searchName">" <span class="resultName"><?php echo $nameInput ?></span> "</span>.</p>
                             <div class="product-list">
-
                                 <?php
                                 foreach ($checkName as $row) {
                                 ?>
@@ -63,6 +70,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <div style="text-align: center;">
+                                <?php
+                                $totalProduct = $db->prepare("SELECT COUNT(*) from sanpham where tensp LIKE :nameProduct");
+                                $totalProduct->bindValue(":nameProduct", '%' . $nameInput . '%', PDO::PARAM_STR);
+                                $totalProduct->execute();
+                                $total = $totalProduct->fetchColumn();
+                                $totalPage = ceil($total / $limitProduct);
+                                for ($i = 1; $i <= $totalPage; $i++) {
+                                    $activeClass = ($i == $page) ? "activePage" : "";
+                                ?>
+                                    <a href="search.php?productName=<?php echo $_GET["productName"] ?>&page=<?php echo $i ?>" class="<?php echo $activeClass ?>" style="font-size: 18px; margin-right: 30px; padding: 1px 7px; "><?php echo $i ?></a>
                                 <?php
                                 }
                                 ?>

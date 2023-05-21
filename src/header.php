@@ -43,10 +43,8 @@ if (isset($_SESSION['userName'])) {
                                                     $cate->execute();
                                                     $cateName = $cate->fetchAll(PDO::FETCH_ASSOC);
                                                     foreach ($cateName as $row) {
-
                                                     ?>
                                                         <li><a href="collection.php?type=<?php echo $row["tenloai"]; ?>"><?php echo $row["tenloai"]; ?></a></li>
-
                                                     <?php } ?>
                                                 </ul>
                                             </li>
@@ -80,7 +78,7 @@ if (isset($_SESSION['userName'])) {
                                                 </div>
                                             </div>
                                             <div class="search-scroll-box">
-                                                <form action="search.php" class="search-scroll-form" method="post">
+                                                <form action="search.php" class="search-scroll-form" method="get">
                                                     <div class="search-inner">
                                                         <input type="text" size="20" placeholder="Tìm kiếm sản phẩm..." name="productName" class="search-scroll-input" oninput="showSearchScroll(),searchProductScroll(this.value)">
                                                     </div>

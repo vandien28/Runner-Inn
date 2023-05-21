@@ -56,6 +56,12 @@ img {
     margin: 0;
 }
 
+.activePage {
+    color: #ffff;
+    background: #000000;
+    border: 1px solid #000000;
+}
+
 /* * ---- header ----------------------------- */ 
 
 
