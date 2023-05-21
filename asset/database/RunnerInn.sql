@@ -1,6 +1,12 @@
 CREATE DATABASE IF NOT EXISTS `runnerinn` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `runnerinn`;
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietdonhang`
+--
+
 CREATE TABLE `chitietdonhang` (
   `madonhang` int(11) DEFAULT NULL,
   `masp` int(11) DEFAULT NULL,
@@ -9,18 +15,28 @@ CREATE TABLE `chitietdonhang` (
   `kichthuoc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `chitietdonhang`
+--
+
 INSERT INTO `chitietdonhang` (`madonhang`, `masp`, `soluongsp`, `mausac`, `kichthuoc`) VALUES
-(972974, 123217, 100, 'Trắng', 38),
-(972974, 238934, 100, 'Trắng', 39),
-(282983, 238934, 100, 'Trắng', 39),
-(282983, 846212, 100, 'Xanh', 37),
-(613469, 743027, 100, 'Tím', 37),
-(231933, 723041, 100, 'Trắng', 38),
-(482769, 182131, 100, 'Xám', 39),
-(250524, 846212, 100, 'Xanh', 39),
-(753993, 723041, 100, 'Trắng', 37),
-(918672, 565467, 100, 'Xanh', 39),
-(918672, 464645, 100, 'Xanh', 36);
+(972974, 123217, 1, 'Trắng', 38),
+(972974, 238934, 1, 'Trắng', 39),
+(282983, 238934, 1, 'Trắng', 39),
+(282983, 846212, 1, 'Xanh', 37),
+(613469, 743027, 1, 'Tím', 37),
+(231933, 723041, 1, 'Trắng', 38),
+(482769, 182131, 1, 'Xám', 39),
+(250524, 846212, 1, 'Xanh', 39),
+(753993, 723041, 1, 'Trắng', 37),
+(918672, 565467, 1, 'Xanh', 39),
+(918672, 464645, 1, 'Xanh', 36);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `danhgiasp`
+--
 
 CREATE TABLE `danhgiasp` (
   `madanhgia` int(11) NOT NULL,
@@ -31,15 +47,31 @@ CREATE TABLE `danhgiasp` (
   `sosao` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `danhmuc`
+--
+
 CREATE TABLE `danhmuc` (
   `madanhmuc` int(11) NOT NULL,
   `tendanhmuc` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `danhmuc`
+--
+
 INSERT INTO `danhmuc` (`madanhmuc`, `tendanhmuc`) VALUES
 (123, 'Sản phẩm thường'),
 (456, 'Sản phẩm mới'),
 (567, 'Sản phẩm bán chạy');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `diachi`
+--
 
 CREATE TABLE `diachi` (
   `makhachhang` int(11) DEFAULT NULL,
@@ -51,10 +83,20 @@ CREATE TABLE `diachi` (
   `macdinh` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `diachi`
+--
+
 INSERT INTO `diachi` (`makhachhang`, `tenduong`, `phuong`, `quan`, `thanhpho`, `quocgia`, `macdinh`) VALUES
 (123456, '9 Nguyễn Văn Cừ', 'Phường 1', 'Quận 5', 'Hồ Chí Minh', 'Việt Nam', 1),
 (234567, '9 Nguyễn Văn Cừ', 'Phường 1', 'Quận 5', 'Hồ Chí Minh', 'Việt Nam', 1),
 (345678, '9 Nguyễn Văn Cừ', 'Phường 1', 'Quận 5', 'Hồ Chí Minh', 'Việt Nam', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `donhang`
+--
 
 CREATE TABLE `donhang` (
   `madonhang` int(11) NOT NULL,
@@ -66,15 +108,25 @@ CREATE TABLE `donhang` (
   `diachi` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
 INSERT INTO `donhang` (`madonhang`, `tongtien`, `ngaydathang`, `makhachhang`, `trangthaidonhang`, `phuongthucthanhtoan`, `diachi`) VALUES
-(231933, '8,000,000₫', '08/05/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
-(250524, '8,000,000₫', '18/02/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
+(231933, '8,000,000₫', '08/05/2023', 123456, 'Đã xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
+(250524, '8,000,000₫', '18/02/2023', 123456, 'Đã xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
 (282983, '12,000,000₫', '03/01/2023', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
 (482769, '5,750,000₫', '12/10/2022', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
 (613469, '4,800,000₫', '11/05/2022', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
 (753993, '8,000,000₫', '13/02/2022', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh'),
 (918672, '13,400,000₫', '15/05/2023', 123456, 'đang xử lý', 'Thanh toán khi giao hàng (COD)', '9 Nguyễn Văn Cừ, Phường 1, Quận 5, Hồ Chí Minh, Việt Nam'),
 (972974, '26,400,000₫', '08/01/2022', 123456, 'Đang xử lý', 'Thanh toán khi giao hàng (COD)', 'Hồ Chí Minh');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giohang`
+--
 
 CREATE TABLE `giohang` (
   `masp` int(11) DEFAULT NULL,
@@ -84,15 +136,29 @@ CREATE TABLE `giohang` (
   `mausac` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
 INSERT INTO `giohang` (`masp`, `makhachhang`, `soluong`, `kichthuoc`, `mausac`) VALUES
 (464645, 123456, 2, 36, 'Xanh'),
 (238934, 123456, 1, 38, 'Trắng');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hinhanhsp`
+--
 
 CREATE TABLE `hinhanhsp` (
   `urlmain` varchar(256) DEFAULT NULL,
   `url` varchar(256) DEFAULT NULL,
   `masp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hinhanhsp`
+--
 
 INSERT INTO `hinhanhsp` (`urlmain`, `url`, `masp`) VALUES
 ('../asset/img/AYB/AYB.webp', '../asset/img/AYB/802501_02_9e71f6edc5bb462481bc19e127381e87_master.webp', 734052),
@@ -166,10 +232,6 @@ INSERT INTO `hinhanhsp` (`urlmain`, `url`, `masp`) VALUES
 ('../asset/img/ANR1/ANR1.webp', '../asset/img/ANR1/201493_1_017364c87c3e4802a8cda5259e3d5a95_master.webp', 565467),
 ('../asset/img/ANR1/ANR1.webp', '../asset/img/ANR1/201493_3_af57a63d212a47c98da50ccc4c8027bb_master.webp', 565467),
 ('../asset/img/ANR1/ANR1.webp', '../asset/img/ANR1/201493_4_f29671849e624803927cc9bf970b3736_master.webp', 565467),
-('../asset/img/AUTBM/AUTBM.webp', '../asset/img/AUTBM/201281_02_22cbc76b71ff47e9a31b4833b01b8c2d_master.webp', 628412),
-('../asset/img/AUTBM/AUTBM.webp', '../asset/img/AUTBM/201281_03_3de336e846f8402994e73c40df35099d_master.webp', 628412),
-('../asset/img/AUTBM/AUTBM.webp', '../asset/img/AUTBM/201281_04_6ef5352df3df4637b565b3539b3b6192_master.webp', 628412),
-('../asset/img/AUTBM/AUTBM.webp', '../asset/img/AUTBM/AUTBM.webp', 628412),
 ('../asset/img/NAHR/NAHR.webp', '../asset/img/NAHR/NAHR.webp', 721043),
 ('../asset/img/NAHR/NAHR.webp', '../asset/img/NAHR/052077_01_4af6cbc2ae1f470289522577d1d12af8_master.webp', 721043),
 ('../asset/img/NAHR/NAHR.webp', '../asset/img/NAHR/052077_02_b3904ef1cb874f6c8ac0b644db73ccc5_master.webp', 721043),
@@ -202,6 +264,12 @@ INSERT INTO `hinhanhsp` (`urlmain`, `url`, `masp`) VALUES
 ('../asset/img/NAM97P/NAM97P.webp', '../asset/img/NAM97P/NAM97P.webp', 846212),
 ('../asset/img/YZ350/YZ350.webp', '../asset/img/YZ350/YZ350.webp', 934732);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `khachhang`
+--
+
 CREATE TABLE `khachhang` (
   `makhachhang` int(11) NOT NULL,
   `tenkhachhang` varchar(50) DEFAULT NULL,
@@ -211,6 +279,10 @@ CREATE TABLE `khachhang` (
   `matkhau` int(11) DEFAULT NULL,
   `khoa` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `khachhang`
+--
 
 INSERT INTO `khachhang` (`makhachhang`, `tenkhachhang`, `email`, `sdt`, `tentk`, `matkhau`, `khoa`) VALUES
 (123456, 'Lê Văn Diễn', 'dien@gmail.com', '0335710213', 'dien123', 1234567890, 0),
@@ -223,10 +295,20 @@ INSERT INTO `khachhang` (`makhachhang`, `tenkhachhang`, `email`, `sdt`, `tentk`,
 (895463, 'Đặng Ngân Đông', 'dong@gmail.com', '0335710213', 'dong123', 1234567890, 0),
 (980234, 'Lê Bùi Minh Khoa', 'khoa@gmail.com', '0335710213', 'khoa123', 1234567890, 0);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `kichthuocsp`
+--
+
 CREATE TABLE `kichthuocsp` (
   `kichthuoc` int(11) DEFAULT NULL,
   `masp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `kichthuocsp`
+--
 
 INSERT INTO `kichthuocsp` (`kichthuoc`, `masp`) VALUES
 (35, 103294),
@@ -288,11 +370,6 @@ INSERT INTO `kichthuocsp` (`kichthuoc`, `masp`) VALUES
 (36, 565467),
 (39, 565467),
 (40, 565467),
-(35, 628412),
-(36, 628412),
-(38, 628412),
-(39, 628412),
-(40, 628412),
 (35, 721043),
 (37, 721043),
 (38, 721043),
@@ -324,21 +401,41 @@ INSERT INTO `kichthuocsp` (`kichthuoc`, `masp`) VALUES
 (39, 934732),
 (40, 934732);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `loaigiay`
+--
+
 CREATE TABLE `loaigiay` (
   `maloai` int(11) NOT NULL,
   `tenloai` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `loaigiay`
+--
 
 INSERT INTO `loaigiay` (`maloai`, `tenloai`) VALUES
 (123, 'Giày Thể Thao'),
 (456, 'Giày Sneaker'),
 (789, 'Giày Chạy Bộ');
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `mausacsp`
+--
+
 CREATE TABLE `mausacsp` (
   `mausac` varchar(256) DEFAULT NULL,
   `masp` int(11) DEFAULT NULL,
   `mamau` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `mausacsp`
+--
 
 INSERT INTO `mausacsp` (`mausac`, `masp`, `mamau`) VALUES
 ('Đỏ', 103294, '#E2262A'),
@@ -354,7 +451,6 @@ INSERT INTO `mausacsp` (`mausac`, `masp`, `mamau`) VALUES
 ('Cam', 472411, '#FB4727'),
 ('Trắng', 546239, '#FFFFFF'),
 ('Xanh', 565467, '#6DAEF4'),
-('Xanh', 628412, '#6DAEF4'),
 ('Trắng', 721043, '#FFFFFF'),
 ('Trắng', 723041, '#FFFFFF'),
 ('Xám', 734052, '#FDFAEF'),
@@ -367,6 +463,12 @@ INSERT INTO `mausacsp` (`mausac`, `masp`, `mamau`) VALUES
 ('Đen', 723041, '#000000'),
 ('Xanh', 743027, '#6DAEF4');
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `sanpham`
+--
+
 CREATE TABLE `sanpham` (
   `masp` int(11) NOT NULL,
   `tensp` varchar(256) DEFAULT NULL,
@@ -378,6 +480,10 @@ CREATE TABLE `sanpham` (
   `soluong` int(11) DEFAULT NULL,
   `an` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sanpham`
+--
 
 INSERT INTO `sanpham` (`masp`, `tensp`, `mota`, `giatien`, `mathuonghieu`, `maloai`, `madanhmuc`, `soluong`, `an`) VALUES
 (103294, 'Nike Air Max 1 Anniversary', NULL, 4200000, 123, 123, 456, 100, 0),
@@ -393,7 +499,6 @@ INSERT INTO `sanpham` (`masp`, `tensp`, `mota`, `giatien`, `mathuonghieu`, `malo
 (472411, 'Adidas Nmd R1', NULL, 3500000, 456, 789, 567, 100, 0),
 (546239, 'Adidas EQT Cushion ADV \"North America\"', NULL, 7000000, 456, 789, 456, 100, 0),
 (565467, 'Adidas Nmd R1 \"Villa Exclusive\"', NULL, 7000000, 456, 123, 456, 100, 0),
-(628412, 'Adidas Ultra Boost M', NULL, 6100000, 456, 456, 456, 100, 0),
 (721043, 'Nike W\'s Air Huarache Run \"Triple White\"', NULL, 7300000, 123, 123, 123, 100, 0),
 (723041, 'The 10: Nike Air Presto \"Off White\"', NULL, 8000000, 123, 789, 123, 100, 0),
 (734052, 'Adidas Yeezy Boost 700 \"Wave Runner\"', NULL, 6800000, 456, 123, 567, 100, 0),
@@ -401,92 +506,173 @@ INSERT INTO `sanpham` (`masp`, `tensp`, `mota`, `giatien`, `mathuonghieu`, `malo
 (846212, 'Nike Air Max 97 Premium', NULL, 8000000, 123, 123, 456, 100, 0),
 (934732, 'Adidas Yeezy boost 350 v2 \"zebra\"', NULL, 6000000, 456, 789, 123, 100, 0);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thuonghieu`
+--
+
 CREATE TABLE `thuonghieu` (
   `mathuonghieu` int(11) NOT NULL,
   `tenthuonghieu` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `thuonghieu`
+--
+
 INSERT INTO `thuonghieu` (`mathuonghieu`, `tenthuonghieu`) VALUES
 (123, 'Nike'),
 (456, 'Adidas');
 
+--
+-- Chỉ mục cho các bảng đã đổ
+--
 
+--
+-- Chỉ mục cho bảng `chitietdonhang`
+--
 ALTER TABLE `chitietdonhang`
   ADD KEY `chitietdonhang_ibfk_1` (`masp`),
   ADD KEY `chitietdonhang_ibfk_2` (`madonhang`);
 
+--
+-- Chỉ mục cho bảng `danhgiasp`
+--
 ALTER TABLE `danhgiasp`
   ADD PRIMARY KEY (`madanhgia`),
   ADD KEY `masp` (`masp`);
 
+--
+-- Chỉ mục cho bảng `danhmuc`
+--
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`madanhmuc`);
 
+--
+-- Chỉ mục cho bảng `diachi`
+--
 ALTER TABLE `diachi`
   ADD KEY `diachi_ibfk_1` (`makhachhang`);
 
+--
+-- Chỉ mục cho bảng `donhang`
+--
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`madonhang`),
   ADD KEY `donhang_ibfk_1` (`makhachhang`);
 
+--
+-- Chỉ mục cho bảng `giohang`
+--
 ALTER TABLE `giohang`
   ADD KEY `giohang_ibfk_1` (`masp`),
   ADD KEY `giohang_ibfk_2` (`makhachhang`);
 
+--
+-- Chỉ mục cho bảng `hinhanhsp`
+--
 ALTER TABLE `hinhanhsp`
   ADD KEY `hinhanhsp_ibfk_1` (`masp`);
 
+--
+-- Chỉ mục cho bảng `khachhang`
+--
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`makhachhang`);
 
+--
+-- Chỉ mục cho bảng `kichthuocsp`
+--
 ALTER TABLE `kichthuocsp`
   ADD KEY `masp` (`masp`);
 
+--
+-- Chỉ mục cho bảng `loaigiay`
+--
 ALTER TABLE `loaigiay`
   ADD PRIMARY KEY (`maloai`);
 
+--
+-- Chỉ mục cho bảng `mausacsp`
+--
 ALTER TABLE `mausacsp`
   ADD KEY `masp` (`masp`);
 
+--
+-- Chỉ mục cho bảng `sanpham`
+--
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`masp`),
   ADD KEY `sanpham_ibfk_1` (`mathuonghieu`),
   ADD KEY `sanpham_ibfk_2` (`maloai`),
   ADD KEY `sanpham_ibfk_3` (`madanhmuc`);
 
+--
+-- Chỉ mục cho bảng `thuonghieu`
+--
 ALTER TABLE `thuonghieu`
   ADD PRIMARY KEY (`mathuonghieu`);
 
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
 
+--
+-- Các ràng buộc cho bảng `chitietdonhang`
+--
 ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `chitietdonhang_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `chitietdonhang_ibfk_2` FOREIGN KEY (`madonhang`) REFERENCES `donhang` (`madonhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Các ràng buộc cho bảng `danhgiasp`
+--
 ALTER TABLE `danhgiasp`
   ADD CONSTRAINT `danhgiasp_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`);
 
+--
+-- Các ràng buộc cho bảng `diachi`
+--
 ALTER TABLE `diachi`
   ADD CONSTRAINT `diachi_ibfk_1` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Các ràng buộc cho bảng `donhang`
+--
 ALTER TABLE `donhang`
   ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Các ràng buộc cho bảng `giohang`
+--
 ALTER TABLE `giohang`
   ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`makhachhang`) REFERENCES `khachhang` (`makhachhang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Các ràng buộc cho bảng `hinhanhsp`
+--
 ALTER TABLE `hinhanhsp`
   ADD CONSTRAINT `hinhanhsp_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Các ràng buộc cho bảng `kichthuocsp`
+--
 ALTER TABLE `kichthuocsp`
   ADD CONSTRAINT `kichthuocsp_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Các ràng buộc cho bảng `mausacsp`
+--
 ALTER TABLE `mausacsp`
   ADD CONSTRAINT `mausacsp_ibfk_1` FOREIGN KEY (`masp`) REFERENCES `sanpham` (`masp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Các ràng buộc cho bảng `sanpham`
+--
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`mathuonghieu`) REFERENCES `thuonghieu` (`mathuonghieu`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`maloai`) REFERENCES `loaigiay` (`maloai`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`madanhmuc`) REFERENCES `danhmuc` (`madanhmuc`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
