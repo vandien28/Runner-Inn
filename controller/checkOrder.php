@@ -1,5 +1,6 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+session_start();
 $checkProduct = $db->prepare("SELECT * from chitietdonhang where  masp = :productID");
 $checkProduct->bindParam(':productID', $_GET['id'], PDO::PARAM_INT);
 $checkProduct->execute();

@@ -1,5 +1,6 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+session_start();
 $orderID = mt_rand(100000, 999999);
 $sql = "INSERT INTO donhang(madonhang,tongtien,ngaydathang,makhachhang,trangthaidonhang,phuongthucthanhtoan,diachi) values(?,?,?,?,?,?,?)";
 $addOrder = $db->prepare($sql);

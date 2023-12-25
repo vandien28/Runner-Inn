@@ -9,7 +9,7 @@ if (isset($_POST["submitLogin"])) {
     $user->bindParam(':pass', $pass);
     $user->execute();
     $checkUser = $user->fetch(PDO::FETCH_ASSOC);
-    if ($checkUser !== false && $checkUser["khoa"] != 1) {
+    if ($checkUser) {
         $userName = $checkUser['tentk'];
         $userID = $checkUser['makhachhang'];
         $_SESSION['userName'] = $userName;

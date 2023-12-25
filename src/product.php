@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+session_start();
 ?>
 
 <head>

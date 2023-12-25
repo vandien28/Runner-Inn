@@ -16,6 +16,7 @@
 
 <body>
     <?php $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    session_start();
     ?>
 
     <?php include "header.php" ?>
@@ -114,19 +115,19 @@
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa-solid fa-house"></i></span>
-                                        <input type="text" class="form-input" placeholder="Tên đường / Thôn, xóm" value="">
+                                        <input type="text" class="form-input apartment1" placeholder="Tên đường / Thôn, xóm" value="">
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa-solid fa-house"></i></span>
-                                        <input type="text" class="form-input" placeholder="Phường / Xã" value="">
+                                        <input type="text" class="form-input ward1" placeholder="Phường / Xã" value="">
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa-solid fa-house"></i></span>
-                                        <input type="text" class="form-input" placeholder="Quận / Huyện" value="">
+                                        <input type="text" class="form-input district1" placeholder="Quận / Huyện" value="">
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa-solid fa-house"></i></span>
-                                        <select name="" id="" class="form-input">
+                                        <select name="" id="city1" class="form-input">
                                             <option value="0">Chọn tỉnh / thành phố</option>
                                             <?php
                                             $cities = array("An Giang", "Bà Rịa-Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước", "Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng", "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh", "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên", "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng", "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "Hồ Chí Minh", "Trà Vinh", "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái");
@@ -142,7 +143,7 @@
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
-                                        <select class="form-input" name="" id="country">
+                                        <select class="form-input" name="" id="country1">
                                             <option value="0" selected>Chọn quốc gia</option>
                                             <option value="Việt Nam">Việt Nam</option>
                                             <option value="Thái Lan">Thái Lan</option>
@@ -151,14 +152,14 @@
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa-solid fa-phone"></i></span>
-                                        <input type="text" class="form-input" placeholder="Điện Thoại" value="">
+                                        <input type="text" class="form-input numberphone1" placeholder="Điện Thoại" value="">
                                     </div>
 
                                     <div>
-                                        <input type="checkbox" name="" value=""> Đặt làm địa chỉ mặc định
+                                        <input type="checkbox" name="" value="" class="checkdefault1"> Đặt làm địa chỉ mặc định
                                     </div>
                                     <div class="add-text">
-                                        <a href="#" class="add-onee">Cập nhật</a>
+                                        <a href="#" class="add-onee" onclick="updateAddress()">Cập nhật</a>
                                         <span class="kind-add" onclick="showEditAddress()">
                                             Hoặc
                                             <a href="#"> Hủy</a>
@@ -220,19 +221,19 @@
                                         </div>
                                         <div class="form-group">
                                             <span><i class="fa-solid fa-house"></i></span>
-                                            <input type="text" class="form-input" placeholder="Tên đường / Thôn, xóm" value="<?php echo $userInformation["tenduong"] ?>">
+                                            <input type="text" class="form-input apartment2" placeholder="Tên đường / Thôn, xóm" value="<?php echo $userInformation["tenduong"] ?>">
                                         </div>
                                         <div class="form-group">
                                             <span><i class="fa-solid fa-house"></i></span>
-                                            <input type="text" class="form-input" placeholder="Phường / Xã" value="<?php echo $userInformation["phuong"] ?>">
+                                            <input type="text" class="form-input ward2" placeholder="Phường / Xã" value="<?php echo $userInformation["phuong"] ?>">
                                         </div>
                                         <div class="form-group">
                                             <span><i class="fa-solid fa-house"></i></span>
-                                            <input type="text" class="form-input" placeholder="Quận / Huyện" value="<?php echo $userInformation["quan"] ?>">
+                                            <input type="text" class="form-input district2" placeholder="Quận / Huyện" value="<?php echo $userInformation["quan"] ?>">
                                         </div>
                                         <div class="form-group">
                                             <span><i class="fa-solid fa-house"></i></span>
-                                            <select name="" id="" class="form-input">
+                                            <select name="" id="city2" class="form-input">
                                                 <option value="0">Chọn tỉnh / thành phố</option>
                                                 <?php
                                                 $cities = array("An Giang", "Bà Rịa-Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước", "Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng", "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh", "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên", "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng", "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "Hồ Chí Minh", "Trà Vinh", "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái");
@@ -248,7 +249,7 @@
                                         </div>
                                         <div class="form-group">
                                             <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
-                                            <select class="form-input" name="" id="country">
+                                            <select class="form-input" name="" id="country2">
                                                 <option value="0" selected>Chọn quốc gia</option>
                                                 <option value="Việt Nam" <?php echo ($userInformation["quocgia"] == "Việt Nam") ? 'selected' : ''; ?>>Việt Nam</option>
                                                 <option value="Thái Lan" <?php echo ($userInformation["quocgia"] == "Thái Lan") ? 'selected' : ''; ?>>Thái Lan</option>
@@ -257,14 +258,14 @@
                                         </div>
                                         <div class="form-group">
                                             <span><i class="fa-solid fa-phone"></i></span>
-                                            <input type="text" class="form-input" placeholder="Điện Thoại" value="<?php echo $userInformation["sdt"] ?>">
+                                            <input type="text" class="form-input numberphone2" placeholder="Điện Thoại" value="<?php echo $userInformation["sdt"] ?>">
                                         </div>
 
                                         <div>
-                                            <input type="checkbox" name="" value=""> Đặt làm địa chỉ mặc định
+                                            <input type="checkbox" name="" value="" class="checkdefault2"> Đặt làm địa chỉ mặc định
                                         </div>
                                         <div class="add-text">
-                                            <a href="#" class="add-onee">Cập nhật</a>
+                                            <a href="#" class="add-onee" onclick="updateAddress()">Cập nhật</a>
                                             <span class="kind-add" onclick="showEditAddress()">
                                                 Hoặc
                                                 <a href="#"> Hủy</a>

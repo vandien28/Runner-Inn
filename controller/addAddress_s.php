@@ -1,5 +1,6 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+session_start();
 $apartment = $_GET["apartment"];
 $ward = $_GET["ward"];
 $district = $_GET["district"];

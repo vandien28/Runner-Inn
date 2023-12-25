@@ -19,6 +19,7 @@
 
     <?php
     $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    session_start();
     ?>
     <?php
     include "src/header-index.php"
@@ -318,3 +319,4 @@
 </body>
 
 </html>
+

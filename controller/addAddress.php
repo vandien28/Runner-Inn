@@ -1,8 +1,9 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
-$update = $db->prepare("UPDATE diachi SET macdinh = 0 where makhachhang = :userID");
-$update->bindParam(':userID', $_SESSION["userID"]);
-$update->execute();
+session_start();
+// $update = $db->prepare("UPDATE diachi SET macdinh = 0 where makhachhang = :userID");
+// $update->bindParam(':userID', $_SESSION["userID"]);
+// $update->execute();
 $apartment = $_GET["apartment"];
 $ward = $_GET["ward"];
 $district = $_GET["district"];

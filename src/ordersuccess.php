@@ -17,6 +17,7 @@
 <body>
     <?php
     $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    session_start();
     ?>
     <div class="row">
         <div class="main">
@@ -44,7 +45,7 @@
                             </div>
                             <div class="content-box-info">
                                 <?php
-                                $user = $db->prepare("SELECT * from khachhang,diachi where khachhang.makhachhang = diachi.makhachhang and khachhang.makhachhang = :userID");
+                                $user = $db->prepare("SELECT * from khachhang,diachi where khachhang.makhachhang = diachi.makhachhang and diachi.makhachhang = :userID and diachi.macdinh = 1");
                                 $user->bindParam(":userID", $_SESSION["userID"]);
                                 $user->execute();
                                 $infoUser = $user->fetch(PDO::FETCH_ASSOC);

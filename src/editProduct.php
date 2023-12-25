@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <?php $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", ""); ?>
+    <?php $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", ""); session_start();?>
     <div class="wrapper">
         <div class="left">
             <div class="sidebar">

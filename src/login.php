@@ -17,6 +17,7 @@
 <body>
     <?php
     $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    session_start();
     include "header.php"; ?>
     <script>
         document.addEventListener("DOMContentLoaded", function() {

@@ -17,6 +17,7 @@
 <body>
     <?php
     $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+    session_start();
     ?>
     <div class="row">
         <div class="main">
@@ -78,7 +79,13 @@
                             <div class="field">
                                 <div class="field-input-wrapper">
                                     <label class="field-label" for="">Họ và tên</label>
-                                    <input class="field-input name" type="text">
+                                    <?php 
+                                    $tenKH = $db->prepare("SELECT tenkhachhang from khachhang where makhachhang = :userID");
+                                    $tenKH->bindParam(":userID", $_SESSION["userID"]);
+                                    $tenKH->execute();
+                                    $tkh = $tenKH->fetch(PDO::FETCH_ASSOC)
+                                    ?>
+                                    <input class="field-input name" type="text" value="<?php echo $tkh["tenkhachhang"] ?>">
                                 </div>
                             </div>
                             <div class="field">
@@ -196,7 +203,7 @@
                     <div class="section-footer">
                         <a href="cart.php" class="current">Giỏ hàng</a>
                         <form action="paymentmethod.php" id="nextPayment">
-                            <button class="nextPayment">Tiếp tục đến phương thức thanh toán</button>
+                            <button class="nextPayment" ">Tiếp tục đến phương thức thanh toán</button>
                         </form>
                     </div>
                 </div>
@@ -302,6 +309,45 @@
         let selectedOptions = selectElements.options[selectElements.selectedIndex];
         let dataPropertiess = selectedOptions.getAttribute("data-properties");
         let propertiesObjects = JSON.parse(dataPropertiess);
+        if(selectedOptions.value == 0) {
+                document.getElementById("country").addEventListener("change", function() {
+                    let selectedOption = this.options[this.selectedIndex];
+                    let objProperties = {
+                        "sonha": $(".apartment").value,
+                        "phuong": $(".ward").value,
+                        "quan": $(".district").value,
+                        "thanhpho": document.getElementById("city").value,
+                        "quocgia": selectedOption.innerText
+                    };
+                    var stringProperties = JSON.stringify(objProperties);
+                    $(".nextPayment").setAttribute("data-properties", stringProperties);
+                    $(".nextPayment").addEventListener("click", function() {
+                        let data = $(".nextPayment").getAttribute("data-properties")
+                        let dataInfo = JSON.parse(data)
+                        let xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                if (xhr.responseText == "true") {
+                                    window.location.href = "/src/paymentmethod.php";
+                                }
+                            }
+                        }
+                        xhr.open("GET",
+                            "/controller/addAddress.php?apartment=" +
+                            encodeURIComponent(dataInfo.sonha) +
+                            "&ward=" +
+                            encodeURIComponent(dataInfo.phuong) +
+                            "&district=" +
+                            encodeURIComponent(dataInfo.quan) +
+                            "&city=" +
+                            encodeURIComponent(dataInfo.thanhpho) +
+                            "&country=" +
+                            encodeURIComponent(dataInfo.quocgia),
+                            true);
+                        xhr.send();
+                    });
+                });
+        } else {
         $(".name").value = propertiesObjects.hoten;
         $(".phone").value = propertiesObjects.sdt;
         $(".apartment").value = propertiesObjects.tenduong;
@@ -412,7 +458,7 @@
                 document.getElementById("city").disabled = true
                 document.getElementById("country").disabled = true
             }
-        });
+        })};
     </script>
 </body>
 

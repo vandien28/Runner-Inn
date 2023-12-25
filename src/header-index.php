@@ -1,5 +1,6 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+
 if (isset($_SESSION['userName'])) {
     echo "<script>
     let userObject = {name:'{$_SESSION['userName']}',id:{$_SESSION['userID']}}

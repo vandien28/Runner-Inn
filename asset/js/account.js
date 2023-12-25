@@ -275,3 +275,52 @@ function addAddress() {
   );
   xhr.send();
 }
+
+
+// * update địa chỉ 
+function updateAddress() {
+  let apartment = $(".apartment2").value;
+  let ward = $(".ward2").value;
+  let district = $(".district2").value;
+  let city =
+    document.getElementById("city2").options[
+      document.getElementById("city2").selectedIndex
+    ].value;
+  let country =
+    document.getElementById("country2").options[
+      document.getElementById("country2").selectedIndex
+    ].value;
+  let numberphone = $(".numberphone2").value;
+  let df = 0;
+  if ($(".checkdefault2").checked) {
+    df = 1;
+  }
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (xhr.responseText == "true") {
+        alert("Cập nhật địa chỉ thành công");
+        window.location.href = "../src/account.php";
+      }
+    }
+  };
+  xhr.open(
+    "GET",
+    "/controller/updateAddress.php?apartment=" +
+      encodeURIComponent(apartment) +
+      "&ward=" +
+      encodeURIComponent(ward) +
+      "&district=" +
+      encodeURIComponent(district) +
+      "&city=" +
+      encodeURIComponent(city) +
+      "&country=" +
+      encodeURIComponent(country) +
+      "&default=" +
+      encodeURIComponent(df) +
+      "&numberphone=" +
+      encodeURIComponent(numberphone),
+    true
+  );
+  xhr.send();
+}

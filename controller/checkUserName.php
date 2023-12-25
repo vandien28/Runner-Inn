@@ -1,5 +1,6 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+session_start();
 $username = $_GET['username'];
 // Kiểm tra tài khoản trong database
 $inputName = $db->prepare("SELECT tentk FROM khachhang WHERE tentk = :tentk");

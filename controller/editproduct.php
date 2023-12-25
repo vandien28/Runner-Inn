@@ -1,5 +1,6 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+
 $name = $_POST["name"];
 $id = $_POST["id"];
 $avt = $_POST["avt"];

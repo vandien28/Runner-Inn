@@ -1,5 +1,6 @@
 <?php
 $db = new PDO("mysql:host=localhost;dbname=runnerinn", "root", "");
+session_start();
 $quantity = $_GET["quantity"];
 $id = $_GET["id"];
 $size = $_GET["size"];
